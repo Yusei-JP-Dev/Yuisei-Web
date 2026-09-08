@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YUSEI STAY | 大阪の一棟貸し民宿</title>
+  <meta name="description" content="YUSEI STAYは、大阪のまちに佇む一棟貸しの民宿です。旅先で、暮らすように過ごす特別な滞在をお届けします。">
+
+  <!-- TODO: favicon -->
+  <!-- <link rel="icon" href="assets/logo/favicon.ico"> -->
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ============================================
+       HEADER / NAVBAR
+       Brand (left) / Main Navigation (center) / Utility (right)
+       ============================================ -->
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner container">
+
+      <a href="/" class="brand" aria-label="YUSEI STAY ホームへ戻る">
+        <!-- TODO: replace with real logo mark (SVG) -->
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text">
+          <span class="brand__name">YUSEI STAY</span>
+          <span class="brand__tagline">暮らすように、泊まる。</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="メインナビゲーション">
+        <ul class="main-nav__list">
+          <li><a href="/stays.html">Stay</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#access">Access</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-utility">
+        <!-- Language switcher: placeholder only until multi-language structure (see project docs section 15) is decided -->
+        <div class="language-switcher">
+          <button type="button" class="language-switcher__toggle" aria-haspopup="true" aria-expanded="false">
+            <span aria-hidden="true">&#127760;</span>
+            <span class="visually-hidden">言語を選択 / Select language</span>
+          </button>
+          <ul class="language-switcher__menu" hidden>
+            <li><a href="#" lang="ja">日本語</a></li>
+            <li><a href="#" lang="en">English</a></li>
+          </ul>
+        </div>
+
+        <a href="/stays.html" class="button button--primary">View Stays</a>
+
+        <button type="button" class="hamburger" id="hamburger-toggle" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="visually-hidden">メニューを開く</span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile menu panel: full nav + language + CTA, toggled by hamburger (JS added in Phase 6) -->
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <ul class="mobile-menu__list">
+        <li><a href="/stays.html">Stay</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#access">Access</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+      <div class="mobile-menu__language">
+        <p class="mobile-menu__label">LANGUAGE</p>
+        <ul>
+          <li><a href="#" lang="ja">日本語</a></li>
+          <li><a href="#" lang="en">English</a></li>
+        </ul>
+      </div>
+      <a href="/stays.html" class="button button--primary button--block">View Stays</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================
+         HERO
+         ============================================ -->
+    <section id="hero" class="hero">
+      <div class="hero__media">
+        <!-- TODO: replace with real hero photo of a Yusei Stay property exterior -->
+        <img src="assets/hero/hero-01.jpg" alt="YUSEI STAYの一棟貸し民宿の外観、夜の暖かい灯り" class="hero__image">
+        <div class="hero__overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero__content container">
+        <p class="hero__eyebrow">OSAKA MINSHUKU</p>
+        <h1 class="hero__heading">
+          A quieter way<br>
+          to stay in Osaka
+        </h1>
+        <p class="hero__subheading">旅先で、暮らすように過ごす。</p>
+        <p class="hero__description">
+          YUSEI STAYは、大阪のまちに佇む一棟貸しの民宿です。<br>
+          観光でも、仕事でも、いつもより少し深く、<br>
+          このまちを感じる滞在を。
+        </p>
+        <a href="/stays.html" class="button button--primary">View Stays</a>
+      </div>
+
+      <p class="hero__vertical-copy" aria-hidden="true">
+        泊まる、<br>そして、感じる<br>もうひとつの大阪
+      </p>
+
+      <!-- Optional slide indicator: only meaningful once/if Hero becomes a multi-image slider -->
+      <div class="hero__indicator" aria-hidden="true">
+        <span class="is-active">01</span>
+        <span>02</span>
+        <span>03</span>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT YUSEI STAY / BRAND STORY
+         ============================================ -->
+    <section id="about" class="about">
+      <div class="about__inner container">
+        <div class="about__content">
+          <p class="section-eyebrow">ABOUT YUSEI STAY</p>
+          <h2 class="section-heading">旅先に、もうひとつのわが家を。</h2>
+          <p class="about__description">
+            YUSEI STAYは、大阪で暮らすように滞在できる一棟貸しの民宿です。
+            伝統と現代が調和するまちで、あなただけの特別な時間をお届けします。
+          </p>
+          <a href="/about.html" class="button button--outline">私たちについて &rarr;</a>
+        </div>
+
+        <div class="about__media">
+          <!-- TODO: replace with real interior photo -->
+          <img src="assets/backgrounds/about-interior.jpg" alt="和室の窓辺に置かれたテーブルと椅子、障子越しの自然光" class="about__image">
+        </div>
+
+        <div class="about__editorial" aria-hidden="true">
+          <p>Stay<br>Like<br>a Local</p>
+          <p class="about__editorial-sub">OSAKA<br>PEOPLE<br>CULTURE<br>AND YOU</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         OUR STAYS
+         ============================================ -->
+    <section id="stays" class="stays">
+      <div class="stays__inner container">
+        <div class="stays__header">
+          <div>
+            <p class="section-eyebrow">OUR STAYS</p>
+            <h2 class="section-heading">選べる、あなただけの滞在</h2>
+          </div>
+          <a href="/stays.html" class="link-arrow">すべての宿を見る &rarr;</a>
+        </div>
+
+        <ul class="stay-card-grid">
+
+          <!-- Stay Card 01 -->
+          <li class="stay-card">
+            <a href="/stays/stay-01.html" class="stay-card__link">
+              <div class="stay-card__image-wrap">
+                <!-- TODO: real property photo -->
+                <img src="assets/properties/stay-01/cover.jpg" alt="YUSEI 天王寺の和室、庭に面した窓" class="stay-card__image">
+              </div>
+              <div class="stay-card__body">
+                <h3 class="stay-card__name">YUSEI 天王寺</h3>
+                <ul class="stay-card__tags">
+                  <li>一棟貸し</li>
+                  <li><!-- TODO: confirm actual max capacity -->最大6名</li>
+                  <li><!-- TODO: confirm actual distance -->駅から徒歩5分</li>
+                </ul>
+              </div>
+              <span class="stay-card__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+
+          <!-- Stay Card 02 -->
+          <li class="stay-card">
+            <a href="/stays/stay-02.html" class="stay-card__link">
+              <div class="stay-card__image-wrap">
+                <img src="assets/properties/stay-02/cover.jpg" alt="YUSEI なんばの寝室、ツインベッド" class="stay-card__image">
+              </div>
+              <div class="stay-card__body">
+                <h3 class="stay-card__name">YUSEI なんば</h3>
+                <ul class="stay-card__tags">
+                  <li>一棟貸し</li>
+                  <li>最大6名</li>
+                  <li>駅から徒歩7分</li>
+                </ul>
+              </div>
+              <span class="stay-card__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+
+          <!-- Stay Card 03 -->
+          <li class="stay-card">
+            <a href="/stays/stay-03.html" class="stay-card__link">
+              <div class="stay-card__image-wrap">
+                <img src="assets/properties/stay-03/cover.jpg" alt="YUSEI 谷町の坪庭と夜の照明" class="stay-card__image">
+              </div>
+              <div class="stay-card__body">
+                <h3 class="stay-card__name">YUSEI 谷町</h3>
+                <ul class="stay-card__tags">
+                  <li>一棟貸し</li>
+                  <li>最大6名</li>
+                  <li>駅から徒歩6分</li>
+                </ul>
+              </div>
+              <span class="stay-card__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================
+         WHY STAY WITH US
+         ============================================ -->
+    <section id="features" class="features">
+      <div class="features__inner container">
+        <h2 class="section-heading section-heading--center">選ばれる3つの理由</h2>
+
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="feature-item__icon" aria-hidden="true"><!-- TODO: house icon --></span>
+            <h3 class="feature-item__title">プライベートな空間</h3>
+            <p class="feature-item__description">一棟貸しだから、家族や仲間と気兼ねなく過ごせます。</p>
+          </li>
+          <li class="feature-item">
+            <span class="feature-item__icon" aria-hidden="true"><!-- TODO: pin icon --></span>
+            <h3 class="feature-item__title">便利なロケーション</h3>
+            <p class="feature-item__description">主要観光地へのアクセスが良く、大阪を思う存分楽しめます。</p>
+          </li>
+          <li class="feature-item">
+            <span class="feature-item__icon" aria-hidden="true"><!-- TODO: sofa icon --></span>
+            <h3 class="feature-item__title">快適な暮らし</h3>
+            <p class="feature-item__description">旅に必要な設備が整い、長期滞在でも快適に過ごせます。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================
+         OSAKA EXPERIENCE
+         ============================================ -->
+    <section id="experience" class="experience">
+      <div class="experience__inner container">
+        <div class="experience__media">
+          <!-- TODO: real lifestyle photo (shopping street / lanterns) -->
+          <img src="assets/osaka/streetscape.jpg" alt="提灯が並ぶ大阪の商店街の夜景" class="experience__image">
+          <p class="experience__media-caption">More Than a Trip</p>
+        </div>
+
+        <div class="experience__content">
+          <p class="section-eyebrow">OSAKA EXPERIENCE</p>
+          <h2 class="section-heading">暮らすように旅をする、<br>大阪のまちで。</h2>
+          <p class="experience__description">
+            美味しい食、あたたかい人々、どこか懐かしくて新しい街並み。
+            YUSEI STAYで、観光だけでは出会えない大阪の日常を体験してみませんか。
+          </p>
+          <a href="/experience.html" class="link-arrow">大阪の楽しみ方を見る &rarr;</a>
+        </div>
+
+        <div class="experience__side-stack">
+          <!-- TODO: real photos (food stall / river skyline) -->
+          <img src="assets/osaka/food.jpg" alt="屋台で焼かれるたこ焼き" class="experience__side-image">
+          <img src="assets/osaka/skyline.jpg" alt="夕暮れの大阪の川沿いの街並み" class="experience__side-image">
+          <p class="experience__keywords" aria-hidden="true">
+            GOOD FOOD<br>GOOD PEOPLE<br>A BRIGHTER OSAKA
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ACCESS
+         ============================================ -->
+    <section id="access" class="access">
+      <div class="access__inner container">
+        <div class="access__content">
+          <p class="section-eyebrow">ACCESS</p>
+          <h2 class="section-heading">大阪の主要エリアから好アクセス</h2>
+          <p class="access__description">
+            なんば・梅田・天王寺などの主要エリアへも便利。
+            観光にもビジネスにも最適なロケーションです。
+          </p>
+          <a href="/access.html" class="button button--outline">アクセス詳細を見る &rarr;</a>
+        </div>
+
+        <div class="access__map">
+          <!-- TODO: replace with real embedded Google Map once exact property addresses are confirmed -->
+          <div class="access__map-placeholder" role="img" aria-label="大阪主要エリアの簡易地図（実際の地図は今後追加予定）"></div>
+        </div>
+
+        <ul class="access__transport">
+          <li><span class="access__transport-icon" aria-hidden="true"><!-- TODO: train icon --></span>なんば駅 &nbsp;徒歩約7分</li>
+          <li><span class="access__transport-icon" aria-hidden="true"></span>天王寺駅 &nbsp;徒歩約6分</li>
+          <li><span class="access__transport-icon" aria-hidden="true"></span>梅田駅 &nbsp;電車で約15分</li>
+          <li><span class="access__transport-icon" aria-hidden="true"><!-- TODO: airport icon --></span>関西国際空港 &nbsp;電車で約50分</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FINAL CTA / BOOKING BANNER
+         ============================================ -->
+    <section id="booking-cta" class="booking-cta">
+      <div class="booking-cta__media">
+        <!-- TODO: real ambient photo (window light / entrance) -->
+        <img src="assets/backgrounds/cta-room.jpg" alt="窓辺から差し込む柔らかな光と観葉植物" class="booking-cta__image">
+        <div class="booking-cta__overlay" aria-hidden="true"></div>
+      </div>
+      <div class="booking-cta__content container">
+        <p class="booking-cta__eyebrow">YUSEI STAY</p>
+        <h2 class="booking-cta__heading">大阪で、特別な滞在をはじめませんか？</h2>
+        <p class="booking-cta__description">空室状況を確認して、今すぐご予約いただけます。</p>
+        <a href="/stays.html" class="button button--primary">View Stays</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+
+      <div class="site-footer__brand">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <div>
+          <p class="site-footer__brand-name">YUSEI STAY</p>
+          <p class="site-footer__brand-tagline">暮らすように、泊まる。</p>
+        </div>
+      </div>
+
+      <nav class="site-footer__links" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="/stays.html">Stay</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#access">Access</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-footer__language">
+        <a href="#" lang="ja">日本語</a>
+        <span aria-hidden="true">|</span>
+        <a href="#" lang="en">English</a>
+      </div>
+
+      <ul class="site-footer__social">
+        <!-- TODO: confirm actual social links -->
+        <li><a href="#" aria-label="Instagram"><!-- icon --></a></li>
+        <li><a href="#" aria-label="Facebook"><!-- icon --></a></li>
+        <li><a href="#" aria-label="YouTube"><!-- icon --></a></li>
+      </ul>
+
+      <p class="site-footer__copyright">&copy; 2026 YUSEI STAY. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

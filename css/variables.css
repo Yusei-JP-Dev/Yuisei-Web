@@ -1,0 +1,69 @@
+/* ============================================================
+   Yusei Stay — Design Tokens
+   Single source of truth for colour, spacing and typography.
+   Reference: project doc, section 17 (Yusei Stay 視覺配色與 Design System)
+
+   Rule: components should use these variables instead of
+   hard-coding new colour values. If a design needs a colour or
+   spacing value that isn't listed here, add it here first.
+   ============================================================ */
+
+:root {
+
+  /* ---- Colour: background / surface ---- */
+  --color-bg: #F5F1E7;          /* Warm Ivory — main page background */
+  --color-bg-soft: #EEE7DA;     /* slightly deeper paper tone — alternate sections */
+  --color-surface: #FBF8F2;     /* card / panel surface */
+
+  /* ---- Colour: text ---- */
+  --color-text: #2C261F;            /* headings, primary body text */
+  --color-text-secondary: #6B6054;  /* secondary copy */
+  --color-text-muted: #938678;      /* metadata, faint labels */
+  --color-text-inverse: #FAF8F3;    /* text on dark backgrounds / photos */
+
+  /* ---- Colour: brand / CTA ---- */
+  --color-primary: #6A7350;         /* Olive Moss — primary buttons, CTA, icons */
+  --color-primary-hover: #5C6547;
+  --color-primary-active: #4E563D;
+  --color-primary-disabled: #A9AF99;
+
+  /* ---- Colour: accents ---- */
+  --color-secondary: #8B6A47;       /* Aged Wood — decorative accent */
+  --color-accent-gold: #B98B4A;     /* Lantern Gold — small warm highlights */
+
+  /* ---- Colour: border / structure ---- */
+  --color-border: #CFC4B3;          /* Muted Stone — default borders / dividers */
+  --color-border-strong: #8D7D67;
+
+  /* ---- Colour: focus ---- */
+  --color-focus: #B59463;
+  --focus-ring: 0 0 0 3px rgba(181, 148, 99, 0.28);
+
+  /* ---- Colour: footer ---- */
+  --color-footer-bg: #2F271F;
+  --color-footer-text: #F5F0E7;
+  --color-footer-muted: #CDBFAE;
+
+  /* ---- Colour: card ---- */
+  --color-card-border: #DDD2C1;
+  --shadow-soft: 0 2px 12px rgba(36, 28, 20, 0.08);
+  --shadow-strong: 0 6px 20px rgba(36, 28, 20, 0.14);
+
+  /* ---- Overlays (Hero / CTA images) ---- */
+  --overlay-dark: rgba(33, 26, 20, 0.42);
+  --overlay-olive: rgba(63, 74, 52, 0.18);
+
+  /* ---- Typography ---- */
+  --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-heading: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+
+  /* ---- Layout ---- */
+  --content-max-width: 1240px;
+  --section-padding-desktop: 100px;
+  --section-padding-mobile: 40px;
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fade: 800ms;
+  --duration-hover: 600ms;
+}
