@@ -12,6 +12,11 @@
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg);
+  /* 米白紙紋背景：用 multiply 疊上底色，紋理與暖白色調融合，唔會突兀 */
+  background-image: url('../assets/backgrounds/bg-paper.jpg');
+  background-repeat: repeat;
+  background-size: 640px auto;
+  background-blend-mode: multiply;
   color: var(--color-text);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;

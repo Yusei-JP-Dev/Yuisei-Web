@@ -72,6 +72,13 @@
   opacity: 0.95;
 }
 
+.hero__tag {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  opacity: 0.85;
+}
+
 .hero__vertical-copy {
   position: absolute;
   right: 48px;
@@ -366,9 +373,25 @@
 .access__transport {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   font-size: 0.9rem;
-  white-space: nowrap;
+  min-width: 180px;
+}
+
+.access__group-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.access__group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .access__transport-icon {
