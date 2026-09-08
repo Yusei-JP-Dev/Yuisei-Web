@@ -18,8 +18,7 @@
   }
 
   .about__inner,
-  .experience__inner,
-  .access__inner {
+  .experience__inner {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -38,6 +37,26 @@
 
   .hero__vertical-copy {
     display: none;
+  }
+
+  /* ---- Access: stack content above the area list, let areas wrap ----
+     (space-between only matters for the desktop side-by-side row, so
+     it's reset here to avoid odd behaviour once flex-direction is
+     column) ---- */
+  .access__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 32px;
+  }
+
+  .access__content {
+    flex-basis: auto;
+  }
+
+  .access__areas {
+    flex-wrap: wrap;
+    row-gap: 24px;
   }
 }
 
@@ -129,10 +148,9 @@
     bottom: 20px;
   }
 
-  /* ---- About / Experience / Access: stack to 1 column ---- */
+  /* ---- About / Experience: stack to 1 column ---- */
   .about__inner,
-  .experience__inner,
-  .access__inner {
+  .experience__inner {
     grid-template-columns: 1fr;
     gap: 28px;
   }
@@ -154,9 +172,23 @@
     gap: 12px;
   }
 
-  /* ---- Access ---- */
-  .access__transport {
-    white-space: normal;
+  /* ---- Access: area list becomes one stacked column, dividers switch
+     from vertical (border-left) to horizontal (border-top) ---- */
+  .access__areas {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .access__area {
+    padding-left: 0;
+    padding-top: 20px;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .access__area:first-child {
+    padding-top: 0;
+    border-top: none;
   }
 
   /* ---- Footer ---- */

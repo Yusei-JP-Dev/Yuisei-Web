@@ -360,36 +360,67 @@
 }
 
 .access__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 48px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 40px; /* minimum gap only — space-between does the real separating */
+}
+
+.access__content {
+  flex: 0 0 380px;
 }
 
 .access__description {
   color: var(--color-text-secondary);
   margin-block: 20px 28px;
-  max-width: 400px;
 }
 
-.access__map-placeholder {
-  height: 320px;
-  border-radius: 4px;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-card-border);
-}
-
-.access__transport {
+/* ---- Area list: 3 columns (弁天町・朝潮橋 / 天下茶屋・花園町 / 貝塚),
+   each separated by a thin vertical rule, matching the boss-provided
+   reference layout. ---- */
+.access__areas {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 0.9rem;
+  flex: 0 0 auto; /* shrink to content — sits at the row's right end via
+                     justify-content: space-between on .access__inner,
+                     instead of stretching to hug the left content block */
+  gap: 40px;
+}
+
+.access__area {
+  padding-left: 40px;
+  border-left: 1px solid var(--color-border);
+}
+
+.access__area:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.access__area-name {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
   white-space: nowrap;
 }
 
-.access__transport-icon {
-  display: inline-block;
-  width: 18px;
+.access__area-stays {
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.access__area-stays a {
+  transition: color var(--duration-hover) var(--ease-standard);
+}
+
+.access__area-stays a:hover {
+  color: var(--color-primary);
+}
+
+.access__area-stays li:not(:last-child)::after {
+  content: "/";
+  margin-inline: 6px;
+  color: var(--color-text-muted);
 }
 
 /* ============================================================
