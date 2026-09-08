@@ -1,6 +1,166 @@
 /* ============================================================
    Yusei Stay — Header / Navbar
-   To be implemented in the next phase (Phase 3: Header + Hero).
-   Kept as an empty placeholder for now so index.html has no
-   broken stylesheet links.
+   Layout: Brand (left) / Main Nav (center) / Utility (right)
+   Reference: project doc section 18.4 + 17.5 (Header colours)
    ============================================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #F7F3EA;
+  border-bottom: 1px solid #D9CFBF;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 80px;
+}
+
+/* ---- Brand ---- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand__mark {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-text);
+  flex-shrink: 0;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.brand__name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+
+.brand__tagline {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+/* ---- Main Navigation (desktop) ---- */
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.main-nav__list {
+  display: flex;
+  gap: 32px;
+  font-size: 0.95rem;
+}
+
+.main-nav__list a {
+  transition: color var(--duration-hover) var(--ease-standard);
+}
+
+.main-nav__list a:hover {
+  color: var(--color-primary);
+}
+
+/* ---- Utility area (language + CTA + hamburger) ---- */
+.header-utility {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.header-utility .button {
+  padding: 10px 22px;
+  font-size: 0.85rem;
+}
+
+/* ---- Language switcher ---- */
+.language-switcher {
+  position: relative;
+}
+
+.language-switcher__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #4D463E;
+  transition: background-color var(--duration-hover) var(--ease-standard);
+}
+
+.language-switcher__toggle:hover {
+  background-color: var(--color-bg-soft);
+}
+
+.language-switcher__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: var(--shadow-soft);
+  min-width: 140px;
+  padding: 8px 0;
+}
+
+.language-switcher__menu li a {
+  display: block;
+  padding: 8px 16px;
+}
+
+.language-switcher__menu li a:hover {
+  background-color: var(--color-bg-soft);
+}
+
+/* ---- Hamburger (mobile only — hidden on desktop) ---- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+.hamburger__line {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background-color: var(--color-text);
+  transition: transform var(--duration-hover) var(--ease-standard),
+              opacity var(--duration-hover) var(--ease-standard);
+}
+
+.hamburger[aria-expanded="true"] .hamburger__line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger[aria-expanded="true"] .hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger[aria-expanded="true"] .hamburger__line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ---- Mobile menu panel (hidden on desktop, see responsive.css) ---- */
+.mobile-menu {
+  display: none;
+}
