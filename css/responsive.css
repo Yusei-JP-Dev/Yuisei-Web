@@ -191,6 +191,17 @@
     border-top: none;
   }
 
+  /* ---- Booking CTA: stack text above the button, left-aligned ---- */
+  .booking-cta__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .booking-cta__button {
+    align-items: flex-start; /* height-matching only makes sense side-by-side */
+  }
+
   /* ---- Footer ---- */
   .site-footer__inner {
     grid-template-columns: 1fr;

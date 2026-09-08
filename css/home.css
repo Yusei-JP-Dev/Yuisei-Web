@@ -428,7 +428,7 @@
    ============================================================ */
 .booking-cta {
   position: relative;
-  padding-block: 100px;
+  padding-block: 64px; /* shorter/slimmer than a regular content section (100px) — this is a CTA banner, not a content block */
   overflow: hidden;
 }
 
@@ -450,11 +450,20 @@
   background: linear-gradient(to right, rgba(33, 26, 20, 0.6), rgba(33, 26, 20, 0.35));
 }
 
-.booking-cta__content {
+/* booking-cta__inner: text on the left, button on the right, pushed to
+   opposite ends (same space-between pattern as the Access section). */
+.booking-cta__inner {
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: stretch; /* button stretches to match the text block's height */
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.booking-cta__text {
   color: var(--color-text-inverse);
-  max-width: 560px;
+  max-width: 480px;
 }
 
 .booking-cta__eyebrow {
@@ -473,6 +482,31 @@
 .booking-cta__description {
   margin-bottom: 28px;
   opacity: 0.95;
+}
+
+/* Right-side button: solid green box (same colour as button--primary
+   elsewhere) but with an underlined label, per feedback. Vertically
+   centered so its single line sits mid-height against the multi-line
+   text block on the left (align-items: stretch on .booking-cta__inner
+   is what makes this element's height follow the text block). */
+.booking-cta__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding-inline: 32px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  color: var(--color-text-inverse);
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+  transition: background-color var(--duration-hover) var(--ease-standard);
+}
+
+.booking-cta__button:hover {
+  background-color: var(--color-primary-hover);
 }
 
 /* ============================================================
