@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>宿を探す | YUSEI STAY</title>
+  <meta name="description" content="大阪の一棟貸しの宿を、人数や設備の条件から探す。YUSEI STAYで暮らすように泊まる旅を。">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/stays.css">
+  <script src="js/stays.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="header">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">結</span><span><strong>YUSEI STAY</strong><small>暮らすように、泊まる。</small></span></a>
+  <nav aria-label="メインナビゲーション"><a href="index.html">ホーム</a><a href="stays.html" aria-current="page">宿を探す</a><a href="index.html#about">私たちについて</a><button type="button" data-info="faq">よくあるご質問</button><button type="button" data-info="contact">お問い合わせ</button></nav>
+  <div class="header-right"><span>◎ 日本語</span><a class="primary" href="#filters">宿を見る <span aria-hidden="true">→</span></a></div>
+</header>
+<main id="main" class="shell">
+  <section class="intro" aria-labelledby="page-title"><div><p class="eyebrow">FIND YOUR STAY</p><h1 id="page-title">大阪で、あなたに合う宿を。</h1><p class="lead">人数や設備の条件から、旅にぴったりの一軒を。</p></div><aside>大阪で、<br>暮らすように泊まる。<small>STAY<br>LIKE A LOCAL<br>IN OSAKA</small></aside></section>
+  <form id="filters" class="panel filter-panel">
+    <div class="panel-heading"><span class="number">01</span><h2>宿泊条件</h2><p>ご希望の条件を<br>お選びください。</p></div>
+    <div class="filter-body"><div class="fields">
+      <label class="area">エリア<select id="area"><option value="">すべてのエリア</option value="bay">大阪ベイエリア</option><option value="south">天下茶屋・花園町</option><option value="kaizuka">貝塚</option></select></label>
+      <div><label for="adults">大人</label><div class="stepper"><button type="button" data-step="adults:-1" aria-label="大人を1人減らす">−</button><input id="adults" type="number" min="1" max="20" value="2" required><button type="button" data-step="adults:1" aria-label="大人を1人増やす">＋</button></div></div>
+      <div><label for="children">子ども</label><div class="stepper"><button type="button" data-step="children:-1" aria-label="子どもを1人減らす">−</button><input id="children" type="number" min="0" max="10" value="2" required><button type="button" data-step="children:1" aria-label="子どもを1人増やす">＋</button></div></div>
+      <div class="ages-wrap"><div id="ages"></div><small id="age-note">お子さまの年齢は宿泊条件の確認に使用します。</small></div>
+    </div><fieldset class="amenities"><legend class="sr-only">希望する設備</legend><label><input type="checkbox" name="amenity" value="kitchen">キッチン</label><label><input type="checkbox" name="amenity" value="laundry">洗濯機</label><label><input type="checkbox" name="amenity" value="bath">バスタブ</label><label><input type="checkbox" name="amenity" value="parking">駐車場</label></fieldset></div>
+    <div class="actions"><button class="primary" type="submit">絞り込む <span aria-hidden="true">→</span></button><span class="action-line"></span><button class="reset" type="reset">リセット</button></div>
+  </form>
+  <form id="dates" class="panel dates-panel">
+    <div class="panel-heading"><span class="number">02</span><h2>ご宿泊日 <small>（任意）</small></h2><p>ご希望の日程で空室を<br>お問い合わせ<br>いただけます。</p></div>
+    <div class="date-body"><div class="date-fields"><label>チェックイン<input id="checkin" type="date" required></label><label>チェックアウト<input id="checkout" type="date" required></label></div><p class="fine">日付の入力だけでは、空室や予約は確定しません。</p></div>
+    <div class="actions"><button class="outline" type="submit">空室を問い合わせる</button></div>
+  </form>
+  <section class="results" aria-labelledby="results-title"><div class="results-heading"><h2 id="results-title">宿泊施設一覧</h2><span id="result-status" role="status">絞り込み前</span><p>大阪で出会う、さまざまな暮らし。</p></div><p id="filter-note" class="fine" hidden></p><div id="cards" class="cards"></div><button id="show-all" class="outline more" type="button">すべての宿を見る（全7施設） <span aria-hidden="true">↓</span></button><noscript>宿の一覧と絞り込みを利用するには、JavaScriptを有効にしてください。</noscript></section>
+</main>
+<footer class="footer"><div class="footer-row"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">結</span><span><strong>YUSEI STAY</strong><small>暮らすように、泊まる。</small></span></a><nav aria-label="フッターナビゲーション"><a href="index.html">ホーム</a><a href="stays.html">宿を探す</a><a href="index.html#about">私たちについて</a><button data-info="faq">よくあるご質問</button><button data-info="contact">お問い合わせ</button></nav><span class="copyright">© <span id="year"></span> YUSEI STAY. All rights reserved.</span></div><p>空室状況・ご予約方法は、各施設の詳細をご確認ください。</p></footer>
+<dialog id="dialog" aria-labelledby="dialog-title"><button id="close-dialog" class="close" aria-label="閉じる">×</button><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+</body>
+</html>

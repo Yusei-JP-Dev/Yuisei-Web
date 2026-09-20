@@ -1,0 +1,78 @@
+'use strict';
+// null means unverified, never unavailable. Resolve these fields with the owner
+// before treating results as guaranteed occupancy or amenity matches.
+const stays = [
+  {id:'pine',name:'松園',en:'Pine Garden',area:'bay',station:'弁天町',folder:'stay-05_Pine Garden',photo:1,capacity:5,url:'pine2025'},
+  {id:'literature',name:'文園',en:'Literature Garden',area:'bay',station:'弁天町',folder:'stay-04_Literature Garden',photo:1,capacity:6,url:'literaturegarden'},
+  {id:'tea',name:'茶園',en:'Tea Garden',area:'south',station:'天下茶屋',folder:'stay-01_Tea Garden',photo:3,capacity:5,url:'teagarden2024'},
+  {id:'art',name:'芸',en:'Art Home',area:'bay',station:'朝潮橋',folder:'stay-03_Art Home',photo:5,capacity:null,url:'arthome2025'},
+  {id:'furukawa',name:'古川の家',en:'Furukawa House',area:'kaizuka',station:'三ツ松',folder:'stay-06_Furukawa House',photo:8,capacity:null,url:'furukawa'},
+  {id:'zen',name:'禪園',en:'Zen Garden',area:'south',station:'花園町',folder:'stay-02_Zen Garden',photo:1,capacity:null,url:'zen2025'},
+  {id:'harmony',name:'和の園',en:'Harmony Garden',area:'bay',station:'弁天町',folder:'stay-07_Harmony Garden',photo:1,capacity:5,url:'2026harmony'}
+].map(stay=>({...stay,amenities:{kitchen:null,laundry:null,bath:null,parking:null}}));
+const $=id=>document.getElementById(id);
+const form=$('filters'),dialog=$('dialog');
+let filtered=false;
+function ages(){
+  const previous=[...$('ages').querySelectorAll('select')].map(el=>el.value);
+  const count=Number($('children').value);
+  $('ages').replaceChildren();
+  for(let i=0;i<count;i++){
+    const label=document.createElement('label');label.textContent=`子ども${i+1}の年齢`;
+    const select=document.createElement('select');select.setAttribute('aria-describedby','age-note');
+    select.add(new Option('選択してください',''));
+    for(let age=0;age<=17;age++)select.add(new Option(`${age}歳`,String(age)));
+    select.value=previous[i]||'';label.append(select);$('ages').append(label);
+  }
+  $('age-note').hidden=count===0;
+}
+function syncSteppers(){document.querySelectorAll('[data-step]').forEach(button=>{const [id,delta]=button.dataset.step.split(':');const input=$(id);button.disabled=Number(delta)<0?Number(input.value)<=Number(input.min):Number(input.value)>=Number(input.max);});}
+document.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{const [id,delta]=button.dataset.step.split(':');const input=$(id);input.value=Math.min(Number(input.max),Math.max(Number(input.min),(Number(input.value)||Number(input.min))+Number(delta)));if(id==='children')ages();syncSteppers();}));
+['adults','children'].forEach(id=>$(id).addEventListener('change',()=>{const input=$(id);input.value=Math.min(Number(input.max),Math.max(Number(input.min),Math.trunc(Number(input.value)||0)));if(id==='children')ages();syncSteppers();}));
+function render(items){
+  $('cards').replaceChildren();
+  for(const stay of items){
+    const card=document.createElement('article');card.className='card';
+    const img=document.createElement('img');img.src=`assets/properties/${stay.folder}/room_picture_${stay.photo}.jpeg`;img.alt=`${stay.name}の室内`;img.loading='lazy';
+    const body=document.createElement('div');body.className='card-body';
+    const title=document.createElement('h3');title.textContent=stay.name;const en=document.createElement('small');en.textContent=stay.en;title.append(en);
+    const bottom=document.createElement('div');bottom.className='card-bottom';
+    const location=document.createElement('span');location.textContent=`⌖ ${stay.station}`;
+    const button=document.createElement('button');button.type='button';button.textContent='詳細を見る →';button.setAttribute('aria-label',`${stay.name}の詳細を見る`);button.addEventListener('click',()=>details(stay));
+    bottom.append(location,button);body.append(title,bottom);card.append(img,body);$('cards').append(card);
+  }
+  if(!items.length){const p=document.createElement('p');p.className='empty';p.textContent='条件に合う宿が見つかりませんでした。人数やエリアを変更してお試しください。';$('cards').append(p);}
+}
+form.addEventListener('submit',event=>{
+  event.preventDefault();filtered=true;
+  const selected=[...form.querySelectorAll('[name=amenity]:checked')].map(input=>input.value);
+  // Child occupancy rules are not approved. Do not infer that every child uses
+  // an adult bed; retain these candidates for individual confirmation.
+  const list=stays.filter(stay=>(!$('area').value||stay.area===$('area').value)&&(stay.capacity===null||stay.capacity>=Number($('adults').value))&&selected.every(key=>stay.amenities[key]!==false));
+  render(list);$('show-all').hidden=true;$('result-status').textContent=`候補 ${list.length}施設`;
+  $('filter-note').hidden=false;$('filter-note').textContent='定員・設備を確認中の施設も候補に含まれます。お子さまを含む宿泊人数と設備の対応状況は、各施設にご確認ください。空室状況での絞り込みではありません。';
+});
+form.addEventListener('reset',()=>{setTimeout(()=>{filtered=false;$('ages').replaceChildren();ages();syncSteppers();render(stays.slice(0,3));$('show-all').hidden=false;$('filter-note').hidden=true;$('result-status').textContent='絞り込み前';},0);});
+$('show-all').addEventListener('click',()=>{render(stays);$('show-all').hidden=true;$('result-status').textContent='全7施設';});
+function openDialog(title){$('dialog-title').textContent=title;$('dialog-body').replaceChildren();dialog.showModal();}
+function paragraph(text){const p=document.createElement('p');p.textContent=text;$('dialog-body').append(p);}
+function bookingLink(stay){const a=document.createElement('a');a.className='primary';a.href=`https://www.airbnb.com/h/${stay.url}`;a.target='_blank';a.rel='noopener noreferrer';a.textContent=`${stay.name}をAirbnbで見る ↗`;$('dialog-body').append(a);}
+function details(stay){openDialog(`${stay.name} · ${stay.en}`);paragraph(`最寄りエリア：${stay.station}`);paragraph('詳しい設備・宿泊条件・空室状況は、Airbnbの施設ページでご確認ください。');bookingLink(stay);}
+$('close-dialog').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener('click',()=>{openDialog(button.dataset.info==='faq'?'よくあるご質問':'お問い合わせ');paragraph('このサイト上では予約は確定しません。空室、料金、お子さまの宿泊条件については、ご希望の宿のAirbnbページからお問い合わせください。');for(const stay of stays)bookingLink(stay);}));
+function localDate(date){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;}
+$('checkin').min=localDate(new Date());$('checkout').min=localDate(new Date());
+$('checkin').addEventListener('change',()=>{const date=new Date(`${$('checkin').value}T12:00:00`);if(!Number.isNaN(date.valueOf())){date.setDate(date.getDate()+1);$('checkout').min=localDate(date);}validateDates();});
+function validateDates(){$('checkout').setCustomValidity($('checkin').value&&$('checkout').value&&$('checkout').value<=$('checkin').value?'チェックアウトはチェックインより後の日付を選択してください。':'');}
+$('checkout').addEventListener('change',validateDates);
+$('dates').addEventListener('submit',event=>{
+  event.preventDefault();validateDates();if(!$('dates').reportValidity()||!form.reportValidity())return;
+  openDialog('空室のお問い合わせ');paragraph('お問い合わせ内容を作成しました。まだ送信されていません。下の文面をコピーし、ご希望の施設のAirbnbページからお問い合わせください。');
+  const text=document.createElement('textarea');text.readOnly=true;text.setAttribute('aria-label','お問い合わせ文面');
+  const childAges=[...$('ages').querySelectorAll('select')].map(el=>el.value===''?'未選択':`${el.value}歳`);
+  text.value=`空室についてお伺いします。\nチェックイン：${$('checkin').value}\nチェックアウト：${$('checkout').value}\n大人：${$('adults').value}名\n子ども：${$('children').value}名${childAges.length?`（${childAges.join('、')}）`:''}\nこの条件で宿泊できますか？`;
+  $('dialog-body').append(text);const copy=document.createElement('button');copy.className='outline';copy.textContent='文面をコピー';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(text.value);copy.textContent='コピーしました';}catch{text.focus();text.select();copy.textContent='選択した文面をコピーしてください';}});$('dialog-body').append(copy);
+  paragraph('お問い合わせ先の宿を選択してください。');for(const stay of stays)bookingLink(stay);
+});
+$('year').textContent=new Date().getFullYear();ages();syncSteppers();render(stays.slice(0,3));
