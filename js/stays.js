@@ -12,16 +12,19 @@ const stays = [
 ].map(stay=>({...stay,amenities:{kitchen:null,laundry:null,bath:null,parking:null}}));
 const $=id=>document.getElementById(id);
 const form=$('filters'),dialog=$('dialog');
-let filtered=false;
+const i18n=window.YuseiI18n;
+let resultMode='preview'; // 'preview' | 'filtered' | 'all'
+let lastRenderedItems=stays.slice(0,3);
+let dialogContext=null; // {type:'stay',stay} | {type:'faqContact',kind} | {type:'inquiry'}
 function ages(){
   const previous=[...$('ages').querySelectorAll('select')].map(el=>el.value);
   const count=Number($('children').value);
   $('ages').replaceChildren();
   for(let i=0;i<count;i++){
-    const label=document.createElement('label');label.textContent=`子ども${i+1}の年齢`;
+    const label=document.createElement('label');label.textContent=i18n.t('ages.label',{n:i+1});
     const select=document.createElement('select');select.setAttribute('aria-describedby','age-note');
-    select.add(new Option('選択してください',''));
-    for(let age=0;age<=17;age++)select.add(new Option(`${age}歳`,String(age)));
+    select.add(new Option(i18n.t('ages.selectPlaceholder'),''));
+    for(let age=0;age<=17;age++)select.add(new Option(i18n.t('ages.optionYears',{age}),String(age)));
     select.value=previous[i]||'';label.append(select);$('ages').append(label);
   }
   $('age-note').hidden=count===0;
@@ -30,49 +33,98 @@ function syncSteppers(){document.querySelectorAll('[data-step]').forEach(button=
 document.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{const [id,delta]=button.dataset.step.split(':');const input=$(id);input.value=Math.min(Number(input.max),Math.max(Number(input.min),(Number(input.value)||Number(input.min))+Number(delta)));if(id==='children')ages();syncSteppers();}));
 ['adults','children'].forEach(id=>$(id).addEventListener('change',()=>{const input=$(id);input.value=Math.min(Number(input.max),Math.max(Number(input.min),Math.trunc(Number(input.value)||0)));if(id==='children')ages();syncSteppers();}));
 function render(items){
+  lastRenderedItems=items;
   $('cards').replaceChildren();
   for(const stay of items){
     const card=document.createElement('article');card.className='card';
-    const img=document.createElement('img');img.src=`assets/properties/${stay.folder}/room_picture_${stay.photo}.jpeg`;img.alt=`${stay.name}の室内`;img.loading='lazy';
+    const img=document.createElement('img');img.src=`assets/properties/${stay.folder}/room_picture_${stay.photo}.jpeg`;img.alt=i18n.t('card.imageAlt',{name:stay.name});img.loading='lazy';
     const body=document.createElement('div');body.className='card-body';
     const title=document.createElement('h3');title.textContent=stay.name;const en=document.createElement('small');en.textContent=stay.en;title.append(en);
     const bottom=document.createElement('div');bottom.className='card-bottom';
-    const location=document.createElement('span');location.textContent=`⌖ ${stay.station}`;
-    const button=document.createElement('button');button.type='button';button.textContent='詳細を見る →';button.setAttribute('aria-label',`${stay.name}の詳細を見る`);button.addEventListener('click',()=>details(stay));
+    const location=document.createElement('span');location.textContent=`⌖ ${i18n.station(stay.station)}`;
+    const button=document.createElement('button');button.type='button';button.textContent=i18n.t('cta.viewDetails');button.setAttribute('aria-label',i18n.t('card.detailsAriaLabel',{name:stay.name}));button.addEventListener('click',()=>details(stay));
     bottom.append(location,button);body.append(title,bottom);card.append(img,body);$('cards').append(card);
   }
-  if(!items.length){const p=document.createElement('p');p.className='empty';p.textContent='条件に合う宿が見つかりませんでした。人数やエリアを変更してお試しください。';$('cards').append(p);}
+  if(!items.length){const p=document.createElement('p');p.className='empty';p.textContent=i18n.t('results.empty');$('cards').append(p);}
+}
+function updateResultStatus(){
+  if(resultMode==='filtered')$('result-status').textContent=i18n.t('results.status.candidates',{count:lastRenderedItems.length});
+  else if(resultMode==='all')$('result-status').textContent=i18n.t('results.status.all',{count:stays.length});
+  else $('result-status').textContent=i18n.t('results.status.initial');
+}
+function updateFilterNote(){
+  if(resultMode==='filtered'){$('filter-note').hidden=false;$('filter-note').textContent=i18n.t('filters.note');}
+  else $('filter-note').hidden=true;
 }
 form.addEventListener('submit',event=>{
-  event.preventDefault();filtered=true;
+  event.preventDefault();resultMode='filtered';
   const selected=[...form.querySelectorAll('[name=amenity]:checked')].map(input=>input.value);
   // Child occupancy rules are not approved. Do not infer that every child uses
   // an adult bed; retain these candidates for individual confirmation.
   const list=stays.filter(stay=>(!$('area').value||stay.area===$('area').value)&&(stay.capacity===null||stay.capacity>=Number($('adults').value))&&selected.every(key=>stay.amenities[key]!==false));
-  render(list);$('show-all').hidden=true;$('result-status').textContent=`候補 ${list.length}施設`;
-  $('filter-note').hidden=false;$('filter-note').textContent='定員・設備を確認中の施設も候補に含まれます。お子さまを含む宿泊人数と設備の対応状況は、各施設にご確認ください。空室状況での絞り込みではありません。';
+  render(list);$('show-all').hidden=true;updateResultStatus();
+  updateFilterNote();
 });
-form.addEventListener('reset',()=>{setTimeout(()=>{filtered=false;$('ages').replaceChildren();ages();syncSteppers();render(stays.slice(0,3));$('show-all').hidden=false;$('filter-note').hidden=true;$('result-status').textContent='絞り込み前';},0);});
-$('show-all').addEventListener('click',()=>{render(stays);$('show-all').hidden=true;$('result-status').textContent='全7施設';});
+form.addEventListener('reset',()=>{setTimeout(()=>{resultMode='preview';$('ages').replaceChildren();ages();syncSteppers();render(stays.slice(0,3));$('show-all').hidden=false;updateFilterNote();updateResultStatus();},0);});
+$('show-all').addEventListener('click',()=>{resultMode='all';render(stays);$('show-all').hidden=true;updateResultStatus();});
 function openDialog(title){$('dialog-title').textContent=title;$('dialog-body').replaceChildren();dialog.showModal();}
 function paragraph(text){const p=document.createElement('p');p.textContent=text;$('dialog-body').append(p);}
-function bookingLink(stay){const a=document.createElement('a');a.className='primary';a.href=`https://www.airbnb.com/h/${stay.url}`;a.target='_blank';a.rel='noopener noreferrer';a.textContent=`${stay.name}をAirbnbで見る ↗`;$('dialog-body').append(a);}
-function details(stay){openDialog(`${stay.name} · ${stay.en}`);paragraph(`最寄りエリア：${stay.station}`);paragraph('詳しい設備・宿泊条件・空室状況は、Airbnbの施設ページでご確認ください。');bookingLink(stay);}
+function bookingLink(stay){const a=document.createElement('a');a.className='primary';a.href=`https://www.airbnb.com/h/${stay.url}`;a.target='_blank';a.rel='noopener noreferrer';a.textContent=i18n.t('dialog.stay.airbnbLink',{name:stay.name});$('dialog-body').append(a);}
+function renderStayDetails(stay){
+  dialogContext={type:'stay',stay};
+  openDialog(`${stay.name} · ${stay.en}`);
+  paragraph(i18n.t('dialog.stay.station',{station:i18n.station(stay.station)}));
+  paragraph(i18n.t('dialog.stay.airbnbNote'));
+  bookingLink(stay);
+}
+function details(stay){renderStayDetails(stay);}
 $('close-dialog').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
-document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener('click',()=>{openDialog(button.dataset.info==='faq'?'よくあるご質問':'お問い合わせ');paragraph('このサイト上では予約は確定しません。空室、料金、お子さまの宿泊条件については、ご希望の宿のAirbnbページからお問い合わせください。');for(const stay of stays)bookingLink(stay);}));
+function renderFaqContact(kind){
+  dialogContext={type:'faqContact',kind};
+  openDialog(kind==='faq'?i18n.t('nav.faq'):i18n.t('nav.contact'));
+  paragraph(i18n.t('dialog.stays.faqContactBody'));
+  for(const stay of stays)bookingLink(stay);
+}
+document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener('click',()=>{renderFaqContact(button.dataset.info==='faq'?'faq':'contact');}));
 function localDate(date){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;}
 $('checkin').min=localDate(new Date());$('checkout').min=localDate(new Date());
 $('checkin').addEventListener('change',()=>{const date=new Date(`${$('checkin').value}T12:00:00`);if(!Number.isNaN(date.valueOf())){date.setDate(date.getDate()+1);$('checkout').min=localDate(date);}validateDates();});
-function validateDates(){$('checkout').setCustomValidity($('checkin').value&&$('checkout').value&&$('checkout').value<=$('checkin').value?'チェックアウトはチェックインより後の日付を選択してください。':'');}
+function validateDates(){$('checkout').setCustomValidity($('checkin').value&&$('checkout').value&&$('checkout').value<=$('checkin').value?i18n.t('dates.validity.checkoutAfterCheckin'):'');}
 $('checkout').addEventListener('change',validateDates);
+function renderInquiry(){
+  dialogContext={type:'inquiry'};
+  openDialog(i18n.t('dialog.inquiry.title'));
+  paragraph(i18n.t('dialog.inquiry.intro'));
+  const text=document.createElement('textarea');text.readOnly=true;text.setAttribute('aria-label',i18n.t('dialog.inquiry.textareaAriaLabel'));
+  const childAges=[...$('ages').querySelectorAll('select')].map(el=>el.value===''?i18n.t('ages.unselected'):i18n.t('ages.optionYears',{age:el.value}));
+  const agesText=childAges.length?i18n.t('inquiry.agesWrapper',{list:childAges.join(i18n.t('inquiry.listSeparator'))}):'';
+  const lines=[
+    i18n.t('inquiry.intro'),
+    i18n.t('inquiry.line.checkin',{value:$('checkin').value}),
+    i18n.t('inquiry.line.checkout',{value:$('checkout').value}),
+    i18n.t('inquiry.line.adults',{count:$('adults').value}),
+    i18n.t('inquiry.line.children',{count:$('children').value,ages:agesText}),
+    i18n.t('inquiry.question')
+  ];
+  text.value=lines.join('\n');
+  $('dialog-body').append(text);
+  const copy=document.createElement('button');copy.className='outline';copy.textContent=i18n.t('inquiry.copyButton');
+  copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(text.value);copy.textContent=i18n.t('inquiry.copied');}catch{text.focus();text.select();copy.textContent=i18n.t('inquiry.copyFallback');}});
+  $('dialog-body').append(copy);
+  paragraph(i18n.t('inquiry.chooseStay'));for(const stay of stays)bookingLink(stay);
+}
 $('dates').addEventListener('submit',event=>{
   event.preventDefault();validateDates();if(!$('dates').reportValidity()||!form.reportValidity())return;
-  openDialog('空室のお問い合わせ');paragraph('お問い合わせ内容を作成しました。まだ送信されていません。下の文面をコピーし、ご希望の施設のAirbnbページからお問い合わせください。');
-  const text=document.createElement('textarea');text.readOnly=true;text.setAttribute('aria-label','お問い合わせ文面');
-  const childAges=[...$('ages').querySelectorAll('select')].map(el=>el.value===''?'未選択':`${el.value}歳`);
-  text.value=`空室についてお伺いします。\nチェックイン：${$('checkin').value}\nチェックアウト：${$('checkout').value}\n大人：${$('adults').value}名\n子ども：${$('children').value}名${childAges.length?`（${childAges.join('、')}）`:''}\nこの条件で宿泊できますか？`;
-  $('dialog-body').append(text);const copy=document.createElement('button');copy.className='outline';copy.textContent='文面をコピー';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(text.value);copy.textContent='コピーしました';}catch{text.focus();text.select();copy.textContent='選択した文面をコピーしてください';}});$('dialog-body').append(copy);
-  paragraph('お問い合わせ先の宿を選択してください。');for(const stay of stays)bookingLink(stay);
+  renderInquiry();
 });
-$('year').textContent=new Date().getFullYear();ages();syncSteppers();render(stays.slice(0,3));
+document.addEventListener('yusei:langchange',()=>{
+  ages();syncSteppers();updateResultStatus();updateFilterNote();validateDates();
+  render(lastRenderedItems);
+  if(dialog.open&&dialogContext){
+    if(dialogContext.type==='stay')renderStayDetails(dialogContext.stay);
+    else if(dialogContext.type==='faqContact')renderFaqContact(dialogContext.kind);
+    else if(dialogContext.type==='inquiry')renderInquiry();
+  }
+});
+$('year').textContent=new Date().getFullYear();ages();syncSteppers();render(stays.slice(0,3));updateResultStatus();

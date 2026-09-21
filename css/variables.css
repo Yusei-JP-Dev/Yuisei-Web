@@ -53,8 +53,11 @@
   --overlay-dark: rgba(33, 26, 20, 0.42);
   --overlay-olive: rgba(63, 74, 52, 0.18);
 
-  /* ---- Typography ---- */
-  --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  /* ---- Typography ----
+     --font-body is only consumed by global.css (homepage); stays.css hardcodes
+     its own font stack and never reads this variable, so changing it here is
+     scoped to the homepage. --font-heading is read by both pages — left as-is. */
+  --font-body: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   --font-heading: "Noto Serif JP", "Hiragino Mincho ProN", serif;
 
   /* ---- Layout ---- */
@@ -65,5 +68,6 @@
   /* ---- Motion ---- */
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fade: 800ms;
-  --duration-hover: 600ms;
+  --duration-hover: 190ms;
+  --duration-lang-fade: 400ms;
 }

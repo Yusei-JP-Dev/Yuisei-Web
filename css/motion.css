@@ -1,0 +1,55 @@
+/* ============================================================
+   Yusei Stay — Shared motion (loaded on both pages)
+   Reduced-motion handling site-wide already lives in reset.css
+   (`*{transition-duration:.01ms}` etc.) — nothing here needs its
+   own prefers-reduced-motion override.
+   ============================================================ */
+
+/* ---- Scroll reveal ----
+   `.reveal-init` is only ever applied by js/animations.js, never
+   present by default — see that file's header comment for why. */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--duration-fade) var(--ease-standard),
+    transform var(--duration-fade) var(--ease-standard);
+}
+
+.reveal-init.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Dialog entrance ----
+   Applies to any native <dialog> on the site (#info-dialog on
+   index.html, #dialog on stays.html) — a CSS animation (not a
+   transition) so it reliably (re)plays every time showModal() adds
+   the [open] attribute, with no JS changes needed. */
+dialog[open] {
+  animation: yusei-dialog-in var(--duration-hover) var(--ease-standard);
+}
+
+dialog[open]::backdrop {
+  animation: yusei-backdrop-in var(--duration-hover) var(--ease-standard);
+}
+
+@keyframes yusei-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes yusei-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,81 @@
+/* ============================================================
+   Yusei Stay — Footer "Follow Us" social row (shared, both pages)
+   See js/social-config.js + js/social-links.js for the config/
+   upgrade contract. Icons render muted and non-interactive until a
+   valid https:// URL is configured for that platform.
+   ============================================================ */
+
+.site-footer__social,
+.footer-social {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__social-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-icons li {
+  margin: 0;
+  padding: 0;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-bg-soft);
+  transition:
+    background-color var(--duration-hover) var(--ease-standard),
+    transform 150ms var(--ease-standard);
+}
+
+.social-icon__img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: filter var(--duration-hover) var(--ease-standard);
+}
+
+a.social-icon--active {
+  cursor: pointer;
+  transition:
+    background-color var(--duration-hover) var(--ease-standard),
+    box-shadow var(--duration-hover) var(--ease-standard),
+    transform 150ms var(--ease-standard);
+}
+
+a.social-icon--active:hover,
+a.social-icon--active:focus-visible {
+  background-color: var(--color-bg);
+  box-shadow: 0 0 0 2px var(--color-primary);
+  transform: translateY(-2px);
+}
+
+a.social-icon--active:active {
+  transform: translateY(1px);
+}
+
+.social-icon--pending {
+  cursor: default;
+}
+
+.social-icon--pending .social-icon__img {
+  filter: grayscale(1) opacity(0.4);
+}

@@ -11,8 +11,7 @@
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 700px;
-  height: calc(100vh - 80px);
+  height: clamp(560px, 25vw, 720px);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -25,10 +24,54 @@
   background-color: var(--color-secondary); /* fallback tone until real photo is in place */
 }
 
+/* Desktop/tablet (>768px) layered treatment: a full-bleed, blurred duplicate
+   of the hero photo sits behind the sharp, uncropped foreground photo
+   (.hero__image below). Pure CSS layer — no extra markup — so it's always
+   decorative (aria-hidden isn't needed; it isn't in the accessibility tree).
+   If cover_1.jpg is ever replaced, update BOTH the <img> src in index.html
+   AND this --hero-backdrop-image value so the two layers keep matching.
+   scale(1.08) hides the blur's soft edge; .hero's own overflow:hidden clips
+   the extra so nothing bleeds past the hero band. Reset to `none` on mobile
+   (responsive.css) so only .hero__image's full-bleed cover crop shows. */
+.hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-backdrop-image, url('../assets/hero/cover_1.jpg'));
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px);
+  transform: scale(1.08);
+}
+
+/* Sharp foreground: the complete, uncropped 4:3 photo, scaled proportionally
+   and pinned to the right as an editorial insert rather than stretched to
+   fill the hero. `right`'s minimum (96px) keeps it clear of
+   .hero__vertical-copy (pinned at right:48px); past ~1792px viewport width
+   the calc() term takes over so the photo stays anchored near the site's
+   1600px-ish central composition instead of drifting to the raw screen edge
+   on ultrawide. `height` caps how large the photo gets relative to the
+   viewport so it never crowds .hero__content on narrower desktop/tablet
+   widths (checked at 1024/1366/1440/1920/2560/3440); width is left to
+   `auto` and the intrinsic 4:3 ratio (source images are 1600x1200) so the
+   rendered box's aspect always matches the photo — no aspect-ratio/
+   max-width pair needed, since constraining both height and width
+   independently could otherwise force a box that isn't actually 4:3.
+   Reset entirely on mobile (responsive.css) back to the original
+   full-bleed cover crop. */
 .hero__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  right: max(96px, calc((100vw - 1600px) / 2));
+  transform: translateY(-50%);
+  height: min(calc(100% - 48px), 33vw, 620px);
+  width: auto;
+  max-width: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  box-shadow:
+    0 24px 48px rgba(20, 16, 10, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .hero__overlay {
@@ -53,7 +96,10 @@
    text appearing centered instead of left-aligned like the mockup). */
 .hero__content {
   color: var(--color-text-inverse);
-  max-width: 560px;
+  /* Shrinks below 1400px so the copy block never runs into the foreground
+     photo (.hero__image) as the viewport narrows; capped at 560px so it
+     doesn't grow past the original design width on wide screens. */
+  max-width: min(560px, 40vw);
 }
 
 .hero__eyebrow {
@@ -76,7 +122,7 @@
 }
 
 .hero__description {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.9;
   margin-bottom: 32px;
   opacity: 0.95;
@@ -86,38 +132,36 @@
   position: absolute;
   right: 48px;
   top: 50%;
+  height: 460px;
   transform: translateY(-50%);
   writing-mode: vertical-rl;
   color: var(--color-text-inverse);
-  font-size: clamp(1rem, 0.9vw + 0.7rem, 1.4rem);
+  font-size: 1.05rem;
   letter-spacing: 0.15em;
   z-index: 2;
   opacity: 0.9;
 }
 
-.hero__indicator {
+/* left offset mirrors .container's own centering math (padding-inline:24px,
+   max-width:1240px) so the caption lines up with the hero text above it
+   instead of sitting flush with the viewport edge. */
+.hero__caption {
   position: absolute;
-  right: 48px;
-  bottom: 40px;
+  left: max(24px, calc((100% - 1240px) / 2 + 24px));
+  bottom: 28px;
   z-index: 2;
-  display: flex;
-  gap: 12px;
   color: var(--color-text-inverse);
-  font-size: 0.75rem;
-  opacity: 0.8;
-}
-
-.hero__indicator .is-active {
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
 }
 
 /* ============================================================
    ABOUT
    ============================================================ */
 .about {
-  background-color: var(--color-bg);
-  padding-block: var(--section-padding-desktop);
+  background-color: var(--color-surface);
+  padding-block: 42px;
 }
 
 .about__inner {
@@ -134,14 +178,14 @@
 }
 
 .about__media {
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: hidden;
   background-color: var(--color-bg-soft);
 }
 
 .about__image {
   width: 100%;
-  height: 380px;
+  height: 240px;
   object-fit: cover;
 }
 
@@ -164,38 +208,43 @@
    OUR STAYS
    ============================================================ */
 .stays {
-  background-color: var(--color-bg-soft);
-  padding-block: var(--section-padding-desktop);
+  background-color: var(--color-bg);
+  padding-block: 30px;
 }
 
 .stays__header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .stay-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
 }
 
 .stay-card__link {
   display: block;
-  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: box-shadow var(--duration-hover) var(--ease-standard);
+}
+
+.stay-card__link:hover {
+  box-shadow: var(--shadow-soft);
 }
 
 .stay-card__image-wrap {
   overflow: hidden;
-  border-radius: 4px;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-card-border);
 }
 
 .stay-card__image {
   width: 100%;
-  height: 260px;
+  aspect-ratio: 1.7;
   object-fit: cover;
   transition: transform var(--duration-hover) var(--ease-standard);
 }
@@ -205,7 +254,7 @@
 }
 
 .stay-card__body {
-  padding-top: 16px;
+  padding: 14px 18px 16px;
 }
 
 .stay-card__name {
@@ -213,27 +262,20 @@
   margin-bottom: 8px;
 }
 
-.stay-card__tags {
+.stay-card__bottom {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.8rem;
   color: var(--color-text-muted);
 }
 
-.stay-card__tags li {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
-  padding: 4px 10px;
-}
-
 .stay-card__arrow {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  color: var(--color-text-inverse);
+  color: var(--color-text);
+  white-space: nowrap;
   transition: transform var(--duration-hover) var(--ease-standard);
+  display: inline-block;
 }
 
 .stay-card:hover .stay-card__arrow {
@@ -244,34 +286,58 @@
    WHY STAY WITH US (features)
    ============================================================ */
 .features {
-  background-color: var(--color-bg-soft);
-  padding-block: var(--section-padding-desktop);
+  position: relative;
+  background-color: var(--color-bg);
+  padding-block: 30px;
+  overflow: hidden;
+}
+
+.features::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 320px;
+  height: 220px;
+  background: url('../assets/backgrounds/leaf-shadow.svg') left top / contain no-repeat;
+  opacity: 0.5;
+  transform: scaleX(-1);
+  pointer-events: none;
+}
+
+.section-eyebrow--center {
+  text-align: center;
 }
 
 .feature-list {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  margin-top: 48px;
+  margin-top: 32px;
   text-align: center;
+}
+
+.feature-item {
+  padding-inline: 12px;
+}
+
+.feature-item:not(:first-child) {
+  border-left: 1px solid var(--color-border);
 }
 
 .feature-item__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  margin-inline: auto;
-  margin-bottom: 20px;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 50%;
+  height: 44px;
+  margin-bottom: 16px;
   color: var(--color-primary);
 }
 
 .feature-item__icon img {
-  width: 26px;
-  height: 26px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
 }
 
@@ -291,27 +357,26 @@
    OSAKA EXPERIENCE
    ============================================================ */
 .experience {
-  background-color: var(--color-bg);
-  padding-block: var(--section-padding-desktop);
+  background-color: var(--color-surface);
+  padding-block: 40px;
 }
 
 .experience__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 48px;
+  grid-template-columns: 1.15fr 1fr auto;
+  gap: 40px;
   align-items: center;
 }
 
 .experience__media {
   position: relative;
-  border-radius: 4px;
   overflow: hidden;
   background-color: var(--color-secondary);
 }
 
 .experience__image {
   width: 100%;
-  height: 460px;
+  height: 240px;
   object-fit: cover;
 }
 
@@ -337,9 +402,9 @@
 
 .experience__side-image {
   width: 220px;
-  height: 130px;
+  height: 92px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: var(--color-bg-soft);
 }
 
@@ -347,16 +412,16 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   color: var(--color-text-muted);
-  line-height: 1.8;
-  margin-top: 8px;
+  line-height: 1.6;
+  margin-top: 6px;
 }
 
 /* ============================================================
    ACCESS
    ============================================================ */
 .access {
-  background-color: var(--color-bg-soft);
-  padding-block: var(--section-padding-desktop);
+  background-color: var(--color-bg);
+  padding-block: 24px;
 }
 
 .access__inner {
@@ -370,9 +435,18 @@
   flex: 0 0 380px;
 }
 
+.access__content .section-eyebrow {
+  margin-bottom: 8px;
+}
+
 .access__description {
   color: var(--color-text-secondary);
-  margin-block: 20px 28px;
+  margin-block: 12px 18px;
+}
+
+.access__content .button {
+  padding: 10px 20px;
+  font-size: 0.85rem;
 }
 
 /* ---- Area list: 3 columns (弁天町・朝潮橋 / 天下茶屋・花園町 / 貝塚),
@@ -409,14 +483,6 @@
   font-size: 0.95rem;
 }
 
-.access__area-stays a {
-  transition: color var(--duration-hover) var(--ease-standard);
-}
-
-.access__area-stays a:hover {
-  color: var(--color-primary);
-}
-
 .access__area-stays li:not(:last-child)::after {
   content: "/";
   margin-inline: 6px;
@@ -428,7 +494,7 @@
    ============================================================ */
 .booking-cta {
   position: relative;
-  padding-block: 64px; /* shorter/slimmer than a regular content section (100px) — this is a CTA banner, not a content block */
+  padding-block: 52px;
   overflow: hidden;
 }
 
@@ -456,7 +522,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: stretch; /* button stretches to match the text block's height */
+  align-items: center;
   justify-content: space-between;
   gap: 40px;
 }
@@ -466,67 +532,43 @@
   max-width: 480px;
 }
 
-.booking-cta__eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 12px;
-  opacity: 0.9;
-}
-
 .booking-cta__heading {
   color: var(--color-text-inverse);
   font-size: 1.9rem;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .booking-cta__description {
-  margin-bottom: 28px;
+  margin-bottom: 0;
   opacity: 0.95;
 }
 
-/* Right-side button: solid green box (same colour as button--primary
-   elsewhere) but with an underlined label, per feedback. Vertically
-   centered so its single line sits mid-height against the multi-line
-   text block on the left (align-items: stretch on .booking-cta__inner
-   is what makes this element's height follow the text block). */
+/* Compact fixed-size olive button, matching the header CTA (~160x50) —
+   no huge CTA block. */
 .booking-cta__button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex: 0 0 auto;
-  padding-inline: 32px;
-  background-color: var(--color-primary);
-  border-radius: 2px;
-  color: var(--color-text-inverse);
-  font-size: 0.95rem;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  white-space: nowrap;
-  transition: background-color var(--duration-hover) var(--ease-standard);
-}
-
-.booking-cta__button:hover {
-  background-color: var(--color-primary-hover);
+  width: 160px;
+  height: 50px;
 }
 
 /* ============================================================
    FOOTER
    ============================================================ */
+/* Light cream footer — single desktop row (logo / nav / language / copyright)
+   plus a small fine-print line, matching stays.html's footer tone. */
 .site-footer {
-  background-color: var(--color-footer-bg);
-  color: var(--color-footer-text);
-  padding-block: 56px 32px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
+  padding-block: 18px;
 }
 
 .site-footer__inner {
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  display: flex;
   align-items: center;
-  gap: 32px;
-}
-
-.site-footer .brand__mark {
-  border-color: var(--color-footer-text);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .site-footer__brand {
@@ -538,57 +580,91 @@
 .site-footer__brand-name {
   font-family: var(--font-heading);
   font-size: 1rem;
+  color: var(--color-text);
 }
 
 .site-footer__brand-tagline {
   font-size: 0.7rem;
-  color: var(--color-footer-muted);
+  color: var(--color-text-muted);
 }
 
 .site-footer__links ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   font-size: 0.85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.site-footer__links a:hover {
-  color: var(--color-accent-gold);
+.site-footer__links li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer__links a:hover,
+.site-footer__links button:hover {
+  color: var(--color-primary);
 }
 
 .site-footer__language {
-  display: flex;
-  gap: 8px;
   font-size: 0.85rem;
-  color: var(--color-footer-muted);
-}
-
-.site-footer__social {
-  display: flex;
-  gap: 16px;
-}
-
-.site-footer__social a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--color-footer-muted);
-  border-radius: 50%;
-}
-
-.site-footer__social a img {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
+  color: var(--color-text-muted);
 }
 
 .site-footer__copyright {
-  grid-column: 1 / -1;
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(245, 240, 231, 0.18);
   font-size: 0.75rem;
-  color: var(--color-footer-muted);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.site-footer__note {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
   text-align: center;
+}
+
+/* ============================================================
+   INFO DIALOG (FAQ / Contact / About / Experience / Stay details)
+   Honest informational modal — no booking, no invented pages.
+   ============================================================ */
+#info-dialog {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 480px;
+  width: calc(100% - 32px);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+#info-dialog::backdrop {
+  background-color: rgba(44, 38, 31, 0.4);
+}
+
+#info-dialog h2 {
+  font-size: 1.3rem;
+  margin: 0 28px 16px 0;
+}
+
+#info-dialog p {
+  margin-block: 12px;
+  color: var(--color-text-secondary);
+}
+
+#info-dialog .button {
+  margin-top: 8px;
+}
+
+.info-dialog__close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  font-size: 1.6rem;
+  line-height: 1;
 }

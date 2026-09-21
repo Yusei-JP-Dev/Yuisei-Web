@@ -1,41 +1,142 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-i18n-title="staysPage.metaTitle">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>宿を探す | YUSEI STAY</title>
-  <meta name="description" content="大阪の一棟貸しの宿を、人数や設備の条件から探す。YUSEI STAYで暮らすように泊まる旅を。">
+  <meta name="description" data-i18n-content="staysPage.metaDescription" content="大阪の一棟貸しの宿を、人数や設備の条件から探す。YUSEI STAYで暮らすように泊まる旅を。">
+  <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/stays.css">
-  <script src="js/stays.js" defer></script>
+  <link rel="stylesheet" href="css/social.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-<a class="skip" href="#main">本文へ移動</a>
-<header class="header">
-  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">結</span><span><strong>YUSEI STAY</strong><small>暮らすように、泊まる。</small></span></a>
-  <nav aria-label="メインナビゲーション"><a href="index.html">ホーム</a><a href="stays.html" aria-current="page">宿を探す</a><a href="index.html#about">私たちについて</a><button type="button" data-info="faq">よくあるご質問</button><button type="button" data-info="contact">お問い合わせ</button></nav>
-  <div class="header-right"><span>◎ 日本語</span><a class="primary" href="#filters">宿を見る <span aria-hidden="true">→</span></a></div>
+<a class="skip" href="#main" data-i18n="skip.toMain">本文へ移動</a>
+<header class="site-header" id="site-header">
+  <div class="site-header__inner container">
+
+    <a href="index.html" class="brand" data-i18n-attr="aria-label:brand.ariaLabel" aria-label="YUSEI STAY ホームへ戻る">
+      <img src="assets/stays/brand-mark.svg" alt="" class="brand__mark">
+      <span class="brand__text">
+        <span class="brand__name">YUSEI STAY</span>
+        <span class="brand__tagline" data-i18n="brand.tagline">暮らすように、泊まる。</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" data-i18n-attr="aria-label:nav.ariaLabel" aria-label="メインナビゲーション">
+      <ul class="main-nav__list">
+        <li><a href="index.html" data-i18n="nav.home">ホーム</a></li>
+        <li><a href="stays.html" aria-current="page" data-i18n="nav.findStays">宿を探す</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">私たちについて</a></li>
+        <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+        <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+      </ul>
+    </nav>
+
+    <div class="header-utility">
+      <div class="lang-switcher" data-lang-switcher>
+        <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+          <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+            <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+            <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+            <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+          </svg>
+          <span data-i18n="nav.language.generic">言語</span>
+        </button>
+      </div>
+
+      <a href="#filters" class="button button--primary" data-i18n="cta.findStays">宿を探す &rarr;</a>
+
+      <button type="button" class="hamburger" id="hamburger-toggle" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="visually-hidden" data-i18n="hamburger.open">メニューを開く</span>
+        <span class="hamburger__line" aria-hidden="true"></span>
+        <span class="hamburger__line" aria-hidden="true"></span>
+        <span class="hamburger__line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <ul class="mobile-menu__list">
+      <li><a href="index.html" data-i18n="nav.home">ホーム</a></li>
+      <li><a href="stays.html" aria-current="page" data-i18n="nav.findStays">宿を探す</a></li>
+      <li><a href="index.html#about" data-i18n="nav.about">私たちについて</a></li>
+      <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+      <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+    </ul>
+    <div class="mobile-menu__language lang-switcher" data-lang-switcher>
+      <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+        <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+          <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+          <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+          <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+          <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+        </svg>
+        <span data-i18n="nav.language.generic">言語</span>
+      </button>
+    </div>
+    <a href="#filters" class="button button--primary button--block" data-i18n="cta.findStays">宿を探す &rarr;</a>
+  </div>
 </header>
 <main id="main" class="shell">
-  <section class="intro" aria-labelledby="page-title"><div><p class="eyebrow">FIND YOUR STAY</p><h1 id="page-title">大阪で、あなたに合う宿を。</h1><p class="lead">人数や設備の条件から、旅にぴったりの一軒を。</p></div><aside>大阪で、<br>暮らすように泊まる。<small>STAY<br>LIKE A LOCAL<br>IN OSAKA</small></aside></section>
-  <form id="filters" class="panel filter-panel">
-    <div class="panel-heading"><span class="number">01</span><h2>宿泊条件</h2><p>ご希望の条件を<br>お選びください。</p></div>
+  <section class="intro" aria-labelledby="page-title" data-reveal><div><p class="eyebrow">FIND YOUR STAY</p><h1 id="page-title" data-i18n="page.heading">大阪で、あなたに合う宿を。</h1><p class="lead" data-i18n="page.lead">人数や設備の条件から、旅にぴったりの一軒を。</p></div><aside><span data-i18n="page.aside.line1">大阪で、</span><br><span data-i18n="page.aside.line2">暮らすように泊まる。</span><small>STAY<br>LIKE A LOCAL<br>IN OSAKA</small></aside></section>
+  <form id="filters" class="panel filter-panel" data-reveal>
+    <div class="panel-heading"><span class="number">01</span><h2 data-i18n="filters.heading">宿泊条件</h2><p><span data-i18n="filters.intro.line1">ご希望の条件を</span><br><span data-i18n="filters.intro.line2">お選びください。</span></p></div>
     <div class="filter-body"><div class="fields">
-      <label class="area">エリア<select id="area"><option value="">すべてのエリア</option value="bay">大阪ベイエリア</option><option value="south">天下茶屋・花園町</option><option value="kaizuka">貝塚</option></select></label>
-      <div><label for="adults">大人</label><div class="stepper"><button type="button" data-step="adults:-1" aria-label="大人を1人減らす">−</button><input id="adults" type="number" min="1" max="20" value="2" required><button type="button" data-step="adults:1" aria-label="大人を1人増やす">＋</button></div></div>
-      <div><label for="children">子ども</label><div class="stepper"><button type="button" data-step="children:-1" aria-label="子どもを1人減らす">−</button><input id="children" type="number" min="0" max="10" value="2" required><button type="button" data-step="children:1" aria-label="子どもを1人増やす">＋</button></div></div>
-      <div class="ages-wrap"><div id="ages"></div><small id="age-note">お子さまの年齢は宿泊条件の確認に使用します。</small></div>
-    </div><fieldset class="amenities"><legend class="sr-only">希望する設備</legend><label><input type="checkbox" name="amenity" value="kitchen">キッチン</label><label><input type="checkbox" name="amenity" value="laundry">洗濯機</label><label><input type="checkbox" name="amenity" value="bath">バスタブ</label><label><input type="checkbox" name="amenity" value="parking">駐車場</label></fieldset></div>
-    <div class="actions"><button class="primary" type="submit">絞り込む <span aria-hidden="true">→</span></button><span class="action-line"></span><button class="reset" type="reset">リセット</button></div>
+      <label class="area"><span data-i18n="filters.area.label">エリア</span><select id="area"><option value="" data-i18n="filters.area.all">すべてのエリア</option><option value="bay" data-i18n="filters.area.bay">大阪ベイエリア</option><option value="south" data-i18n="filters.area.south">天下茶屋・花園町</option><option value="kaizuka" data-i18n="filters.area.kaizuka">貝塚</option></select></label>
+      <div><label for="adults" data-i18n="filters.adults.label">大人</label><div class="stepper"><button type="button" data-step="adults:-1" data-i18n-attr="aria-label:filters.adults.decrease" aria-label="大人を1人減らす">−</button><input id="adults" type="number" min="1" max="20" value="2" required><button type="button" data-step="adults:1" data-i18n-attr="aria-label:filters.adults.increase" aria-label="大人を1人増やす">＋</button></div></div>
+      <div><label for="children" data-i18n="filters.children.label">子ども</label><div class="stepper"><button type="button" data-step="children:-1" data-i18n-attr="aria-label:filters.children.decrease" aria-label="子どもを1人減らす">−</button><input id="children" type="number" min="0" max="10" value="2" required><button type="button" data-step="children:1" data-i18n-attr="aria-label:filters.children.increase" aria-label="子どもを1人増やす">＋</button></div></div>
+      <div class="ages-wrap"><div id="ages"></div><small id="age-note" data-i18n="filters.ageNote">お子さまの年齢は宿泊条件の確認に使用します。</small></div>
+    </div><fieldset class="amenities"><legend class="sr-only" data-i18n="filters.amenitiesLegend">希望する設備</legend><label><input type="checkbox" name="amenity" value="kitchen"><span data-i18n="filters.amenity.kitchen">キッチン</span></label><label><input type="checkbox" name="amenity" value="laundry"><span data-i18n="filters.amenity.laundry">洗濯機</span></label><label><input type="checkbox" name="amenity" value="bath"><span data-i18n="filters.amenity.bath">バスタブ</span></label><label><input type="checkbox" name="amenity" value="parking"><span data-i18n="filters.amenity.parking">駐車場</span></label></fieldset></div>
+    <div class="actions"><button class="primary" type="submit"><span data-i18n="filters.submit">絞り込む</span> <span aria-hidden="true">→</span></button><span class="action-line"></span><button class="reset" type="reset" data-i18n="filters.reset">リセット</button></div>
   </form>
-  <form id="dates" class="panel dates-panel">
-    <div class="panel-heading"><span class="number">02</span><h2>ご宿泊日 <small>（任意）</small></h2><p>ご希望の日程で空室を<br>お問い合わせ<br>いただけます。</p></div>
-    <div class="date-body"><div class="date-fields"><label>チェックイン<input id="checkin" type="date" required></label><label>チェックアウト<input id="checkout" type="date" required></label></div><p class="fine">日付の入力だけでは、空室や予約は確定しません。</p></div>
-    <div class="actions"><button class="outline" type="submit">空室を問い合わせる</button></div>
+  <form id="dates" class="panel dates-panel" data-reveal>
+    <div class="panel-heading"><span class="number">02</span><h2><span data-i18n="dates.heading">ご宿泊日</span> <small data-i18n="dates.optional">（任意）</small></h2><p><span data-i18n="dates.helper.line1">ご希望の日程で空室を</span><br><span data-i18n="dates.helper.line2">お問い合わせ</span><br><span data-i18n="dates.helper.line3">いただけます。</span></p></div>
+    <div class="date-body"><div class="date-fields"><label><span data-i18n="dates.checkin">チェックイン</span><input id="checkin" type="date" required></label><label><span data-i18n="dates.checkout">チェックアウト</span><input id="checkout" type="date" required></label></div><p class="fine" data-i18n="dates.fine">日付の入力だけでは、空室や予約は確定しません。</p></div>
+    <div class="actions"><button class="outline" type="submit" data-i18n="dates.submit">空室を問い合わせる</button></div>
   </form>
-  <section class="results" aria-labelledby="results-title"><div class="results-heading"><h2 id="results-title">宿泊施設一覧</h2><span id="result-status" role="status">絞り込み前</span><p>大阪で出会う、さまざまな暮らし。</p></div><p id="filter-note" class="fine" hidden></p><div id="cards" class="cards"></div><button id="show-all" class="outline more" type="button">すべての宿を見る（全7施設） <span aria-hidden="true">↓</span></button><noscript>宿の一覧と絞り込みを利用するには、JavaScriptを有効にしてください。</noscript></section>
+  <section class="results" aria-labelledby="results-title" data-reveal><div class="results-heading"><h2 id="results-title" data-i18n="results.heading">宿泊施設一覧</h2><span id="result-status" role="status" data-i18n="results.status.initial">絞り込み前</span><p data-i18n="results.lead">大阪で出会う、さまざまな暮らし。</p></div><p id="filter-note" class="fine" hidden></p><div id="cards" class="cards"></div><button id="show-all" class="outline more" type="button"><span data-i18n="results.showAll">すべての宿を見る（全7施設）</span> <span aria-hidden="true">↓</span></button><noscript>宿の一覧と絞り込みを利用するには、JavaScriptを有効にしてください。</noscript></section>
 </main>
-<footer class="footer"><div class="footer-row"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">結</span><span><strong>YUSEI STAY</strong><small>暮らすように、泊まる。</small></span></a><nav aria-label="フッターナビゲーション"><a href="index.html">ホーム</a><a href="stays.html">宿を探す</a><a href="index.html#about">私たちについて</a><button data-info="faq">よくあるご質問</button><button data-info="contact">お問い合わせ</button></nav><span class="copyright">© <span id="year"></span> YUSEI STAY. All rights reserved.</span></div><p>空室状況・ご予約方法は、各施設の詳細をご確認ください。</p></footer>
-<dialog id="dialog" aria-labelledby="dialog-title"><button id="close-dialog" class="close" aria-label="閉じる">×</button><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+<footer class="footer"><div class="footer-row"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">結</span><span><strong>YUSEI STAY</strong><small data-i18n="brand.tagline">暮らすように、泊まる。</small></span></a><nav data-i18n-attr="aria-label:footer.navAriaLabel" aria-label="フッターナビゲーション"><a href="index.html" data-i18n="nav.home">ホーム</a><a href="stays.html" data-i18n="nav.findStays">宿を探す</a><a href="index.html#about" data-i18n="nav.about">私たちについて</a><button data-info="faq" data-i18n="nav.faq">よくあるご質問</button><button data-info="contact" data-i18n="nav.contact">お問い合わせ</button></nav><span class="copyright">© <span id="year"></span> YUSEI STAY. All rights reserved.</span></div>
+  <div class="footer-social">
+    <p class="site-footer__social-label" data-i18n="footer.followUs">フォローする</p>
+    <ul class="social-icons">
+      <li>
+        <span class="social-icon" data-social="instagram">
+          <img src="assets/icon/Instagram_1.png" alt="" class="social-icon__img" aria-hidden="true">
+          <span class="sr-only">Instagram</span>
+        </span>
+      </li>
+      <li>
+        <span class="social-icon" data-social="facebook">
+          <img src="assets/icon/Facebook_1.png" alt="" class="social-icon__img" aria-hidden="true">
+          <span class="sr-only">Facebook</span>
+        </span>
+      </li>
+      <li>
+        <span class="social-icon" data-social="youtube">
+          <img src="assets/icon/Youtube_1.png" alt="" class="social-icon__img" aria-hidden="true">
+          <span class="sr-only">YouTube</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+  <p data-i18n="footer.noteStays">空室状況・ご予約方法は、各施設の詳細をご確認ください。</p></footer>
+<dialog id="dialog" aria-labelledby="dialog-title"><button id="close-dialog" class="close" data-i18n-attr="aria-label:dialog.close" aria-label="閉じる">×</button><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+<script src="js/i18n.js"></script>
+<script src="js/language-switcher.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/social-config.js"></script>
+<script src="js/social-links.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/stays.js"></script>
 </body>
 </html>

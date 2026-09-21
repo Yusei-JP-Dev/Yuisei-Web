@@ -12,11 +12,13 @@
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg);
-  /* 米白紙紋背景：用 multiply 疊上底色，紋理與暖白色調融合，唔會突兀 */
-  background-image: url('../assets/backgrounds/bg-paper.jpg');
+  /* Subtle ivory paper texture, softened under a near-opaque tint so it reads
+     as a faint grain rather than a visible photo (shared with stays.css). */
+  background-image:
+    linear-gradient(rgba(245, 241, 231, 0.93), rgba(245, 241, 231, 0.93)),
+    url('../assets/backgrounds/beige-paper.png');
   background-repeat: repeat;
-  background-size: 640px auto;
-  background-blend-mode: multiply;
+  background-size: auto, 1100px auto;
   color: var(--color-text);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
@@ -73,6 +75,13 @@ section {
   color: var(--color-primary);
 }
 
+/* Buttons reused as content triggers (info modals, nav) keep the reset's
+   plain look — override the browser's default button padding only. */
+button.link-arrow,
+[data-info] {
+  padding: 0;
+}
+
 /* ---- Buttons ----
    Two variants: primary (solid) and outline (secondary).
    States: default / hover / active / disabled / focus.       */
@@ -89,7 +98,12 @@ section {
   transition:
     background-color var(--duration-hover) var(--ease-standard),
     border-color var(--duration-hover) var(--ease-standard),
-    color var(--duration-hover) var(--ease-standard);
+    color var(--duration-hover) var(--ease-standard),
+    transform 150ms var(--ease-standard);
+}
+
+.button:active {
+  transform: translateY(1px);
 }
 
 .button--primary {
@@ -144,6 +158,10 @@ input:focus-visible,
   outline: none;
   box-shadow: var(--focus-ring);
   border-radius: 2px;
+}
+
+input:focus-visible {
+  border-color: var(--color-focus);
 }
 
 /* ---- Accessibility helper: visually hide but keep for screen readers ---- */
