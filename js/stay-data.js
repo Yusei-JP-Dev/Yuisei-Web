@@ -54,7 +54,7 @@
       nameEn: "Tea Garden",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg"],
-      verified: { address: true, amenities: true, rules: true, map: false, capacity: false },
+      verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
       tagline: {
         ja: "天下茶屋に佇む、伝統町家の一棟貸し。",
         en: "A traditional machiya, whole to yourselves, in Tengachaya.",
@@ -83,7 +83,7 @@
         "zh-Hant": "〒557-0014 大阪市西成区天下茶屋1丁目22-21",
         ko: "〒557-0014 大阪市西成区天下茶屋1丁目22-21"
       },
-      mapUrl: null,
+      mapUrl: "https://share.google/9CjIHLYqQntQztZdH",
       rooms: [
         { floor: { ja: "1F", en: "1F", "zh-Hans": "1F", "zh-Hant": "1F", ko: "1F" }, items: { ja: ["畳の茶の間", "ソファのある居間", "ダイニング", "キッチン", "トイレ", "浴室（バスタブ付き）"], en: ["Tatami tea room", "Sofa living area", "Dining space", "Kitchen", "Toilet", "Bathroom with tub"], "zh-Hans": ["榻榻米茶室", "带沙发的客厅", "用餐区", "厨房", "卫生间", "浴室（带浴缸）"], "zh-Hant": ["榻榻米茶室", "附沙發的客廳", "用餐區", "廚房", "廁所", "浴室（附浴缸）"], ko: ["다다미 다실", "소파가 있는 거실", "다이닝 공간", "주방", "화장실", "욕조가 있는 욕실"] } },
         { floor: { ja: "2F", en: "2F", "zh-Hans": "2F", "zh-Hant": "2F", ko: "2F" }, items: { ja: ["畳の寝室×2（ベッド・布団・ソファベッド）"], en: ["Two tatami bedrooms (beds, futons and a sofa bed)"], "zh-Hans": ["两间榻榻米卧室（床・被褥・沙发床）"], "zh-Hant": ["兩間榻榻米臥室（床・被褥・沙發床）"], ko: ["다다미 침실 2개（침대・이불・소파베드）"] } }
@@ -424,7 +424,7 @@
       nameEn: "Furukawa House",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg", "room_picture_11.jpeg", "room_picture_12.jpeg", "room_picture_13.jpeg", "room_picture_14.jpeg"],
-      verified: { address: false, amenities: false, rules: false, map: true, capacity: false },
+      verified: { address: true, amenities: false, rules: false, map: true, capacity: false },
       tagline: {
         ja: "貝塚・三ツ松に佇む一棟貸しの古民家。",
         en: "A whole-house old home in Mitsumatsu, Kaizuka.",
@@ -446,7 +446,13 @@
         "zh-Hant": "三ツ松站 步行2〜3分鐘・鄰近水間寺・開車約30分鐘可達關西機場／臨空Premium Outlets（依房源資訊）",
         ko: "미츠마츠역 도보 2~3분・미즈마데라 사원 인근・간사이 공항/린쿠 프리미엄 아울렛까지 차로 약 30분（시설 정보 기준）"
       },
-      address: null,
+      address: {
+        ja: "大阪府貝塚市三ツ松1060",
+        en: "大阪府貝塚市三ツ松1060",
+        "zh-Hans": "大阪府貝塚市三ツ松1060",
+        "zh-Hant": "大阪府貝塚市三ツ松1060",
+        ko: "大阪府貝塚市三ツ松1060"
+      },
       mapUrl: "https://share.google/hdlnt0XLOAJY9txUy",
       rooms: [],
       amenities: null,
