@@ -739,6 +739,34 @@
       indicator.style.setProperty("--indicator-width", tabRect.width + "px");
     }
 
+    function activeTab() {
+      return tabs.filter(function (tab) {
+        return tab.getAttribute("aria-selected") === "true";
+      })[0];
+    }
+
+    /* A language change can alter every tab's width. Re-measure after the
+       translated labels have been painted; otherwise the indicator keeps the
+       previous language's x-position/width and can sit between two tabs. */
+    var indicatorFrame = null;
+    function scheduleIndicatorUpdate() {
+      if (!indicator) {
+        return;
+      }
+      if (indicatorFrame !== null) {
+        cancelAnimationFrame(indicatorFrame);
+      }
+      indicatorFrame = requestAnimationFrame(function () {
+        indicatorFrame = requestAnimationFrame(function () {
+          indicatorFrame = null;
+          var selected = activeTab();
+          if (selected) {
+            moveIndicator(selected);
+          }
+        });
+      });
+    }
+
     function activate(tab, opts) {
       opts = opts || {};
       var current = tabs.filter(function (t) {
@@ -823,13 +851,25 @@
     });
 
     window.addEventListener("resize", function () {
-      var active = tabs.filter(function (t) {
-        return t.getAttribute("aria-selected") === "true";
-      })[0];
-      if (active) {
-        moveIndicator(active);
-      }
+      scheduleIndicatorUpdate();
     });
+
+    document.addEventListener("yusei:langchange", scheduleIndicatorUpdate);
+
+    /* Font swaps and responsive text wrapping can also change a label's
+       measured size without a window resize. ResizeObserver keeps the
+       indicator attached to the selected tab in those cases. */
+    if ("ResizeObserver" in window) {
+      var tabResizeObserver = new ResizeObserver(scheduleIndicatorUpdate);
+      tabResizeObserver.observe(tablist);
+      tabs.forEach(function (tab) {
+        tabResizeObserver.observe(tab);
+      });
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleIndicatorUpdate);
+    }
 
     if (tabs[0]) {
       requestAnimationFrame(function () {
