@@ -1,0 +1,694 @@
+/* ============================================================
+   Yusei Stay — Stay Detail Pages (shared by all 7 stays/*.html)
+   Loaded together with reset / variables / global / header.css.
+   Self-contained component styles — new class namespace (.stay-*)
+   so nothing here collides with home.css or stays.css.
+   ============================================================ */
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.stay-hero {
+  position: relative;
+  height: clamp(420px, 46vw, 620px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-block: 0;
+}
+
+.stay-hero__media {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-secondary);
+}
+
+.stay-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stay-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(24, 19, 14, 0.78), rgba(24, 19, 14, 0.18) 55%, rgba(24, 19, 14, 0.05)),
+    linear-gradient(to right, rgba(63, 74, 52, 0.12), rgba(63, 74, 52, 0));
+}
+
+.stay-hero__container {
+  position: relative;
+  z-index: 2;
+  padding-block: 40px 44px;
+  color: var(--color-text-inverse);
+}
+
+.stay-hero__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+.stay-hero__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  color: var(--color-text-inverse);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 14px;
+}
+
+.stay-hero__heading-en {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.stay-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+  opacity: 0.95;
+}
+
+.stay-hero__tag {
+  border: 1px solid rgba(250, 248, 243, 0.6);
+  border-radius: 2px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.stay-hero__summary {
+  max-width: 620px;
+  font-size: 1rem;
+  line-height: 1.9;
+  opacity: 0.95;
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
+.stay-tabs-section {
+  padding-block: 48px 0;
+}
+
+.stay-tablist {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.stay-tablist::-webkit-scrollbar {
+  display: none;
+}
+
+.stay-tab {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  padding: 14px 22px;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  transition: color var(--duration-hover) var(--ease-standard);
+}
+
+.stay-tab:hover {
+  color: var(--color-text);
+}
+
+.stay-tab[aria-selected="true"] {
+  color: var(--color-text-inverse);
+}
+
+.stay-tab-indicator {
+  position: absolute;
+  z-index: 1;
+  bottom: -1px;
+  left: 0;
+  height: calc(100% - 6px);
+  background-color: var(--color-secondary);
+  border-radius: 2px 2px 0 0;
+  transform: translateX(var(--indicator-x, 0));
+  width: var(--indicator-width, 0);
+  transition:
+    transform 420ms var(--ease-standard),
+    width 420ms var(--ease-standard);
+}
+
+.stay-tab-indicator.is-ready {
+  /* Only animate once an initial position has been measured, so the very
+     first paint doesn't sweep in from the left edge. */
+}
+
+.stay-panels {
+  padding-block: 40px;
+}
+
+.stay-panel {
+  animation: none;
+}
+
+.stay-panel.is-leaving {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 180ms var(--ease-standard),
+    transform 180ms var(--ease-standard);
+}
+
+.stay-panel.is-entering {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.stay-panel.is-entered {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms var(--ease-standard),
+    transform 300ms var(--ease-standard);
+}
+
+/* ============================================================
+   ABOUT (About + Gallery + Rooms)
+   ============================================================ */
+.stay-about {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 56px;
+  align-items: start;
+  margin-bottom: 56px;
+}
+
+.stay-about__intro {
+  padding-top: 8px;
+}
+
+.stay-about__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+
+.stay-about__text {
+  color: var(--color-text-secondary);
+  font-size: 1.02rem;
+  line-height: 2;
+}
+
+.stay-about__media {
+  min-width: 0;
+}
+
+/* ---- Gallery ---- */
+.stay-gallery {
+  position: relative;
+}
+
+.stay-gallery__viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: var(--color-bg-soft);
+}
+
+.stay-gallery__viewport:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.stay-gallery__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 700ms var(--ease-standard),
+    transform 900ms var(--ease-standard);
+  pointer-events: none;
+}
+
+.stay-gallery__img.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.stay-gallery__img.is-broken {
+  display: none;
+}
+
+.stay-gallery__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(24, 19, 14, 0.38);
+  color: var(--color-text-inverse);
+  font-size: 1.3rem;
+  transition: background-color var(--duration-hover) var(--ease-standard);
+}
+
+.stay-gallery__nav:hover {
+  background-color: rgba(24, 19, 14, 0.6);
+}
+
+.stay-gallery__nav--prev {
+  left: 12px;
+}
+
+.stay-gallery__nav--next {
+  right: 12px;
+}
+
+.stay-gallery__counter {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  z-index: 3;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-inverse);
+  background-color: rgba(24, 19, 14, 0.45);
+  border-radius: 2px;
+}
+
+.stay-gallery__dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.stay-gallery__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  transition: background-color var(--duration-hover) var(--ease-standard), transform 150ms var(--ease-standard);
+}
+
+.stay-gallery__dot.is-active {
+  background-color: var(--color-secondary);
+  transform: scale(1.25);
+}
+
+.stay-gallery__thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding-bottom: 4px;
+  overflow-x: auto;
+}
+
+.stay-gallery__thumb {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 54px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.65;
+  transition: opacity var(--duration-hover) var(--ease-standard), border-color var(--duration-hover) var(--ease-standard);
+}
+
+.stay-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stay-gallery__thumb:hover {
+  opacity: 0.9;
+}
+
+.stay-gallery__thumb.is-active {
+  opacity: 1;
+  border-color: var(--color-secondary);
+}
+
+/* ---- Rooms ---- */
+.stay-section-heading {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+
+/* Faint fading guide line leading the eye from the section heading into
+   the room imagery below — decorative only. */
+.stay-rooms__divider {
+  height: 1px;
+  margin-bottom: 32px;
+  background: linear-gradient(to right, var(--color-border-strong), transparent 70%);
+}
+
+.stay-rooms__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.stay-rooms__item h3 {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stay-rooms__item ul {
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+
+.stay-rooms__item li {
+  position: relative;
+  padding-left: 14px;
+}
+
+.stay-rooms__item li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 5px;
+  height: 1px;
+  background-color: var(--color-border-strong);
+}
+
+/* ============================================================
+   AMENITIES
+   ============================================================ */
+.stay-amenities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 48px;
+  margin-bottom: 40px;
+}
+
+.stay-amenities__group h3 {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stay-amenities__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px 16px;
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+}
+
+.stay-amenities__list li {
+  position: relative;
+  padding-left: 16px;
+  line-height: 1.7;
+}
+
+.stay-amenities__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 6px;
+  height: 1px;
+  background-color: var(--color-primary);
+}
+
+.stay-rules {
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+}
+
+.stay-rules h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.stay-rules ul {
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+
+.stay-rules li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.stay-rules li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 6px;
+  height: 1px;
+  background-color: var(--color-border-strong);
+}
+
+/* ============================================================
+   ACCESS / STAY GUIDE (shared key-value row layout)
+   ============================================================ */
+.stay-access__row,
+.stay-guide__row {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 24px;
+  padding-block: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.stay-access__row:first-child,
+.stay-guide__row:first-child {
+  border-top: none;
+}
+
+.stay-access__label,
+.stay-guide__label {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.stay-access__value,
+.stay-guide__value {
+  color: var(--color-text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.stay-access__value a,
+.stay-guide__value a {
+  color: var(--color-secondary);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: color var(--duration-hover) var(--ease-standard);
+}
+
+.stay-access__value a:hover,
+.stay-guide__value a:hover {
+  color: var(--color-primary);
+}
+
+.stay-guide__subnote {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   VERIFICATION NOTE (used inside Amenities / Access / Guide when
+   source facts are incomplete — never replaced with an invented
+   value)
+   ============================================================ */
+.stay-verification-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  background-color: var(--color-bg-soft);
+  border-radius: 2px;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.stay-verification-note::before {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.45em;
+  border-radius: 50%;
+  background-color: var(--color-accent-gold);
+}
+
+.stay-capacity-note {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   NOSCRIPT FALLBACK (Amenities / Access / Guide are JS-rendered;
+   About + Hero already work without JS, see stays/*.html markup)
+   ============================================================ */
+.stay-noscript {
+  padding: 18px 20px;
+  background-color: var(--color-bg-soft);
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.stay-noscript a {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   BOOKING CTA
+   ============================================================ */
+.stay-booking {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding-block: 48px;
+}
+
+.stay-booking__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.stay-booking__note {
+  max-width: 560px;
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .stay-about {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .stay-about__intro {
+    padding-top: 0;
+  }
+
+  .stay-amenities {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 32px;
+  }
+
+  .stay-tabs-section {
+    padding-block: 36px 0;
+  }
+
+  .stay-panels {
+    padding-block: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stay-hero {
+    height: auto;
+    min-height: 380px;
+    padding-block: 0;
+  }
+
+  .stay-hero__container {
+    padding-block: 28px 28px;
+  }
+
+  .stay-hero__summary {
+    max-width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .stay-tablist {
+    justify-content: flex-start;
+  }
+
+  .stay-tab {
+    padding: 12px 16px;
+    font-size: 0.88rem;
+  }
+
+  .stay-amenities {
+    grid-template-columns: 1fr;
+  }
+
+  .stay-access__row,
+  .stay-guide__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .stay-gallery__nav {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1rem;
+  }
+
+  .stay-booking__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .stay-tab-indicator,
+  .stay-panel.is-leaving,
+  .stay-panel.is-entering,
+  .stay-panel.is-entered,
+  .stay-gallery__img {
+    transition-duration: 0.01ms !important;
+  }
+
+  .stay-gallery__img {
+    transform: none !important;
+  }
+}

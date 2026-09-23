@@ -108,8 +108,44 @@
   -->
   <section class="results" aria-labelledby="results-title" data-reveal><div class="results-heading"><h2 id="results-title" data-i18n="results.heading">宿泊施設一覧</h2><span id="result-status" role="status" data-i18n="results.status.initial">絞り込み前</span><p data-i18n="results.lead">大阪で出会う、さまざまな暮らし。</p></div><p id="filter-note" class="fine" hidden></p><div id="cards" class="cards"></div><button id="show-all" class="outline more" type="button"><span data-i18n="results.showAll">すべての宿を見る（全7施設）</span> <span aria-hidden="true">↓</span></button><noscript>宿の一覧と絞り込みを利用するには、JavaScriptを有効にしてください。</noscript></section>
 </main>
-<footer class="footer"><div class="footer-row"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">結</span><span><strong>YUSEI STAY</strong><small data-i18n="brand.tagline">暮らすように、泊まる。</small></span></a><nav data-i18n-attr="aria-label:footer.navAriaLabel" aria-label="フッターナビゲーション"><a href="index.html" data-i18n="nav.home">ホーム</a><a href="stays.html" data-i18n="nav.findStays">宿を探す</a><a href="index.html#about" data-i18n="nav.about">私たちについて</a><button data-info="faq" data-i18n="nav.faq">よくあるご質問</button><button data-info="contact" data-i18n="nav.contact">お問い合わせ</button></nav><span class="copyright">© <span id="year"></span> YUSEI STAY. All rights reserved.</span></div>
-  <div class="footer-social">
+<footer class="site-footer">
+  <div class="site-footer__inner container">
+
+    <a href="index.html" class="site-footer__brand" data-i18n-attr="aria-label:brand.ariaLabel" aria-label="YUSEI STAY ホームへ戻る">
+      <img src="assets/stays/brand-mark.svg" alt="" class="brand__mark">
+      <div>
+        <p class="site-footer__brand-name">YUSEI STAY</p>
+        <p class="site-footer__brand-tagline" data-i18n="brand.tagline">暮らすように、泊まる。</p>
+      </div>
+    </a>
+
+    <nav class="site-footer__links" data-i18n-attr="aria-label:footer.navAriaLabel" aria-label="フッターナビゲーション">
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">ホーム</a></li>
+        <li><a href="stays.html" aria-current="page" data-i18n="nav.findStays">宿を探す</a></li>
+        <li><a href="index.html#about" data-i18n="nav.about">私たちについて</a></li>
+        <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+        <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+      </ul>
+    </nav>
+
+    <div class="site-footer__language lang-switcher" data-lang-switcher>
+      <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+        <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+          <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+          <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+          <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+          <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+        </svg>
+        <span data-i18n="nav.language.generic">言語</span>
+      </button>
+    </div>
+
+    <p class="site-footer__copyright">&copy; 2026 YUSEI STAY. All rights reserved.</p>
+  </div>
+
+  <div class="site-footer__social container">
     <p class="site-footer__social-label" data-i18n="footer.followUs">フォローする</p>
     <ul class="social-icons">
       <li>
@@ -132,7 +168,9 @@
       </li>
     </ul>
   </div>
-  <p data-i18n="footer.noteStays">空室状況・ご予約方法は、各施設の詳細をご確認ください。</p></footer>
+
+  <p class="site-footer__note container" data-i18n="footer.noteStays">空室状況・ご予約方法は、各施設の詳細をご確認ください。</p>
+</footer>
 <dialog id="dialog" aria-labelledby="dialog-title"><button id="close-dialog" class="close" data-i18n-attr="aria-label:dialog.close" aria-label="閉じる">×</button><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
 <script src="js/i18n.js"></script>
 <script src="js/language-switcher.js"></script>

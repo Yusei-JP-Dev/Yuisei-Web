@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>禪園 Zen Garden | YUSEI STAY</title>
+  <meta name="description" content="大阪・花園町にある昭和の町家を改修した一棟貸し宿、禪園（Zen Garden）。設備・アクセス・ご宿泊案内を実際の写真とともにご紹介します。">
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/stay-detail.css">
+  <link rel="stylesheet" href="../css/social.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-stay-id="zen">
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner container">
+
+      <a href="../index.html" class="brand" data-i18n-attr="aria-label:brand.ariaLabel" aria-label="YUSEI STAY ホームへ戻る">
+        <img src="../assets/stays/brand-mark.svg" alt="" class="brand__mark">
+        <span class="brand__text">
+          <span class="brand__name">YUSEI STAY</span>
+          <span class="brand__tagline" data-i18n="brand.tagline">暮らすように、泊まる。</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" data-i18n-attr="aria-label:nav.ariaLabel" aria-label="メインナビゲーション">
+        <ul class="main-nav__list">
+          <li><a href="../index.html" data-i18n="nav.home">ホーム</a></li>
+          <li><a href="../stays.html" data-i18n="nav.findStays">宿を探す</a></li>
+          <li><a href="../index.html#about" data-i18n="nav.about">私たちについて</a></li>
+          <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+          <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+        </ul>
+      </nav>
+
+      <div class="header-utility">
+        <div class="lang-switcher" data-lang-switcher>
+          <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+            <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+              <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+              <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+              <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+              <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+            </svg>
+            <span data-i18n="nav.language.generic">言語</span>
+          </button>
+        </div>
+
+        <a href="../stays.html" class="button button--primary" data-i18n="cta.findStays">宿を探す &rarr;</a>
+
+        <button type="button" class="hamburger" id="hamburger-toggle" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="visually-hidden" data-i18n="hamburger.open">メニューを開く</span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <ul class="mobile-menu__list">
+        <li><a href="../index.html" data-i18n="nav.home">ホーム</a></li>
+        <li><a href="../stays.html" data-i18n="nav.findStays">宿を探す</a></li>
+        <li><a href="../index.html#about" data-i18n="nav.about">私たちについて</a></li>
+        <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+        <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+      </ul>
+      <div class="mobile-menu__language lang-switcher" data-lang-switcher>
+        <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+          <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+            <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+            <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+            <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+          </svg>
+          <span data-i18n="nav.language.generic">言語</span>
+        </button>
+      </div>
+      <a href="../stays.html" class="button button--primary button--block" data-i18n="cta.findStays">宿を探す &rarr;</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="stay-hero">
+      <div class="stay-hero__media">
+        <img src="../assets/properties/stay-02_Zen Garden/room_picture_1.jpeg" alt="禪園 Zen Gardenの室内" class="stay-hero__image">
+        <div class="stay-hero__overlay" aria-hidden="true"></div>
+      </div>
+      <div class="stay-hero__container container">
+        <p class="stay-hero__eyebrow">YUSEI STAY</p>
+        <h1 class="stay-hero__heading">禪園<span class="stay-hero__heading-en">Zen Garden</span></h1>
+        <p class="stay-hero__meta">
+          <span class="stay-hero__tag" data-i18n="stayDetail.wholeHouse">一棟貸し</span>
+          <span aria-hidden="true">・</span>
+          <span>花園町・天下茶屋</span>
+        </p>
+        <p class="stay-hero__summary" data-stay-field="tagline">昭和の町家を改修した、庭のある一棟貸し。</p>
+      </div>
+    </section>
+
+    <section class="stay-tabs-section container" data-reveal>
+      <div class="stay-tabs" data-stay-tabs>
+        <div class="stay-tablist" role="tablist" data-tablist data-i18n-attr="aria-label:stayDetail.tablist.ariaLabel" aria-label="宿泊施設の詳細タブ">
+          <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="true" tabindex="0" class="stay-tab"><span data-i18n="stayDetail.tabs.about">宿について</span></button>
+          <button type="button" role="tab" id="tab-amenities" aria-controls="panel-amenities" aria-selected="false" tabindex="-1" class="stay-tab"><span data-i18n="stayDetail.tabs.amenities">設備・アメニティ</span></button>
+          <button type="button" role="tab" id="tab-access" aria-controls="panel-access" aria-selected="false" tabindex="-1" class="stay-tab"><span data-i18n="stayDetail.tabs.access">アクセス</span></button>
+          <button type="button" role="tab" id="tab-guide" aria-controls="panel-guide" aria-selected="false" tabindex="-1" class="stay-tab"><span data-i18n="stayDetail.tabs.guide">ご宿泊案内</span></button>
+          <span class="stay-tab-indicator" data-tab-indicator aria-hidden="true"></span>
+        </div>
+
+        <div class="stay-panels">
+
+          <section id="panel-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" class="stay-panel" data-panel>
+            <div class="stay-about">
+              <div class="stay-about__intro">
+                <p class="stay-about__eyebrow">ABOUT</p>
+                <p class="stay-about__text" data-stay-field="summary">禪園は、2024年に改修された昭和年代の町家を、木の建具や庭を活かしたまま一棟貸しにした宿です。1階にはキッチン、ダイニングテーブル、畳の居間、小さな日本庭園、トイレ、浴室（バスタブ付き）があり、2階にはダブルベッドの洋室と布団を敷く和室があります。</p>
+                <p class="stay-capacity-note" data-stay-field="capacityNote" hidden></p>
+              </div>
+              <div class="stay-about__media">
+                <div class="stay-gallery" data-stay-gallery>
+                  <div class="stay-gallery__viewport" data-gallery-viewport tabindex="0" role="group" data-i18n-attr="aria-label:stayDetail.about.galleryHeading" aria-label="館内の写真">
+                    <img class="stay-gallery__img is-active" data-gallery-img src="../assets/properties/stay-02_Zen Garden/room_picture_1.jpeg" alt="禪園 Zen Gardenの室内写真 1" loading="eager">
+                    <button type="button" class="stay-gallery__nav stay-gallery__nav--prev" data-gallery-prev data-i18n-attr="aria-label:stayDetail.gallery.prev" aria-label="前の写真">&lsaquo;</button>
+                    <button type="button" class="stay-gallery__nav stay-gallery__nav--next" data-gallery-next data-i18n-attr="aria-label:stayDetail.gallery.next" aria-label="次の写真">&rsaquo;</button>
+                    <div class="stay-gallery__counter" data-gallery-counter aria-hidden="true"></div>
+                  </div>
+                  <div class="stay-gallery__dots" data-gallery-dots aria-hidden="true"></div>
+                  <ul class="stay-gallery__thumbs" data-gallery-thumbs></ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="stay-rooms" data-stay-rooms-wrap>
+              <h2 class="stay-section-heading" data-i18n="stayDetail.about.roomsHeading">各フロアのご案内</h2>
+              <div class="stay-rooms__divider" aria-hidden="true"></div>
+              <ul class="stay-rooms__list" data-stay-field="rooms">
+                <li class="stay-rooms__item">
+                  <h3>1F</h3>
+                  <ul>
+                    <li>キッチン</li>
+                    <li>ダイニングテーブル</li>
+                    <li>畳の居間</li>
+                    <li>小さな日本庭園</li>
+                    <li>トイレ</li>
+                    <li>浴室（バスタブ付き）</li>
+                  </ul>
+                </li>
+                <li class="stay-rooms__item">
+                  <h3>2F</h3>
+                  <ul>
+                    <li>洋室（ダブルベッド）</li>
+                    <li>和室（布団）</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="panel-amenities" role="tabpanel" aria-labelledby="tab-amenities" tabindex="0" class="stay-panel" data-panel hidden>
+            <div data-stay-render="amenities"></div>
+            <noscript><p class="stay-noscript">JavaScriptが無効です。設備の詳細は<a href="https://www.airbnb.com/h/zen2025" target="_blank" rel="noopener noreferrer">Airbnbの施設ページ</a>でご確認ください。</p></noscript>
+          </section>
+
+          <section id="panel-access" role="tabpanel" aria-labelledby="tab-access" tabindex="0" class="stay-panel" data-panel hidden>
+            <div data-stay-render="access"></div>
+            <noscript><p class="stay-noscript">JavaScriptが無効です。アクセスの詳細は<a href="https://www.airbnb.com/h/zen2025" target="_blank" rel="noopener noreferrer">Airbnbの施設ページ</a>でご確認ください。</p></noscript>
+          </section>
+
+          <section id="panel-guide" role="tabpanel" aria-labelledby="tab-guide" tabindex="0" class="stay-panel" data-panel hidden>
+            <div data-stay-render="guide"></div>
+            <noscript><p class="stay-noscript">JavaScriptが無効です。ご宿泊案内の詳細は<a href="https://www.airbnb.com/h/zen2025" target="_blank" rel="noopener noreferrer">Airbnbの施設ページ</a>でご確認ください。</p></noscript>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="stay-booking">
+      <div class="container stay-booking__inner" data-reveal>
+        <p class="stay-booking__note" data-i18n="stayDetail.guide.availabilityNote">空室状況・料金・キャンセル条件はAirbnbでご確認ください。</p>
+        <a href="https://www.airbnb.com/h/zen2025" class="button button--primary" target="_blank" rel="noopener noreferrer" data-i18n="stayDetail.booking.cta">Airbnbで空室・料金を確認する &rarr;</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+
+      <a href="../index.html" class="site-footer__brand" data-i18n-attr="aria-label:brand.ariaLabel" aria-label="YUSEI STAY ホームへ戻る">
+        <img src="../assets/stays/brand-mark.svg" alt="" class="brand__mark">
+        <div>
+          <p class="site-footer__brand-name">YUSEI STAY</p>
+          <p class="site-footer__brand-tagline" data-i18n="brand.tagline">暮らすように、泊まる。</p>
+        </div>
+      </a>
+
+      <nav class="site-footer__links" data-i18n-attr="aria-label:footer.navAriaLabel" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="../index.html" data-i18n="nav.home">ホーム</a></li>
+          <li><a href="../stays.html" data-i18n="nav.findStays">宿を探す</a></li>
+          <li><a href="../index.html#about" data-i18n="nav.about">私たちについて</a></li>
+          <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+          <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+        </ul>
+      </nav>
+
+      <div class="site-footer__language lang-switcher" data-lang-switcher>
+        <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+          <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+            <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+            <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+            <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+          </svg>
+          <span data-i18n="nav.language.generic">言語</span>
+        </button>
+      </div>
+
+      <p class="site-footer__copyright">&copy; 2026 YUSEI STAY. All rights reserved.</p>
+    </div>
+
+    <div class="site-footer__social container">
+      <p class="site-footer__social-label" data-i18n="footer.followUs">フォローする</p>
+      <ul class="social-icons">
+        <li>
+          <span class="social-icon" data-social="instagram">
+            <img src="../assets/icon/Instagram_1.png" alt="" class="social-icon__img" aria-hidden="true">
+            <span class="visually-hidden">Instagram</span>
+          </span>
+        </li>
+        <li>
+          <span class="social-icon" data-social="facebook">
+            <img src="../assets/icon/Facebook_1.png" alt="" class="social-icon__img" aria-hidden="true">
+            <span class="visually-hidden">Facebook</span>
+          </span>
+        </li>
+        <li>
+          <span class="social-icon" data-social="youtube">
+            <img src="../assets/icon/Youtube_1.png" alt="" class="social-icon__img" aria-hidden="true">
+            <span class="visually-hidden">YouTube</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="site-footer__note container" data-i18n="footer.note">空室状況・ご予約方法は、各施設のAirbnbページをご確認ください。</p>
+  </footer>
+
+  <dialog id="info-dialog" aria-labelledby="info-dialog-title">
+    <button type="button" id="info-dialog-close" class="info-dialog__close" data-i18n-attr="aria-label:dialog.close" aria-label="閉じる">&times;</button>
+    <h2 id="info-dialog-title"></h2>
+    <div id="info-dialog-body"></div>
+  </dialog>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/language-switcher.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/social-config.js"></script>
+  <script src="../js/social-links.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/stay-data.js"></script>
+  <script src="../js/stay-detail.js"></script>
+</body>
+</html>

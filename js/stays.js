@@ -2,20 +2,20 @@
 // null means unverified, never unavailable. Resolve these fields with the owner
 // before treating results as guaranteed occupancy or amenity matches.
 const stays = [
-  {id:'pine',name:'松園',en:'Pine Garden',area:'bay',station:'弁天町',folder:'stay-05_Pine Garden',photo:1,capacity:5,url:'pine2025'},
-  {id:'literature',name:'文園',en:'Literature Garden',area:'bay',station:'弁天町',folder:'stay-04_Literature Garden',photo:1,capacity:6,url:'literaturegarden'},
-  {id:'tea',name:'茶園',en:'Tea Garden',area:'south',station:'天下茶屋',folder:'stay-01_Tea Garden',photo:3,capacity:5,url:'teagarden2024'},
-  {id:'art',name:'芸',en:'Art Home',area:'bay',station:'朝潮橋',folder:'stay-03_Art Home',photo:5,capacity:null,url:'arthome2025'},
-  {id:'furukawa',name:'古川の家',en:'Furukawa House',area:'kaizuka',station:'三ツ松',folder:'stay-06_Furukawa House',photo:8,capacity:null,url:'furukawa'},
-  {id:'zen',name:'禪園',en:'Zen Garden',area:'south',station:'花園町',folder:'stay-02_Zen Garden',photo:1,capacity:null,url:'zen2025'},
-  {id:'harmony',name:'和の園',en:'Harmony Garden',area:'bay',station:'弁天町',folder:'stay-07_Harmony Garden',photo:1,capacity:5,url:'2026harmony'}
+  {id:'pine',name:'松園',en:'Pine Garden',area:'bay',station:'弁天町',folder:'stay-05_Pine Garden',photo:1,capacity:5,url:'pine2025',page:'stays/pine-garden.html'},
+  {id:'literature',name:'文園',en:'Literature Garden',area:'bay',station:'弁天町',folder:'stay-04_Literature Garden',photo:1,capacity:6,url:'literaturegarden',page:'stays/literature-garden.html'},
+  {id:'tea',name:'茶園',en:'Tea Garden',area:'south',station:'天下茶屋',folder:'stay-01_Tea Garden',photo:3,capacity:5,url:'teagarden2024',page:'stays/tea-garden.html'},
+  {id:'art',name:'芸',en:'Art Home',area:'bay',station:'朝潮橋',folder:'stay-03_Art Home',photo:5,capacity:null,url:'arthome2025',page:'stays/art-home.html'},
+  {id:'furukawa',name:'古川の家',en:'Furukawa House',area:'kaizuka',station:'三ツ松',folder:'stay-06_Furukawa House',photo:8,capacity:null,url:'furukawa',page:'stays/furukawa-house.html'},
+  {id:'zen',name:'禪園',en:'Zen Garden',area:'south',station:'花園町',folder:'stay-02_Zen Garden',photo:1,capacity:null,url:'zen2025',page:'stays/zen-garden.html'},
+  {id:'harmony',name:'和の園',en:'Harmony Garden',area:'bay',station:'弁天町',folder:'stay-07_Harmony Garden',photo:1,capacity:5,url:'2026harmony',page:'stays/harmony-garden.html'}
 ].map(stay=>({...stay,amenities:{kitchen:null,laundry:null,bath:null,parking:null}}));
 const $=id=>document.getElementById(id);
 const form=$('filters'),dialog=$('dialog');
 const i18n=window.YuseiI18n;
 let resultMode='preview'; // 'preview' | 'filtered' | 'all'
 let lastRenderedItems=stays.slice(0,3);
-let dialogContext=null; // {type:'stay',stay} | {type:'faqContact',kind} | {type:'inquiry'}
+let dialogContext=null; // {type:'faqContact',kind} | {type:'inquiry'}
 function ages(){
   const previous=[...$('ages').querySelectorAll('select')].map(el=>el.value);
   const count=Number($('children').value);
@@ -42,8 +42,8 @@ function render(items){
     const title=document.createElement('h3');title.textContent=stay.name;const en=document.createElement('small');en.textContent=stay.en;title.append(en);
     const bottom=document.createElement('div');bottom.className='card-bottom';
     const location=document.createElement('span');location.textContent=`⌖ ${i18n.station(stay.station)}`;
-    const button=document.createElement('button');button.type='button';button.textContent=i18n.t('cta.viewDetails');button.setAttribute('aria-label',i18n.t('card.detailsAriaLabel',{name:stay.name}));button.addEventListener('click',()=>details(stay));
-    bottom.append(location,button);body.append(title,bottom);card.append(img,body);$('cards').append(card);
+    const link=document.createElement('a');link.href=stay.page;link.textContent=i18n.t('cta.viewDetails');link.setAttribute('aria-label',i18n.t('card.detailsAriaLabel',{name:stay.name}));
+    bottom.append(location,link);body.append(title,bottom);card.append(img,body);$('cards').append(card);
   }
   if(!items.length){const p=document.createElement('p');p.className='empty';p.textContent=i18n.t('results.empty');$('cards').append(p);}
 }
@@ -70,14 +70,6 @@ $('show-all').addEventListener('click',()=>{resultMode='all';render(stays);$('sh
 function openDialog(title){$('dialog-title').textContent=title;$('dialog-body').replaceChildren();dialog.showModal();}
 function paragraph(text){const p=document.createElement('p');p.textContent=text;$('dialog-body').append(p);}
 function bookingLink(stay){const a=document.createElement('a');a.className='primary';a.href=`https://www.airbnb.com/h/${stay.url}`;a.target='_blank';a.rel='noopener noreferrer';a.textContent=i18n.t('dialog.stay.airbnbLink',{name:stay.name});$('dialog-body').append(a);}
-function renderStayDetails(stay){
-  dialogContext={type:'stay',stay};
-  openDialog(`${stay.name} · ${stay.en}`);
-  paragraph(i18n.t('dialog.stay.station',{station:i18n.station(stay.station)}));
-  paragraph(i18n.t('dialog.stay.airbnbNote'));
-  bookingLink(stay);
-}
-function details(stay){renderStayDetails(stay);}
 $('close-dialog').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
 function renderFaqContact(kind){
@@ -127,9 +119,8 @@ document.addEventListener('yusei:langchange',()=>{
   ages();syncSteppers();updateResultStatus();updateFilterNote();
   render(lastRenderedItems);
   if(dialog.open&&dialogContext){
-    if(dialogContext.type==='stay')renderStayDetails(dialogContext.stay);
-    else if(dialogContext.type==='faqContact')renderFaqContact(dialogContext.kind);
+    if(dialogContext.type==='faqContact')renderFaqContact(dialogContext.kind);
     /* TEMP DISABLED: inquiry dialog re-render skipped while the date feature is disabled. */
   }
 });
-$('year').textContent=new Date().getFullYear();ages();syncSteppers();render(stays.slice(0,3));updateResultStatus();
+ages();syncSteppers();render(stays.slice(0,3));updateResultStatus();

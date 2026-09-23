@@ -1,20 +1,14 @@
 /* ============================================================
-   Yusei Stay — Homepage info dialog
-   Honest informational modal for nav items and stay cards that
-   have no dedicated page yet (FAQ / Contact / About / Experience
-   / Our Stays detail links). Mirrors the pattern used in stays.js:
-   no booking, no invented pages — just Airbnb links or a plain
-   explanation.
+   Yusei Stay — Shared info dialog (FAQ / Contact / About /
+   Experience). Loaded on index.html and every stays/*.html page.
+   No booking, no invented pages — just Airbnb links or a plain
+   explanation. Stay-card links now go straight to their detail
+   pages instead of opening a dialog (see stays/*.html), so this
+   file only ever needs [data-info] + #info-dialog to exist.
    ============================================================ */
 
 (function () {
   "use strict";
-
-  var stays = {
-    tea: { name: "茶園 Tea Garden", station: "天下茶屋・花園町", url: "teagarden2024" },
-    art: { name: "芸 Art Home", station: "朝潮橋", url: "arthome2025" },
-    furukawa: { name: "古川の家 Furukawa House", station: "貝塚市", url: "furukawa" }
-  };
 
   var dialog = document.getElementById("info-dialog");
   var closeButton = document.getElementById("info-dialog-close");
@@ -34,20 +28,12 @@
     bodyEl.appendChild(p);
   }
 
-  function airbnbLink(stay) {
-    var a = document.createElement("a");
-    a.className = "button button--primary";
-    a.href = "https://www.airbnb.com/h/" + stay.url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.textContent = i18n.t("dialog.stay.airbnbLink", { name: stay.name });
-    bodyEl.appendChild(a);
-  }
-
   function stayHref() {
     var a = document.createElement("a");
     a.className = "button button--outline";
-    a.href = "stays.html";
+    // Shared by index.html (stays.html lives alongside it) and every
+    // stays/*.html detail page (identified by data-stay-id, one level down).
+    a.href = document.body.hasAttribute("data-stay-id") ? "../stays.html" : "stays.html";
     a.textContent = i18n.t("dialog.home.stayLink");
     bodyEl.appendChild(a);
   }
@@ -86,18 +72,6 @@
     stayHref();
   }
 
-  function renderStay(key) {
-    var stay = stays[key];
-    if (!stay) {
-      return;
-    }
-    dialogContext = { type: "stay", key: key };
-    openDialog(stay.name);
-    paragraph(i18n.t("dialog.stay.station", { station: i18n.station(stay.station) }));
-    paragraph(i18n.t("dialog.stay.airbnbNote"));
-    airbnbLink(stay);
-  }
-
   var infoContent = {
     faq: renderFaq,
     contact: renderContact,
@@ -111,13 +85,6 @@
       if (handler) {
         handler();
       }
-    });
-  });
-
-  document.querySelectorAll("[data-stay]").forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      renderStay(link.dataset.stay);
     });
   });
 
@@ -143,9 +110,7 @@
     if (!dialog.open || !dialogContext) {
       return;
     }
-    if (dialogContext.type === "stay") {
-      renderStay(dialogContext.key);
-    } else if (infoContent[dialogContext.type]) {
+    if (infoContent[dialogContext.type]) {
       infoContent[dialogContext.type]();
     }
   });

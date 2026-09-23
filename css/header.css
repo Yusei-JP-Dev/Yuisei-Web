@@ -343,3 +343,123 @@
     transform: translateY(0);
   }
 }
+
+/* ============================================================
+   FOOTER
+   Shared across index.html, stays.html and stays/*.html — a single
+   light cream footer row (logo / nav / language / copyright) plus a
+   small fine-print line.
+   ============================================================ */
+.site-footer {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
+  padding-block: 18px;
+}
+
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-footer__brand-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.site-footer__brand-tagline {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.site-footer__links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 0.85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer__links li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer__links a:hover,
+.site-footer__links button:hover {
+  color: var(--color-primary);
+}
+
+.site-footer__language {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.site-footer__copyright {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.site-footer__note {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ============================================================
+   INFO DIALOG (FAQ / Contact / About / Experience / Stay details)
+   Honest informational modal — no booking, no invented pages.
+   Shared across index.html and stays/*.html (js/main.js).
+   ============================================================ */
+#info-dialog {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 480px;
+  width: calc(100% - 32px);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+#info-dialog::backdrop {
+  background-color: rgba(44, 38, 31, 0.4);
+}
+
+#info-dialog h2 {
+  font-size: 1.3rem;
+  margin: 0 28px 16px 0;
+}
+
+#info-dialog p {
+  margin-block: 12px;
+  color: var(--color-text-secondary);
+}
+
+#info-dialog .button {
+  margin-top: 8px;
+}
+
+.info-dialog__close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  font-size: 1.6rem;
+  line-height: 1;
+}
