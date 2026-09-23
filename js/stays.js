@@ -87,6 +87,10 @@ function renderFaqContact(kind){
   for(const stay of stays)bookingLink(stay);
 }
 document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener('click',()=>{renderFaqContact(button.dataset.info==='faq'?'faq':'contact');}));
+/* TEMP DISABLED: stay-date/calendar inquiry feature is not implemented yet (no availability/booking
+   integration). Everything below that depends on #dates, #checkin or #checkout is block-commented
+   so it can be restored later without rewriting it from scratch.
+
 function localDate(date){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;}
 $('checkin').min=localDate(new Date());$('checkout').min=localDate(new Date());
 $('checkin').addEventListener('change',()=>{const date=new Date(`${$('checkin').value}T12:00:00`);if(!Number.isNaN(date.valueOf())){date.setDate(date.getDate()+1);$('checkout').min=localDate(date);}validateDates();});
@@ -118,13 +122,14 @@ $('dates').addEventListener('submit',event=>{
   event.preventDefault();validateDates();if(!$('dates').reportValidity()||!form.reportValidity())return;
   renderInquiry();
 });
+*/
 document.addEventListener('yusei:langchange',()=>{
-  ages();syncSteppers();updateResultStatus();updateFilterNote();validateDates();
+  ages();syncSteppers();updateResultStatus();updateFilterNote();
   render(lastRenderedItems);
   if(dialog.open&&dialogContext){
     if(dialogContext.type==='stay')renderStayDetails(dialogContext.stay);
     else if(dialogContext.type==='faqContact')renderFaqContact(dialogContext.kind);
-    else if(dialogContext.type==='inquiry')renderInquiry();
+    /* TEMP DISABLED: inquiry dialog re-render skipped while the date feature is disabled. */
   }
 });
 $('year').textContent=new Date().getFullYear();ages();syncSteppers();render(stays.slice(0,3));updateResultStatus();
