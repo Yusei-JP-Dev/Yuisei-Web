@@ -144,14 +144,15 @@
   border-radius: 2px 2px 0 0;
   transform: translateX(var(--indicator-x, 0));
   width: var(--indicator-width, 0);
-  transition:
-    transform 420ms var(--ease-standard),
-    width 420ms var(--ease-standard);
+  transition: none;
 }
 
 .stay-tab-indicator.is-ready {
-  /* Only animate once an initial position has been measured, so the very
-     first paint doesn't sweep in from the left edge. */
+  /* Animate only after the initial position has been measured, so the first
+     paint never sweeps in from a zero-width block. */
+  transition:
+    transform 420ms var(--ease-standard),
+    width 420ms var(--ease-standard);
 }
 
 .stay-panels {
@@ -593,6 +594,23 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 24px;
+  padding: 32px 36px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  box-shadow: var(--shadow-soft);
+}
+
+.stay-booking__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 600px;
+}
+
+.stay-booking__heading {
+  font-size: 1.25rem;
+  color: var(--color-text);
 }
 
 .stay-booking__note {
@@ -600,6 +618,93 @@
   color: var(--color-text-secondary);
   font-size: 0.92rem;
   line-height: 1.8;
+}
+
+/* ============================================================
+   BOOKING DOCK (persistent fixed CTA — built dynamically by
+   js/stay-detail.js from the canonical .stay-booking section's own
+   link, so its Airbnb URL/text can never drift from the canonical
+   CTA above. Hidden while .stay-booking is on screen.)
+   ============================================================ */
+.stay-booking-dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: center;
+  padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+  background-color: rgba(251, 248, 242, 0.92);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -6px 24px rgba(36, 28, 20, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    transform 360ms var(--ease-standard),
+    opacity 360ms var(--ease-standard),
+    visibility 0s linear 0s;
+}
+
+.stay-booking-dock.is-hidden {
+  transform: translateY(14px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 360ms var(--ease-standard),
+    opacity 360ms var(--ease-standard),
+    visibility 0s linear 360ms;
+}
+
+.stay-booking-dock__inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.stay-booking-dock__info {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+
+.stay-booking-dock__name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stay-booking-dock__name-en {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: 8px;
+}
+
+.stay-booking-dock__cue {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stay-booking-dock__cta {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 0.88rem;
+  padding: 12px 22px;
 }
 
 /* ============================================================
@@ -674,6 +779,37 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .stay-booking__inner > .button {
+    width: 100%;
+  }
+
+  .stay-booking-dock {
+    padding: 9px 14px calc(9px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .stay-booking-dock__inner {
+    gap: 10px;
+  }
+
+  .stay-booking-dock__name {
+    display: none;
+  }
+
+  .stay-booking-dock__cue {
+    max-width: 118px;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .stay-booking-dock__cta {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 48px;
+    padding-inline: 12px;
+    font-size: 0.8rem;
+  }
 }
 
 /* ============================================================
@@ -690,5 +826,9 @@
 
   .stay-gallery__img {
     transform: none !important;
+  }
+
+  .stay-booking-dock {
+    transition-duration: 0.01ms !important;
   }
 }

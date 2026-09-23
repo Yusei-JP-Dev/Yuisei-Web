@@ -233,6 +233,8 @@
       "stayDetail.guide.childrenNote": "お子さまの宿泊条件や追加寝具については確認中です。ご予約前にAirbnbでホストにご確認ください。",
       "stayDetail.guide.availabilityNote": "空室状況・料金・キャンセル条件はAirbnbでご確認ください。",
       "stayDetail.booking.heading": "ご予約について",
+      "stayDetail.booking.dockCue": "ご予約・最新の空室状況はAirbnbへ",
+      "stayDetail.booking.dockAria": "{{name}}の空室・料金をAirbnbで確認する",
       "stayDetail.booking.cta": "Airbnbで空室・料金を確認する →"
     },
 
@@ -438,6 +440,8 @@
       "stayDetail.guide.childrenNote": "Conditions for children and extra bedding are still being confirmed — please ask the host via Airbnb before booking.",
       "stayDetail.guide.availabilityNote": "Availability, pricing and cancellation conditions are confirmed on Airbnb.",
       "stayDetail.booking.heading": "Booking",
+      "stayDetail.booking.dockCue": "Book and check live availability on Airbnb",
+      "stayDetail.booking.dockAria": "Check availability and pricing for {{name}} on Airbnb",
       "stayDetail.booking.cta": "Check Availability on Airbnb →"
     },
 
@@ -643,6 +647,8 @@
       "stayDetail.guide.childrenNote": "兒童入住條件與加床寢具詳情尚在確認中，訂房前請透過Airbnb向房東確認。",
       "stayDetail.guide.availabilityNote": "空房狀況、房價與取消條件請至Airbnb確認。",
       "stayDetail.booking.heading": "關於預訂",
+      "stayDetail.booking.dockCue": "預訂與最新空房狀況請至Airbnb",
+      "stayDetail.booking.dockAria": "在Airbnb查看{{name}}的空房與價格",
       "stayDetail.booking.cta": "在Airbnb查看空房與價格 →"
     },
 
@@ -848,6 +854,8 @@
       "stayDetail.guide.childrenNote": "儿童入住条件与加床寝具详情尚在确认中，订房前请通过Airbnb向房东确认。",
       "stayDetail.guide.availabilityNote": "空房状况、房价与取消条件请至Airbnb确认。",
       "stayDetail.booking.heading": "关于预订",
+      "stayDetail.booking.dockCue": "预订与最新空房状况请至Airbnb",
+      "stayDetail.booking.dockAria": "在Airbnb查看{{name}}的空房与价格",
       "stayDetail.booking.cta": "在Airbnb查看空房与价格 →"
     },
 
@@ -1053,6 +1061,8 @@
       "stayDetail.guide.childrenNote": "어린이 숙박 조건과 추가 침구에 대한 세부 사항은 확인 중입니다. 예약 전 Airbnb를 통해 호스트에게 확인해 주세요.",
       "stayDetail.guide.availabilityNote": "공실 현황, 요금, 취소 조건은 Airbnb에서 확인해 주세요.",
       "stayDetail.booking.heading": "예약 안내",
+      "stayDetail.booking.dockCue": "예약 및 최신 공실 현황은 Airbnb에서",
+      "stayDetail.booking.dockAria": "Airbnb에서 {{name}}의 공실과 요금 확인하기",
       "stayDetail.booking.cta": "Airbnb에서 공실·요금 확인하기 →"
     }
   };

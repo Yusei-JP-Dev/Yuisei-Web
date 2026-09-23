@@ -36,6 +36,7 @@
   var data = StayData.stays[stayId];
   var pick = StayData.pick;
   var pickList = StayData.pickList;
+  var bookingDock = null;
 
   function lang() {
     return i18n.getLang();
@@ -62,6 +63,85 @@
     var metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", pick(data.summary, l));
+    }
+  }
+
+  /* ---------------------------------------------------------
+     Persistent booking dock
+     --------------------------------------------------------- */
+  function renderBookingDock() {
+    if (!bookingDock) {
+      return;
+    }
+    var name = data.nameJa + " " + data.nameEn;
+    bookingDock.name.textContent = data.nameJa;
+    bookingDock.nameEn.textContent = data.nameEn;
+    bookingDock.name.appendChild(bookingDock.nameEn);
+    bookingDock.cue.textContent = i18n.t("stayDetail.booking.dockCue");
+    bookingDock.link.textContent = i18n.t("stayDetail.booking.cta");
+    bookingDock.link.setAttribute("aria-label", i18n.t("stayDetail.booking.dockAria", { name: name }));
+  }
+
+  function initBookingDock() {
+    var canonical = document.querySelector(".stay-booking");
+    var sourceLink = canonical && canonical.querySelector('a[href*="airbnb"]');
+    if (!canonical || !sourceLink) {
+      return;
+    }
+
+    var dock = document.createElement("aside");
+    dock.className = "stay-booking-dock";
+    dock.setAttribute("data-booking-dock", "");
+    dock.setAttribute("aria-hidden", "false");
+
+    var inner = document.createElement("div");
+    inner.className = "container stay-booking-dock__inner";
+    var info = document.createElement("div");
+    info.className = "stay-booking-dock__info";
+    var name = document.createElement("p");
+    name.className = "stay-booking-dock__name";
+    var nameEn = document.createElement("span");
+    nameEn.className = "stay-booking-dock__name-en";
+    name.appendChild(nameEn);
+    var cue = document.createElement("p");
+    cue.className = "stay-booking-dock__cue";
+    info.append(name, cue);
+
+    var link = document.createElement("a");
+    link.className = "button button--primary stay-booking-dock__cta";
+    link.href = sourceLink.href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    inner.append(info, link);
+    dock.appendChild(inner);
+    document.body.appendChild(dock);
+
+    bookingDock = { root: dock, name: name, nameEn: nameEn, cue: cue, link: link };
+    renderBookingDock();
+
+    function setHidden(hidden) {
+      dock.classList.toggle("is-hidden", hidden);
+      dock.setAttribute("aria-hidden", hidden ? "true" : "false");
+      link.tabIndex = hidden ? -1 : 0;
+    }
+
+    function syncFromRect() {
+      var rect = canonical.getBoundingClientRect();
+      /* The dock appears only before the canonical section is reached. It
+         stays hidden through the footer and returns when scrolling upward. */
+      setHidden(rect.top <= window.innerHeight);
+    }
+
+    syncFromRect();
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+        setHidden(entry.isIntersecting || entry.boundingClientRect.top < 0);
+      }, { threshold: [0, 0.01] });
+      observer.observe(canonical);
+    } else {
+      window.addEventListener("scroll", syncFromRect, { passive: true });
+      window.addEventListener("resize", syncFromRect);
     }
   }
 
@@ -390,7 +470,12 @@
       requestAnimationFrame(function () {
         moveIndicator(tabs[0]);
         if (indicator) {
-          indicator.classList.add("is-ready");
+          /* Commit the measured first position without animation. Enable
+             transitions on the following frame for real tab changes only. */
+          void indicator.offsetWidth;
+          requestAnimationFrame(function () {
+            indicator.classList.add("is-ready");
+          });
         }
       });
     }
@@ -649,12 +734,14 @@
     renderAmenities();
     renderAccess();
     renderGuide();
+    renderBookingDock();
   }
 
   function init() {
     renderAll();
     initTabs();
     initGallery();
+    initBookingDock();
   }
 
   if (document.readyState === "loading") {
