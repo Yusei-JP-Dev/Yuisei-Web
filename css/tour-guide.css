@@ -1,0 +1,332 @@
+/* ============================================================
+   Yusei Stay — Osaka Guide page (tour-guide.html)
+   Builds on home.css (hero / stay cards / booking CTA are reused
+   as-is) and only adds what is specific to this page:
+   hero modifier, intro + area index, the four alternating area
+   sections and their "nearby stays" panels.
+   Desktop-first; tablet/mobile overrides are at the bottom of this
+   file, using the same breakpoints as responsive.css.
+   ============================================================ */
+
+/* ============================================================
+   HERO (modifier of the homepage .hero)
+   osaka.jpg is 3:2, so the default .hero__image sizing from
+   home.css works unchanged — only the blurred backdrop differs.
+   ============================================================ */
+.hero--guide .hero__media::before {
+  background-image: url('../assets/osaka/osaka.jpg');
+}
+
+/* Same as about.css — Japanese lead set as the H1 instead of the
+   homepage's English display line. */
+.hero__heading--ja {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+/* Sticky header (80px desktop / 64px mobile) must not cover the
+   area headings when arriving via #shinsekai etc. */
+.guide-intro,
+.guide-area {
+  scroll-margin-top: 80px;
+}
+
+/* ============================================================
+   INTRO + AREA INDEX
+   ============================================================ */
+.guide-intro {
+  background-color: var(--color-bg);
+  padding-block: 72px;
+}
+
+.guide-intro__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.guide-intro__body {
+  max-width: 520px;
+  margin-top: 20px;
+  color: var(--color-text-secondary);
+  line-height: 1.9;
+}
+
+.guide-intro__note {
+  max-width: 520px;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.guide-index__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.guide-index__list {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guide-index__link {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding-block: 16px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  transition: color var(--duration-hover) var(--ease-standard);
+}
+
+.guide-index__link:hover {
+  color: var(--color-primary);
+}
+
+.guide-index__number {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+}
+
+.guide-index__name {
+  flex: 1 1 auto;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+}
+
+.guide-index__arrow {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  transition: transform var(--duration-hover) var(--ease-standard);
+}
+
+.guide-index__link:hover .guide-index__arrow {
+  transform: translateY(3px);
+}
+
+/* ============================================================
+   AREA SECTIONS
+   Default: large photo left, copy right, on the surface tone.
+   --reverse: copy left, photo right, on the page background.
+   The photo column is wider than the copy column and the copy
+   sits slightly low, echoing the homepage Experience collage.
+   ============================================================ */
+.guide-area {
+  background-color: var(--color-surface);
+  padding-block: 80px 72px;
+}
+
+.guide-area--reverse {
+  background-color: var(--color-bg);
+}
+
+.guide-area__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: end;
+}
+
+.guide-area--reverse .guide-area__inner {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+}
+
+.guide-area--reverse .guide-area__media {
+  order: 2;
+}
+
+.guide-area__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: var(--color-secondary);
+}
+
+.guide-area__image {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+}
+
+.guide-area__image--portrait {
+  object-position: 50% 70%;
+}
+
+.guide-area__caption {
+  position: absolute;
+  left: 24px;
+  bottom: 20px;
+  color: var(--color-text-inverse);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  text-shadow: 0 1px 12px rgba(20, 16, 10, 0.45);
+}
+
+.guide-area__content {
+  padding-bottom: 12px;
+}
+
+.guide-area__eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+
+.guide-area__number {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
+}
+
+.guide-area__name {
+  font-size: 1.9rem;
+  letter-spacing: 0.04em;
+}
+
+.guide-area__heading {
+  margin-top: 16px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.guide-area__body {
+  max-width: 460px;
+  margin-top: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.9;
+}
+
+.guide-area__points {
+  max-width: 460px;
+  margin-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.guide-area__points li {
+  position: relative;
+  padding: 12px 0 12px 22px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.guide-area__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background-color: var(--color-border-strong);
+}
+
+/* ---- このエリアに近い宿 (reuses homepage .stay-card) ---- */
+.guide-nearby {
+  margin-top: 56px;
+}
+
+.guide-nearby__heading {
+  font-size: 1.1rem;
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guide-nearby__grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* ============================================================
+   TABLET (<=1199px)
+   ============================================================ */
+@media (max-width: 1199px) {
+
+  .guide-intro__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .guide-area__inner,
+  .guide-area--reverse .guide-area__inner {
+    gap: 40px;
+    align-items: center;
+  }
+
+  .guide-area__image {
+    height: 360px;
+  }
+
+  .guide-area__name {
+    font-size: 1.6rem;
+  }
+
+  .guide-nearby__grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ============================================================
+   MOBILE (<=768px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+  .guide-intro,
+  .guide-area {
+    scroll-margin-top: 64px;
+  }
+
+  .guide-intro,
+  .guide-area {
+    padding-block: 48px;
+  }
+
+  .guide-area__inner,
+  .guide-area--reverse .guide-area__inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .guide-area--reverse .guide-area__media {
+    order: 0;
+  }
+
+  .guide-area__image {
+    height: 260px;
+  }
+
+  .guide-area__caption {
+    left: 16px;
+    bottom: 14px;
+    font-size: 1rem;
+  }
+
+  .guide-nearby {
+    margin-top: 36px;
+  }
+
+  .guide-nearby__grid--four {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Narrow tablet band: responsive.css restores a 3-column stay-card
+   grid here; the four-card bay panel reads better as 2 x 2. */
+@media (min-width: 640px) and (max-width: 768px) {
+
+  .guide-nearby__grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

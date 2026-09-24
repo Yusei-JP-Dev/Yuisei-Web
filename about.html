@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja" data-i18n-title="aboutPage.metaTitle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私たちについて | YUSEI STAY</title>
+  <meta name="description" data-i18n-content="aboutPage.metaDescription" content="YUSEI STAYは、大阪市内から貝塚まで、個性の異なる七つの一棟貸しの宿を運営しています。大阪で、暮らすように泊まる旅のご案内。">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/social.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/about.css">
+</head>
+<body class="page-about">
+
+  <!-- ============================================
+       HEADER / NAVBAR (same markup as index.html)
+       ============================================ -->
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner container">
+
+      <a href="index.html" class="brand" data-i18n-attr="aria-label:brand.ariaLabel" aria-label="YUSEI STAY ホームへ戻る">
+        <img src="assets/stays/brand-mark.svg" alt="" class="brand__mark">
+        <span class="brand__text">
+          <span class="brand__name">YUSEI STAY</span>
+          <span class="brand__tagline" data-i18n="brand.tagline">暮らすように、泊まる。</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" data-i18n-attr="aria-label:nav.ariaLabel" aria-label="メインナビゲーション">
+        <ul class="main-nav__list">
+          <li><a href="index.html" data-i18n="nav.home">ホーム</a></li>
+          <li><a href="stays.html" data-i18n="nav.findStays">宿を探す</a></li>
+          <li><a href="about.html" aria-current="page" data-i18n="nav.about">私たちについて</a></li>
+          <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+          <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+        </ul>
+      </nav>
+
+      <div class="header-utility">
+        <div class="lang-switcher" data-lang-switcher>
+          <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+            <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+              <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+              <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+              <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+              <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+            </svg>
+            <span data-i18n="nav.language.generic">言語</span>
+          </button>
+        </div>
+
+        <a href="stays.html" class="button button--primary" data-i18n="cta.findStays">宿を探す &rarr;</a>
+
+        <button type="button" class="hamburger" id="hamburger-toggle" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="visually-hidden" data-i18n="hamburger.open">メニューを開く</span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+          <span class="hamburger__line" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile menu panel: full nav + CTA, toggled by hamburger -->
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <ul class="mobile-menu__list">
+        <li><a href="index.html" data-i18n="nav.home">ホーム</a></li>
+        <li><a href="stays.html" data-i18n="nav.findStays">宿を探す</a></li>
+        <li><a href="about.html" aria-current="page" data-i18n="nav.about">私たちについて</a></li>
+        <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+        <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+      </ul>
+      <div class="mobile-menu__language lang-switcher" data-lang-switcher>
+        <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+          <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+            <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+            <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+            <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+          </svg>
+          <span data-i18n="nav.language.generic">言語</span>
+        </button>
+      </div>
+      <a href="stays.html" class="button button--primary button--block" data-i18n="cta.findStays">宿を探す &rarr;</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================
+         HERO — same layered grammar as the homepage hero
+         (blurred full-bleed backdrop + sharp editorial insert).
+         If the photo changes, update the backdrop url in about.css too.
+         ============================================ -->
+    <section id="hero" class="hero hero--about">
+      <div class="hero__media">
+        <img src="assets/backgrounds/about-interior.jpg" data-i18n-attr="alt:aboutPage.hero.imageAlt" alt="YUSEI STAYの客室に用意された浴衣と寝具" class="hero__image" width="1400" height="788">
+        <div class="hero__overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero__container container">
+        <div class="hero__content">
+          <p class="hero__eyebrow">ABOUT YUSEI STAY</p>
+          <h1 class="hero__heading hero__heading--ja" data-i18n="aboutPage.hero.lead">大阪で、暮らすように泊まる。</h1>
+          <p class="hero__description" data-i18n="aboutPage.hero.description">大阪市内から貝塚まで、七つの一棟貸しの宿。旅のあいだ、まちの日常にそっと加わる滞在を。</p>
+          <a href="stays.html" class="button button--primary" data-i18n="cta.findStays">宿を探す &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         BRAND STORY — reuses the homepage About grid
+         ============================================ -->
+    <section id="story" class="about about-story">
+      <div class="about__inner container" data-reveal>
+        <div class="about__content">
+          <p class="section-eyebrow">OUR STORY</p>
+          <h2 class="section-heading" data-i18n="aboutPage.story.heading">まちの暮らしに、そっと加わる旅。</h2>
+          <p class="about__description" data-i18n="aboutPage.story.body1">YUSEI STAYは、大阪のまちに点在する一棟貸しの民宿です。玄関をあけると台所や畳の間があり、窓の外にはそのまちの日常が流れています。</p>
+          <p class="about__description" data-i18n="aboutPage.story.body2">昭和の町家を改修した宿から、ベイエリアの住宅街に建つ家、貝塚の古民家まで。家ごとに異なる間取りや設えを活かしながら、家族や仲間と気兼ねなく過ごせる場所として整えています。</p>
+          <a href="stays.html" class="link-arrow" data-i18n="cta.viewAllStays">すべての宿を見る &rarr;</a>
+        </div>
+
+        <div class="about__media">
+          <img src="assets/properties/stay-02_Zen Garden/room_picture_1.jpeg" data-i18n-attr="alt:aboutPage.story.imageAlt" alt="禪園 Zen Gardenの畳の和室" class="about__image" loading="lazy" decoding="async">
+        </div>
+
+        <div class="about__editorial" aria-hidden="true">
+          <p>Seven<br>Homes<br>in Osaka</p>
+          <p class="about__editorial-sub">TENGACHAYA<br>BENTENCHO<br>KAIZUKA</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         旅人に選ばれた宿 — award board ring
+         Without JS, or with prefers-reduced-motion, this is a plain
+         horizontal scroll-snap list of links. js/about.js upgrades it
+         to the rotating 3D ring (adds .is-ring, clones slots, shows the
+         controls).
+
+         To add a stay (e.g. Tea Garden once its intro_award.jpeg exists
+         in assets/properties/stay-01_Tea Garden/): copy one <li> below,
+         update data-name-ja / data-name-en / href / src. The ring counts
+         items at runtime — no JS change needed.
+         ============================================ -->
+    <section id="awards" class="awards" aria-labelledby="awards-heading">
+      <div class="awards__header container" data-reveal>
+        <p class="section-eyebrow section-eyebrow--center">CHOSEN BY TRAVELLERS</p>
+        <h2 class="section-heading section-heading--center" id="awards-heading" data-i18n="aboutPage.awards.heading">旅人に選ばれた宿</h2>
+        <p class="awards__lead" data-i18n="aboutPage.awards.lead">それぞれの宿の紹介ボードを集めました。掲載内容の最新情報は、各宿のページとAirbnbでご確認ください。</p>
+      </div>
+
+      <div class="award-ring" data-award-ring role="region" data-i18n-attr="aria-label:aboutPage.awards.regionLabel" aria-label="各宿の紹介ボード">
+        <p class="visually-hidden" id="award-ring-instructions" data-i18n="aboutPage.awards.instructions">左右の矢印キーで宿を切り替え、Enterキーで表示中の宿の詳細ページを開きます。</p>
+
+        <div class="award-ring__stage" data-award-stage>
+          <ul class="award-ring__track" data-award-track>
+            <li class="award-card" data-award-item data-name-ja="禪園" data-name-en="Zen Garden">
+              <a href="stays/zen-garden.html" class="award-card__link">
+                <span class="award-card__frame">
+                  <img src="assets/properties/stay-02_Zen Garden/intro_award.jpeg" alt="禪園 Zen Gardenの紹介ボード" class="award-card__image" loading="lazy" decoding="async" draggable="false">
+                </span>
+                <span class="award-card__caption">
+                  <span class="award-card__name">禪園 <span class="award-card__name-en">Zen Garden</span></span>
+                  <span class="award-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
+                </span>
+              </a>
+            </li>
+            <li class="award-card" data-award-item data-name-ja="芸" data-name-en="Art Home">
+              <a href="stays/art-home.html" class="award-card__link">
+                <span class="award-card__frame">
+                  <img src="assets/properties/stay-03_Art Home/intro_award.jpeg" alt="芸 Art Homeの紹介ボード" class="award-card__image" loading="lazy" decoding="async" draggable="false">
+                </span>
+                <span class="award-card__caption">
+                  <span class="award-card__name">芸 <span class="award-card__name-en">Art Home</span></span>
+                  <span class="award-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
+                </span>
+              </a>
+            </li>
+            <li class="award-card" data-award-item data-name-ja="文園" data-name-en="Literature Garden">
+              <a href="stays/literature-garden.html" class="award-card__link">
+                <span class="award-card__frame">
+                  <img src="assets/properties/stay-04_Literature Garden/intro_award.jpeg" alt="文園 Literature Gardenの紹介ボード" class="award-card__image" loading="lazy" decoding="async" draggable="false">
+                </span>
+                <span class="award-card__caption">
+                  <span class="award-card__name">文園 <span class="award-card__name-en">Literature Garden</span></span>
+                  <span class="award-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
+                </span>
+              </a>
+            </li>
+            <li class="award-card" data-award-item data-name-ja="松園" data-name-en="Pine Garden">
+              <a href="stays/pine-garden.html" class="award-card__link">
+                <span class="award-card__frame">
+                  <img src="assets/properties/stay-05_Pine Garden/intro_award.jpeg" alt="松園 Pine Gardenの紹介ボード" class="award-card__image" loading="lazy" decoding="async" draggable="false">
+                </span>
+                <span class="award-card__caption">
+                  <span class="award-card__name">松園 <span class="award-card__name-en">Pine Garden</span></span>
+                  <span class="award-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
+                </span>
+              </a>
+            </li>
+            <li class="award-card" data-award-item data-name-ja="古川の家" data-name-en="Furukawa House">
+              <a href="stays/furukawa-house.html" class="award-card__link">
+                <span class="award-card__frame">
+                  <img src="assets/properties/stay-06_Furukawa House/intro_award.jpeg" alt="古川の家 Furukawa Houseの紹介ボード" class="award-card__image" loading="lazy" decoding="async" draggable="false">
+                </span>
+                <span class="award-card__caption">
+                  <span class="award-card__name">古川の家 <span class="award-card__name-en">Furukawa House</span></span>
+                  <span class="award-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
+                </span>
+              </a>
+            </li>
+            <li class="award-card" data-award-item data-name-ja="和の園" data-name-en="Harmony Garden">
+              <a href="stays/harmony-garden.html" class="award-card__link">
+                <span class="award-card__frame">
+                  <img src="assets/properties/stay-07_Harmony Garden/intro_award.jpeg" alt="和の園 Harmony Gardenの紹介ボード" class="award-card__image" loading="lazy" decoding="async" draggable="false">
+                </span>
+                <span class="award-card__caption">
+                  <span class="award-card__name">和の園 <span class="award-card__name-en">Harmony Garden</span></span>
+                  <span class="award-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Shown only in ring mode (js/about.js removes [hidden]) -->
+        <div class="award-ring__controls container" data-award-controls hidden>
+          <p class="award-ring__status">
+            <span class="award-ring__status-text" data-award-status aria-live="off"></span>
+            <a href="stays.html" class="link-arrow award-ring__current" data-award-current data-i18n="cta.viewDetails">詳細を見る &rarr;</a>
+          </p>
+          <div class="award-ring__buttons">
+            <button type="button" class="award-ring__button" data-award-prev data-i18n-attr="aria-label:aboutPage.awards.prev" aria-label="前の宿へ">
+              <span aria-hidden="true">&larr;</span>
+            </button>
+            <button type="button" class="award-ring__button award-ring__button--toggle" data-award-toggle>
+              <span class="award-ring__toggle-icon" aria-hidden="true"></span>
+              <span class="visually-hidden" data-award-toggle-label>自動回転を一時停止</span>
+            </button>
+            <button type="button" class="award-ring__button" data-award-next data-i18n-attr="aria-label:aboutPage.awards.next" aria-label="次の宿へ">
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PHILOSOPHY / SEVEN HOMES
+         ============================================ -->
+    <section id="philosophy" class="philosophy">
+      <div class="philosophy__inner container" data-reveal>
+        <div class="philosophy__intro">
+          <p class="section-eyebrow">OUR PHILOSOPHY</p>
+          <h2 class="section-heading" data-i18n="aboutPage.philosophy.heading">七つの家、七つの暮らし。</h2>
+          <p class="philosophy__lead" data-i18n="aboutPage.philosophy.lead">同じ宿はひとつもありません。どの家にも共通して大切にしているのは、次の三つのことです。</p>
+        </div>
+
+        <ol class="philosophy__list">
+          <li class="philosophy__item">
+            <span class="philosophy__number" aria-hidden="true">01</span>
+            <h3 class="philosophy__title" data-i18n="aboutPage.philosophy.item1.title">一棟まるごと、あなたたちの家</h3>
+            <p class="philosophy__description" data-i18n="aboutPage.philosophy.item1.description">他のゲストと空間を分け合うことなく、家族や仲間のペースで過ごせるように。</p>
+          </li>
+          <li class="philosophy__item">
+            <span class="philosophy__number" aria-hidden="true">02</span>
+            <h3 class="philosophy__title" data-i18n="aboutPage.philosophy.item2.title">その家らしさを残す</h3>
+            <p class="philosophy__description" data-i18n="aboutPage.philosophy.item2.description">建物の歴史や間取り、建具や庭など、それぞれの家が持つ個性を活かして整えています。</p>
+          </li>
+          <li class="philosophy__item">
+            <span class="philosophy__number" aria-hidden="true">03</span>
+            <h3 class="philosophy__title" data-i18n="aboutPage.philosophy.item3.title">まちの日常とつながる</h3>
+            <p class="philosophy__description" data-i18n="aboutPage.philosophy.item3.description">近所での買い物や、宿でのんびり過ごす時間。観光の合間に、大阪の暮らしを感じられる滞在を。</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="homes container" data-reveal>
+        <div class="homes__header">
+          <h3 class="homes__heading" data-i18n="aboutPage.homes.heading">YUSEI STAYの七つの宿</h3>
+          <a href="stays.html" class="link-arrow" data-i18n="cta.viewAllStays">すべての宿を見る &rarr;</a>
+        </div>
+
+        <ul class="homes__list">
+          <li class="home-item">
+            <a href="stays/tea-garden.html" class="home-item__link">
+              <span class="home-item__frame"><img src="assets/properties/stay-01_Tea Garden/room_picture_3.jpeg" data-i18n-attr="alt:stayCard.tea.imageAlt" alt="茶園 Tea Gardenの客室" class="home-item__image" loading="lazy" decoding="async"></span>
+              <span class="home-item__number" aria-hidden="true">01</span>
+              <span class="home-item__name">茶園</span>
+              <span class="home-item__name-en">Tea Garden</span>
+              <span class="home-item__area" data-i18n="access.area2">天下茶屋・花園町</span>
+            </a>
+          </li>
+          <li class="home-item">
+            <a href="stays/zen-garden.html" class="home-item__link">
+              <span class="home-item__frame"><img src="assets/properties/stay-02_Zen Garden/room_picture_2.jpeg" data-i18n-attr="alt:stayCard.zen.imageAlt" alt="禪園 Zen Gardenの客室" class="home-item__image" loading="lazy" decoding="async"></span>
+              <span class="home-item__number" aria-hidden="true">02</span>
+              <span class="home-item__name">禪園</span>
+              <span class="home-item__name-en">Zen Garden</span>
+              <span class="home-item__area" data-i18n="access.area2">天下茶屋・花園町</span>
+            </a>
+          </li>
+          <li class="home-item">
+            <a href="stays/art-home.html" class="home-item__link">
+              <span class="home-item__frame"><img src="assets/properties/stay-03_Art Home/room_picture_5.jpeg" data-i18n-attr="alt:stayCard.art.imageAlt" alt="芸 Art Homeの客室" class="home-item__image" loading="lazy" decoding="async"></span>
+              <span class="home-item__number" aria-hidden="true">03</span>
+              <span class="home-item__name">芸</span>
+              <span class="home-item__name-en">Art Home</span>
+              <span class="home-item__area" data-i18n="access.area1">弁天町・朝潮橋</span>
+            </a>
+          </li>
+          <li class="home-item">
+            <a href="stays/literature-garden.html" class="home-item__link">
+              <span class="home-item__frame"><img src="assets/properties/stay-04_Literature Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.literature.imageAlt" alt="文園 Literature Gardenの客室" class="home-item__image" loading="lazy" decoding="async"></span>
+              <span class="home-item__number" aria-hidden="true">04</span>
+              <span class="home-item__name">文園</span>
+              <span class="home-item__name-en">Literature Garden</span>
+              <span class="home-item__area" data-i18n="access.area1">弁天町・朝潮橋</span>
+            </a>
+          </li>
+          <li class="home-item">
+            <a href="stays/pine-garden.html" class="home-item__link">
+              <span class="home-item__frame"><img src="assets/properties/stay-05_Pine Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.pine.imageAlt" alt="松園 Pine Gardenの客室" class="home-item__image" loading="lazy" decoding="async"></span>
+              <span class="home-item__number" aria-hidden="true">05</span>
+              <span class="home-item__name">松園</span>
+              <span class="home-item__name-en">Pine Garden</span>
+              <span class="home-item__area" data-i18n="access.area1">弁天町・朝潮橋</span>
+            </a>
+          </li>
+          <li class="home-item">
+            <a href="stays/furukawa-house.html" class="home-item__link">
+              <span class="home-item__frame"><img src="assets/properties/stay-06_Furukawa House/room_picture_8.jpeg" data-i18n-attr="alt:stayCard.furukawa.imageAlt" alt="古川の家 Furukawa Houseの客室" class="home-item__image" loading="lazy" decoding="async"></span>
+              <span class="home-item__number" aria-hidden="true">06</span>
+              <span class="home-item__name">古川の家</span>
+              <span class="home-item__name-en">Furukawa House</span>
+              <span class="home-item__area" data-i18n="access.area3">貝塚</span>
+            </a>
+          </li>
+          <li class="home-item">
+            <a href="stays/harmony-garden.html" class="home-item__link">
+              <span class="home-item__frame"><img src="assets/properties/stay-07_Harmony Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.harmony.imageAlt" alt="和の園 Harmony Gardenの客室" class="home-item__image" loading="lazy" decoding="async"></span>
+              <span class="home-item__number" aria-hidden="true">07</span>
+              <span class="home-item__name">和の園</span>
+              <span class="home-item__name-en">Harmony Garden</span>
+              <span class="home-item__area" data-i18n="access.area1">弁天町・朝潮橋</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FINAL CTA / BOOKING BANNER (same as homepage)
+         ============================================ -->
+    <section id="booking-cta" class="booking-cta">
+      <div class="booking-cta__media">
+        <img src="assets/backgrounds/cta-garden.jpg" data-i18n-attr="alt:bookingCta.imageAlt" alt="茶園の茶器と鉄瓶" class="booking-cta__image" loading="lazy" decoding="async">
+        <div class="booking-cta__overlay" aria-hidden="true"></div>
+      </div>
+      <div class="booking-cta__inner container" data-reveal>
+        <div class="booking-cta__text">
+          <h2 class="booking-cta__heading" data-i18n="bookingCta.heading">大阪で、暮らすような旅を。</h2>
+          <p class="booking-cta__description" data-i18n="bookingCta.description">ご予約は各宿の外部予約サイトから。</p>
+        </div>
+        <a href="stays.html" class="button button--primary booking-cta__button" data-i18n="cta.findStays">宿を探す &rarr;</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       FOOTER (same markup as index.html)
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+
+      <a href="index.html" class="site-footer__brand" data-i18n-attr="aria-label:brand.ariaLabel" aria-label="YUSEI STAY ホームへ戻る">
+        <img src="assets/stays/brand-mark.svg" alt="" class="brand__mark">
+        <div>
+          <p class="site-footer__brand-name">YUSEI STAY</p>
+          <p class="site-footer__brand-tagline" data-i18n="brand.tagline">暮らすように、泊まる。</p>
+        </div>
+      </a>
+
+      <nav class="site-footer__links" data-i18n-attr="aria-label:footer.navAriaLabel" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">ホーム</a></li>
+          <li><a href="stays.html" data-i18n="nav.findStays">宿を探す</a></li>
+          <li><a href="about.html" aria-current="page" data-i18n="nav.about">私たちについて</a></li>
+          <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
+          <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+        </ul>
+      </nav>
+
+      <div class="site-footer__language lang-switcher" data-lang-switcher>
+        <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
+          <svg class="lang-switcher__globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+            <ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.4"></ellipse>
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.4"></line>
+            <line x1="4.5" y1="7" x2="19.5" y2="7" stroke="currentColor" stroke-width="1.2"></line>
+            <line x1="4.5" y1="17" x2="19.5" y2="17" stroke="currentColor" stroke-width="1.2"></line>
+          </svg>
+          <span data-i18n="nav.language.generic">言語</span>
+        </button>
+      </div>
+
+      <p class="site-footer__copyright">&copy; 2026 YUSEI STAY. All rights reserved.</p>
+    </div>
+
+    <div class="site-footer__social container">
+      <p class="site-footer__social-label" data-i18n="footer.followUs">フォローする</p>
+      <ul class="social-icons">
+        <li>
+          <span class="social-icon" data-social="instagram">
+            <img src="assets/icon/Instagram_1.png" alt="" class="social-icon__img" aria-hidden="true">
+            <span class="visually-hidden">Instagram</span>
+          </span>
+        </li>
+        <li>
+          <span class="social-icon" data-social="facebook">
+            <img src="assets/icon/Facebook_1.png" alt="" class="social-icon__img" aria-hidden="true">
+            <span class="visually-hidden">Facebook</span>
+          </span>
+        </li>
+        <li>
+          <span class="social-icon" data-social="youtube">
+            <img src="assets/icon/Youtube_1.png" alt="" class="social-icon__img" aria-hidden="true">
+            <span class="visually-hidden">YouTube</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="site-footer__note container" data-i18n="footer.note">空室状況・ご予約方法は、各施設のAirbnbページをご確認ください。</p>
+  </footer>
+
+  <dialog id="info-dialog" aria-labelledby="info-dialog-title">
+    <button type="button" id="info-dialog-close" class="info-dialog__close" data-i18n-attr="aria-label:dialog.close" aria-label="閉じる">&times;</button>
+    <h2 id="info-dialog-title"></h2>
+    <div id="info-dialog-body"></div>
+  </dialog>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/language-switcher.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/social-config.js"></script>
+  <script src="js/social-links.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>

@@ -52,6 +52,7 @@
       folder: "stay-01_Tea Garden",
       nameJa: "茶園",
       nameEn: "Tea Garden",
+      guideArea: "south",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
@@ -116,6 +117,7 @@
       folder: "stay-02_Zen Garden",
       nameJa: "禪園",
       nameEn: "Zen Garden",
+      guideArea: "south",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg", "room_picture_11.jpeg", "room_picture_12.jpeg", "room_picture_13.jpeg", "room_picture_14.jpeg", "room_picture_15.jpeg", "room_picture_16.jpeg", "room_picture_17.jpeg"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
@@ -184,6 +186,7 @@
       folder: "stay-04_Literature Garden",
       nameJa: "文園",
       nameEn: "Literature Garden",
+      guideArea: "bay",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
@@ -249,6 +252,7 @@
       folder: "stay-03_Art Home",
       nameJa: "芸",
       nameEn: "Art Home",
+      guideArea: "bay",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg", "room_picture_11.jpeg", "room_picture_12.jpeg", "room_picture_13.jpeg", "room_picture_14.jpeg"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
@@ -309,6 +313,7 @@
       folder: "stay-05_Pine Garden",
       nameJa: "松園",
       nameEn: "Pine Garden",
+      guideArea: "bay",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg"],
       verified: { address: true, amenities: true, rules: true, map: false, capacity: false },
@@ -384,6 +389,7 @@
       folder: "stay-07_Harmony Garden",
       nameJa: "和の園",
       nameEn: "Harmony Garden",
+      guideArea: "bay",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg"],
       verified: { address: false, amenities: false, rules: false, map: true, capacity: false },
@@ -422,6 +428,7 @@
       folder: "stay-06_Furukawa House",
       nameJa: "古川の家",
       nameEn: "Furukawa House",
+      guideArea: "kaizuka",
       heroImage: "room_picture_1.jpeg",
       images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg", "room_picture_11.jpeg", "room_picture_12.jpeg", "room_picture_13.jpeg", "room_picture_14.jpeg"],
       verified: { address: true, amenities: false, rules: false, map: true, capacity: false },
@@ -463,8 +470,39 @@
 
   };
 
+  /* Osaka Guide teaser shown on each detail page (see stay-detail.js
+     renderGuideTeaser). Each stay's `guideArea` above picks one entry.
+     `anchor` is the section id on tour-guide.html; `areaKeys` are the
+     i18n keys of the guide areas named in the teaser label; `image` is
+     relative to the site root. Location relationships are deliberately
+     conservative (brief-supplied) — do not add travel times here. */
+  var guideAreas = {
+    south: {
+      anchor: "shinsekai",
+      areaKeys: ["guidePage.area.shinsekai.name", "guidePage.area.namba.name"],
+      textKey: "stayTeaser.south.text",
+      image: "assets/osaka/streetscape_1.jpg",
+      imageAltKey: "experience.image1Alt"
+    },
+    bay: {
+      anchor: "bay",
+      areaKeys: ["guidePage.area.bay.name"],
+      textKey: "stayTeaser.bay.text",
+      image: "assets/osaka/USJ.jpeg",
+      imageAltKey: "guidePage.area.bay.imageAlt"
+    },
+    kaizuka: {
+      anchor: "kaizuka",
+      areaKeys: ["guidePage.area.kaizuka.name"],
+      textKey: "stayTeaser.kaizuka.text",
+      image: "assets/properties/stay-06_Furukawa House/room_picture_1.jpeg",
+      imageAltKey: "guidePage.area.kaizuka.imageAlt"
+    }
+  };
+
   window.YuseiStayData = {
     stays: stays,
+    guideAreas: guideAreas,
     pick: pick,
     pickList: pickList
   };

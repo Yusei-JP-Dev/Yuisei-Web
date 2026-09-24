@@ -1131,6 +1131,79 @@
   }
 
   /* ---------------------------------------------------------
+     Osaka Guide teaser ("この宿から楽しめる大阪")
+     Built once from data.guideArea -> StayData.guideAreas and
+     inserted just before the canonical booking section; text is
+     re-localized on language change. Links to the matching area
+     anchor on tour-guide.html (one level up from stays/).
+     --------------------------------------------------------- */
+  var guideTeaser = null;
+
+  function renderGuideTeaser() {
+    if (!guideTeaser) {
+      return;
+    }
+    var area = guideTeaser.area;
+    var areaNames = area.areaKeys.map(function (key) {
+      return i18n.t(key);
+    });
+    guideTeaser.heading.textContent = i18n.t("stayTeaser.heading");
+    guideTeaser.label.textContent = i18n.t("stayTeaser.areaLabel", { area: areaNames.join(" / ") });
+    guideTeaser.text.textContent = i18n.t(area.textKey);
+    guideTeaser.image.alt = i18n.t(area.imageAltKey);
+    guideTeaser.link.textContent = i18n.t("cta.readMore");
+    guideTeaser.link.setAttribute("aria-label", i18n.t("stayTeaser.ctaAria", { area: areaNames[0] }));
+  }
+
+  function initGuideTeaser() {
+    var area = StayData.guideAreas && StayData.guideAreas[data.guideArea];
+    var anchorSection = document.querySelector(".stay-booking");
+    if (!area || !anchorSection) {
+      return;
+    }
+
+    var section = document.createElement("section");
+    section.className = "stay-teaser";
+    section.setAttribute("aria-labelledby", "stay-teaser-heading");
+
+    var inner = document.createElement("div");
+    inner.className = "container stay-teaser__inner";
+
+    var media = document.createElement("div");
+    media.className = "stay-teaser__media";
+    var image = document.createElement("img");
+    image.className = "stay-teaser__image";
+    image.src = "../" + area.image;
+    image.loading = "lazy";
+    image.decoding = "async";
+    media.appendChild(image);
+
+    var content = document.createElement("div");
+    content.className = "stay-teaser__content";
+    var eyebrow = document.createElement("p");
+    eyebrow.className = "section-eyebrow";
+    eyebrow.textContent = "OSAKA GUIDE";
+    var heading = document.createElement("h2");
+    heading.className = "stay-teaser__heading";
+    heading.id = "stay-teaser-heading";
+    var label = document.createElement("p");
+    label.className = "stay-teaser__area";
+    var text = document.createElement("p");
+    text.className = "stay-teaser__text";
+    var link = document.createElement("a");
+    link.className = "link-arrow stay-teaser__cta";
+    link.href = "../tour-guide.html#" + area.anchor;
+    content.append(eyebrow, heading, label, text, link);
+
+    inner.append(media, content);
+    section.appendChild(inner);
+    anchorSection.parentNode.insertBefore(section, anchorSection);
+
+    guideTeaser = { area: area, heading: heading, label: label, text: text, image: image, link: link };
+    renderGuideTeaser();
+  }
+
+  /* ---------------------------------------------------------
      Init + language change
      --------------------------------------------------------- */
   function renderAll() {
@@ -1140,12 +1213,14 @@
     renderAccess();
     renderGuide();
     renderBookingDock();
+    renderGuideTeaser();
   }
 
   function init() {
     renderAll();
     initTabs();
     initGallery();
+    initGuideTeaser();
     initBookingDock();
   }
 
