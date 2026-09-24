@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/header.css">
   <link rel="stylesheet" href="../css/stay-detail.css">
-  <link rel="stylesheet" href="../css/social.css">
+  <link rel="stylesheet" href="../css/social.css?v=2">
   <link rel="stylesheet" href="../css/motion.css">
   <link rel="stylesheet" href="../css/responsive.css">
 </head>
@@ -33,8 +33,8 @@
           <li><a href="../index.html" data-i18n="nav.home">ホーム</a></li>
           <li><a href="../stays.html" data-i18n="nav.findStays">宿を探す</a></li>
           <li><a href="../about.html" data-i18n="nav.about">私たちについて</a></li>
-          <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
-          <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+          <li><a href="../tour-guide.html" data-i18n="nav.osakaGuide">Osaka Guide</a></li>
+          <li><a href="#footer-contact" data-contact-jump data-i18n="nav.contact">お問い合わせ</a></li>
         </ul>
       </nav>
 
@@ -69,8 +69,8 @@
         <li><a href="../index.html" data-i18n="nav.home">ホーム</a></li>
         <li><a href="../stays.html" data-i18n="nav.findStays">宿を探す</a></li>
         <li><a href="../about.html" data-i18n="nav.about">私たちについて</a></li>
-        <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
-        <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+        <li><a href="../tour-guide.html" data-i18n="nav.osakaGuide">Osaka Guide</a></li>
+        <li><a href="#footer-contact" data-contact-jump data-i18n="nav.contact">お問い合わせ</a></li>
       </ul>
       <div class="mobile-menu__language lang-switcher" data-lang-switcher>
         <button type="button" class="lang-switcher__trigger" data-lang-trigger aria-expanded="false" data-i18n-attr="aria-label:nav.language.label" aria-label="言語を選択">
@@ -218,8 +218,8 @@
           <li><a href="../index.html" data-i18n="nav.home">ホーム</a></li>
           <li><a href="../stays.html" data-i18n="nav.findStays">宿を探す</a></li>
           <li><a href="../about.html" data-i18n="nav.about">私たちについて</a></li>
-          <li><button type="button" data-info="faq" data-i18n="nav.faq">よくあるご質問</button></li>
-          <li><button type="button" data-info="contact" data-i18n="nav.contact">お問い合わせ</button></li>
+          <li><a href="../tour-guide.html" data-i18n="nav.osakaGuide">Osaka Guide</a></li>
+          <li><a href="#footer-contact" data-contact-jump data-i18n="nav.contact">お問い合わせ</a></li>
         </ul>
       </nav>
 
@@ -239,6 +239,29 @@
       <p class="site-footer__copyright">&copy; 2026 YUSEI STAY. All rights reserved.</p>
     </div>
 
+    <section class="site-footer__contact container" id="footer-contact" aria-labelledby="footer-contact-title">
+      <h2 class="site-footer__contact-title" id="footer-contact-title" data-i18n="footer.contact">お問い合わせ</h2>
+      <ul class="contact-links">
+        <li>
+          <a class="contact-link" data-contact-channel="whatsapp">
+            <span class="contact-link__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.5 2.2 2.2 3.9 4.5 4.7l1-1 2 .8c-.2 1.3-1.2 2.2-2.5 2.2-3.8-.5-6.7-3.4-7.2-7.2 0-1.3.9-2.3 2.2-2.5l.8 2-1 .9Z"/></svg></span>
+            <span class="contact-link__copy"><span class="contact-link__label" data-i18n="footer.contact.whatsapp">WhatsApp</span><span class="contact-link__value" data-i18n="footer.contact.pending">準備中</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" data-contact-channel="email">
+            <span class="contact-link__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></svg></span>
+            <span class="contact-link__copy"><span class="contact-link__label" data-i18n="footer.contact.email">メール</span><span class="contact-link__value" data-i18n="footer.contact.pending">準備中</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" data-contact-channel="phone">
+            <span class="contact-link__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7.2 3.5 10 7.7 8.3 9.5c1.1 2.4 2.9 4.2 5.3 5.3l1.8-1.7 4.2 2.8c.1 2-1.4 4-3.6 4-6.4-.7-11.2-5.5-11.9-11.9 0-2.1 2-3.7 4-3.6Z"/></svg></span>
+            <span class="contact-link__copy"><span class="contact-link__label" data-i18n="footer.contact.phone">電話</span><span class="contact-link__value" data-i18n="footer.contact.pending">準備中</span></span>
+          </a>
+        </li>
+      </ul>
+    </section>
     <div class="site-footer__social container">
       <p class="site-footer__social-label" data-i18n="footer.followUs">フォローする</p>
       <ul class="social-icons">
@@ -275,6 +298,8 @@
   <script src="../js/i18n.js"></script>
   <script src="../js/language-switcher.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/contact-config.js?v=1"></script>
+  <script src="../js/contact-links.js?v=2"></script>
   <script src="../js/social-config.js"></script>
   <script src="../js/social-links.js"></script>
   <script src="../js/animations.js"></script>
