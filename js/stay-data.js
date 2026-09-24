@@ -472,7 +472,9 @@
 
   /* Osaka Guide teaser shown on each detail page (see stay-detail.js
      renderGuideTeaser). Each stay's `guideArea` above picks one entry.
-     `anchor` is the section id on tour-guide.html; `areaKeys` are the
+     The teaser now links to tour-guide.html?stay=<stay id>; `anchor`
+     is the legacy area hash, still resolved by js/guide-data.js
+     legacyHashes for old bookmarks. `areaKeys` are the
      i18n keys of the guide areas named in the teaser label; `image` is
      relative to the site root. Location relationships are deliberately
      conservative (brief-supplied) — do not add travel times here. */

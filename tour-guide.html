@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>大阪ガイド | YUSEI STAY</title>
-  <meta name="description" data-i18n-content="guidePage.metaDescription" content="新世界・天王寺、難波・心斎橋、大阪ベイエリア、貝塚・泉州。YUSEI STAYの宿のまわりに広がる大阪のまちを、エリアごとにご紹介します。">
+  <meta name="description" data-i18n-content="guidePage.metaDescription" content="YUSEI STAYの宿を拠点に楽しむ大阪ガイド。宿ごとに、周辺の楽しみ方や交通、お店、日帰りの行き先をご紹介します。">
 
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
@@ -109,286 +109,102 @@
       <div class="hero__container container">
         <div class="hero__content">
           <p class="hero__eyebrow">OSAKA GUIDE</p>
-          <h1 class="hero__heading hero__heading--ja" data-i18n="guidePage.hero.lead">大阪のまちを、暮らすように歩く。</h1>
-          <p class="hero__description" data-i18n="guidePage.hero.description">下町の商店街から、ネオンの繁華街、海に近いまち、泉州のおだやかな街並みまで。宿のまわりに広がる大阪を、四つのエリアでご紹介します。</p>
-          <a href="#areas" class="button button--primary"><span data-i18n="guidePage.areaNav.label">エリアから探す</span>&nbsp;<span aria-hidden="true">&darr;</span></a>
+          <h1 class="hero__heading hero__heading--ja" data-i18n="guidePage.hero.lead">ここを拠点に、大阪を楽しむ。</h1>
+          <p class="hero__description" data-i18n="guidePage.hero.description">朝は近所を散歩して、昼は気になる街へ。お気に入りの宿を拠点に、大阪で過ごす時間を見つけましょう。</p>
+          <a href="#base" class="button button--primary"><span data-i18n="guide.hero.cta">拠点の宿を選ぶ</span>&nbsp;<span aria-hidden="true">&darr;</span></a>
         </div>
       </div>
     </section>
 
     <!-- ============================================
-         INTRO + AREA INDEX
+         BASE SELECTOR — seven photo tabs, built by js/tour-guide.js
+         from js/guide-data.js (order) + js/stay-data.js (names/photos).
+         The legacy #areas / #shinsekai / #namba / #bay / #kaizuka
+         anchors (old detail-page links) land here; the script maps
+         each to a stay in that area.
          ============================================ -->
-    <section id="areas" class="guide-intro">
-      <div class="guide-intro__inner container" data-reveal>
-        <div class="guide-intro__content">
-          <p class="section-eyebrow">MORE THAN A TRIP</p>
-          <h2 class="section-heading" data-i18n="guidePage.intro.heading">名所と名所の「あいだ」にある、大阪の日常。</h2>
-          <p class="guide-intro__body" data-i18n="guidePage.intro.body">名所をめぐる時間も、宿へ帰る道すがらの路地や、朝の商店街も。YUSEI STAYの宿は、それぞれ個性の異なるまちにあります。泊まるエリアを選ぶ手がかりに、まちの雰囲気をお届けします。</p>
-          <p class="guide-intro__note" data-i18n="guidePage.intro.note">掲載写真はイメージです。営業時間や交通手段などは、お出かけ前に各施設の公式情報をご確認ください。</p>
+    <section id="base" class="guide-select" aria-labelledby="guide-select-heading">
+      <span id="areas" class="guide-legacy-anchor" aria-hidden="true"></span>
+      <span id="shinsekai" class="guide-legacy-anchor" aria-hidden="true"></span>
+      <span id="namba" class="guide-legacy-anchor" aria-hidden="true"></span>
+      <span id="bay" class="guide-legacy-anchor" aria-hidden="true"></span>
+      <span id="kaizuka" class="guide-legacy-anchor" aria-hidden="true"></span>
+
+      <div class="guide-select__inner container">
+        <div class="guide-select__intro" data-reveal>
+          <p class="section-eyebrow">YOUR BASE IN OSAKA</p>
+          <h2 class="section-heading" id="guide-select-heading" data-i18n="guide.base.heading">拠点にする宿を選ぶ</h2>
+          <p class="guide-select__lead" data-i18n="guide.base.lead">宿を選ぶと、周辺の楽しみ方や交通、お店の情報をご覧いただけます。</p>
         </div>
 
-        <nav class="guide-index" data-i18n-attr="aria-label:guidePage.areaNav.label" aria-label="エリアから探す">
-          <p class="guide-index__label" data-i18n="guidePage.areaNav.label" aria-hidden="true">エリアから探す</p>
-          <ol class="guide-index__list">
-            <li><a href="#shinsekai" class="guide-index__link"><span class="guide-index__number" aria-hidden="true">01</span><span class="guide-index__name" data-i18n="guidePage.area.shinsekai.name">新世界・天王寺</span><span class="guide-index__arrow" aria-hidden="true">&darr;</span></a></li>
-            <li><a href="#namba" class="guide-index__link"><span class="guide-index__number" aria-hidden="true">02</span><span class="guide-index__name" data-i18n="guidePage.area.namba.name">難波・心斎橋</span><span class="guide-index__arrow" aria-hidden="true">&darr;</span></a></li>
-            <li><a href="#bay" class="guide-index__link"><span class="guide-index__number" aria-hidden="true">03</span><span class="guide-index__name" data-i18n="guidePage.area.bay.name">大阪ベイエリア</span><span class="guide-index__arrow" aria-hidden="true">&darr;</span></a></li>
-            <li><a href="#kaizuka" class="guide-index__link"><span class="guide-index__number" aria-hidden="true">04</span><span class="guide-index__name" data-i18n="guidePage.area.kaizuka.name">貝塚・泉州</span><span class="guide-index__arrow" aria-hidden="true">&darr;</span></a></li>
+        <div class="guide-tabs">
+          <div class="guide-tabs__scroller">
+            <span class="guide-tabs__indicator" aria-hidden="true"></span>
+            <div class="guide-tabs__list" id="guide-tablist" role="tablist" aria-labelledby="guide-select-heading"></div>
+          </div>
+        </div>
+
+        <noscript>
+          <p class="guide-select__noscript">このガイドの表示にはJavaScriptが必要です。各宿のページもあわせてご覧ください。</p>
+          <a href="stays.html" class="button button--outline">宿を探す &rarr;</a>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ============================================
+         GUIDE BODY — sticky current-base bar, left reading-progress
+         rail, and the five chapters for the selected stay.
+         The rail tracks reading progress through this guide — it is
+         not a day-by-day route and never a move between stays.
+         ============================================ -->
+    <div class="guide-body" id="guide-body">
+
+      <div class="guide-basebar">
+        <div class="guide-basebar__inner container">
+          <div class="guide-basebar__current">
+            <img src="assets/properties/stay-01_Tea%20Garden/room_picture_1.jpeg" alt="" class="guide-basebar__thumb" id="guide-basebar-thumb" width="44" height="44" decoding="async">
+            <p class="guide-basebar__text">
+              <span class="guide-basebar__label" data-i18n="guide.base.current">現在の拠点</span>
+              <span class="guide-basebar__name" id="guide-basebar-name"></span>
+              <span class="guide-basebar__area" id="guide-basebar-area"></span>
+            </p>
+          </div>
+          <label class="guide-basebar__change">
+            <span class="guide-basebar__change-label" data-i18n="guide.base.change">拠点を変える</span>
+            <select id="guide-base-select" class="guide-basebar__select"></select>
+          </label>
+        </div>
+      </div>
+
+      <p class="visually-hidden" id="guide-live" aria-live="polite"></p>
+
+      <div class="guide-layout container">
+        <nav class="guide-rail" aria-labelledby="guide-rail-label">
+          <p class="guide-rail__label" id="guide-rail-label" data-i18n="guide.rail.label">このガイドの章</p>
+          <div class="guide-rail__track" aria-hidden="true"><span class="guide-rail__fill"></span></div>
+          <ol class="guide-rail__list">
+            <li><a href="#guide-from" class="guide-rail__link" data-chapter="from"><span class="guide-rail__num" aria-hidden="true">01</span><span class="guide-rail__text" data-i18n="guide.ch.from">この宿から</span></a></li>
+            <li><a href="#guide-near" class="guide-rail__link" data-chapter="near"><span class="guide-rail__num" aria-hidden="true">02</span><span class="guide-rail__text" data-i18n="guide.ch.near">近所を楽しむ</span></a></li>
+            <li><a href="#guide-further" class="guide-rail__link" data-chapter="further"><span class="guide-rail__num" aria-hidden="true">03</span><span class="guide-rail__text" data-i18n="guide.ch.further">少し足をのばす</span></a></li>
+            <li><a href="#guide-day" class="guide-rail__link" data-chapter="day"><span class="guide-rail__num" aria-hidden="true">04</span><span class="guide-rail__text" data-i18n="guide.ch.day">一日のおでかけ</span></a></li>
+            <li><a href="#guide-daily" class="guide-rail__link" data-chapter="daily"><span class="guide-rail__num" aria-hidden="true">05</span><span class="guide-rail__text" data-i18n="guide.ch.daily">暮らしの便利帳</span></a></li>
           </ol>
         </nav>
-      </div>
-    </section>
 
-    <!-- ============================================
-         AREA SECTIONS
-         Each <section id> is a deep-link target used by the stay
-         detail teaser (js/stay-data.js guideAreas.anchor):
-         #shinsekai / #namba / #bay / #kaizuka.
-         Photo/text sides alternate via .guide-area--reverse.
-         Nearby-stay relationships are the conservative set given in
-         the project brief — keep copy qualitative (no travel times).
-         ============================================ -->
+        <div class="guide-panel" id="guide-panel" role="tabpanel">
+          <section id="guide-from" class="guide-chapter" data-chapter="from" aria-labelledby="guide-from-heading"></section>
+          <section id="guide-near" class="guide-chapter guide-chapter--alt" data-chapter="near" aria-labelledby="guide-near-heading"></section>
+          <section id="guide-further" class="guide-chapter" data-chapter="further" aria-labelledby="guide-further-heading"></section>
+          <section id="guide-day" class="guide-chapter guide-chapter--alt" data-chapter="day" aria-labelledby="guide-day-heading"></section>
+          <section id="guide-daily" class="guide-chapter" data-chapter="daily" aria-labelledby="guide-daily-heading"></section>
 
-    <!-- 01 新世界・天王寺 -->
-    <section id="shinsekai" class="guide-area" aria-labelledby="area-shinsekai-heading">
-      <div class="guide-area__inner container" data-reveal>
-        <div class="guide-area__media">
-          <img src="assets/osaka/streetscape_1.jpg" data-i18n-attr="alt:experience.image1Alt" alt="夜の新世界、通天閣を望む商店街のイメージ写真" class="guide-area__image" loading="lazy" decoding="async">
-          <p class="guide-area__caption" aria-hidden="true">Shinsekai<br>Tennoji</p>
-        </div>
-
-        <div class="guide-area__content">
-          <p class="guide-area__eyebrow"><span class="guide-area__number" aria-hidden="true">01</span>SHINSEKAI / TENNOJI</p>
-          <h2 class="guide-area__name" id="area-shinsekai-heading" data-i18n="guidePage.area.shinsekai.name">新世界・天王寺</h2>
-          <p class="guide-area__heading" data-i18n="guidePage.area.shinsekai.heading">昭和の面影が残る、にぎやかな下町。</p>
-          <p class="guide-area__body" data-i18n="guidePage.area.shinsekai.body">通天閣を見上げる商店街には、レトロな看板や串カツの店が軒を連ねます。少し歩けば、天王寺の公園や寺社のまわりに落ち着いた時間も流れています。</p>
-          <ul class="guide-area__points">
-            <li data-i18n="guidePage.area.shinsekai.point1">昔ながらの商店街をそぞろ歩く</li>
-            <li data-i18n="guidePage.area.shinsekai.point2">串カツや粉もんなど、大阪の味を気軽に</li>
-            <li data-i18n="guidePage.area.shinsekai.point3">天王寺の緑の中でひと休み</li>
-          </ul>
+          <div class="guide-footnote">
+            <p data-i18n="guide.note.times">時間はすべて目安です。交通状況や時間帯によって変わります。</p>
+            <p data-i18n="guide.note.date">掲載情報は2026年9月24日時点のものです。運行ダイヤや営業日時は変わることがあるため、お出かけ前に最新情報をご確認ください。</p>
+          </div>
         </div>
       </div>
-
-      <div class="guide-nearby container" data-reveal>
-        <h3 class="guide-nearby__heading" data-i18n="guidePage.nearby.heading">このエリアに近い宿</h3>
-        <ul class="stay-card-grid guide-nearby__grid">
-          <li class="stay-card">
-            <a href="stays/tea-garden.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-01_Tea Garden/room_picture_3.jpeg" data-i18n-attr="alt:stayCard.tea.imageAlt" alt="茶園 Tea Gardenの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">茶園 Tea Garden</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.tea.location">一棟貸し・天下茶屋・花園町</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="stay-card">
-            <a href="stays/zen-garden.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-02_Zen Garden/room_picture_2.jpeg" data-i18n-attr="alt:stayCard.zen.imageAlt" alt="禪園 Zen Gardenの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">禪園 Zen Garden</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.zen.location">一棟貸し・花園町</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 02 難波・心斎橋 -->
-    <section id="namba" class="guide-area guide-area--reverse" aria-labelledby="area-namba-heading">
-      <div class="guide-area__inner container" data-reveal>
-        <div class="guide-area__media">
-          <img src="assets/osaka/shisaibashi.jpeg" data-i18n-attr="alt:experience.image2Alt" alt="道頓堀の看板が並ぶ夜の商店街のイメージ写真" class="guide-area__image" loading="lazy" decoding="async">
-          <p class="guide-area__caption" aria-hidden="true">Namba<br>Shinsaibashi</p>
-        </div>
-
-        <div class="guide-area__content">
-          <p class="guide-area__eyebrow"><span class="guide-area__number" aria-hidden="true">02</span>NAMBA / SHINSAIBASHI</p>
-          <h2 class="guide-area__name" id="area-namba-heading" data-i18n="guidePage.area.namba.name">難波・心斎橋</h2>
-          <p class="guide-area__heading" data-i18n="guidePage.area.namba.heading">光と食が行き交う、大阪のまんなか。</p>
-          <p class="guide-area__body" data-i18n="guidePage.area.namba.body">道頓堀の川沿いに並ぶ看板、アーケードの続く心斎橋筋。食べ歩きや買い物を楽しんだあとは、にぎわいから少し離れた宿へ帰る。そんな一日の過ごし方もおすすめです。</p>
-          <ul class="guide-area__points">
-            <li data-i18n="guidePage.area.namba.point1">道頓堀の夜景を川沿いから眺める</li>
-            <li data-i18n="guidePage.area.namba.point2">アーケード街で買い物と食べ歩き</li>
-            <li data-i18n="guidePage.area.namba.point3">にぎわいの後は、静かな宿でくつろぐ</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="guide-nearby container" data-reveal>
-        <h3 class="guide-nearby__heading" data-i18n="guidePage.nearby.heading">このエリアに近い宿</h3>
-        <ul class="stay-card-grid guide-nearby__grid">
-          <li class="stay-card">
-            <a href="stays/tea-garden.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-01_Tea Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.tea.imageAlt" alt="茶園 Tea Gardenの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">茶園 Tea Garden</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.tea.location">一棟貸し・天下茶屋・花園町</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="stay-card">
-            <a href="stays/zen-garden.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-02_Zen Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.zen.imageAlt" alt="禪園 Zen Gardenの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">禪園 Zen Garden</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.zen.location">一棟貸し・花園町</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 03 大阪ベイエリア -->
-    <section id="bay" class="guide-area" aria-labelledby="area-bay-heading">
-      <div class="guide-area__inner container" data-reveal>
-        <div class="guide-area__media">
-          <img src="assets/osaka/USJ.jpeg" data-i18n-attr="alt:guidePage.area.bay.imageAlt" alt="ユニバーサル・スタジオ・ジャパンの地球儀モニュメントの夜景イメージ写真" class="guide-area__image" loading="lazy" decoding="async">
-          <p class="guide-area__caption" aria-hidden="true">Osaka<br>Bay Area</p>
-        </div>
-
-        <div class="guide-area__content">
-          <p class="guide-area__eyebrow"><span class="guide-area__number" aria-hidden="true">03</span>OSAKA BAY AREA</p>
-          <h2 class="guide-area__name" id="area-bay-heading" data-i18n="guidePage.area.bay.name">大阪ベイエリア</h2>
-          <p class="guide-area__heading" data-i18n="guidePage.area.bay.heading">港の風が抜ける、ひらけたまち。</p>
-          <p class="guide-area__body" data-i18n="guidePage.area.bay.body">海に近いベイエリアには、テーマパークや水族館など、家族で一日楽しめる場所が点在しています。宿のまわりには、地元の暮らしが息づく住宅街が広がります。</p>
-          <ul class="guide-area__points">
-            <li data-i18n="guidePage.area.bay.point1">テーマパークで思いきり遊ぶ一日</li>
-            <li data-i18n="guidePage.area.bay.point2">港や海辺の景色をのんびり眺める</li>
-            <li data-i18n="guidePage.area.bay.point3">暮らすように、近所で夕食の買い出しを</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="guide-nearby container" data-reveal>
-        <h3 class="guide-nearby__heading" data-i18n="guidePage.nearby.heading">このエリアに近い宿</h3>
-        <ul class="stay-card-grid guide-nearby__grid guide-nearby__grid--four">
-          <li class="stay-card">
-            <a href="stays/harmony-garden.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-07_Harmony Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.harmony.imageAlt" alt="和の園 Harmony Gardenの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">和の園 Harmony Garden</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.harmony.location">一棟貸し・弁天町</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="stay-card">
-            <a href="stays/pine-garden.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-05_Pine Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.pine.imageAlt" alt="松園 Pine Gardenの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">松園 Pine Garden</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.pine.location">一棟貸し・弁天町</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="stay-card">
-            <a href="stays/art-home.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-03_Art Home/room_picture_5.jpeg" data-i18n-attr="alt:stayCard.art.imageAlt" alt="芸 Art Homeの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">芸 Art Home</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.art.location">一棟貸し・朝潮橋</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="stay-card">
-            <a href="stays/literature-garden.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-04_Literature Garden/room_picture_1.jpeg" data-i18n-attr="alt:stayCard.literature.imageAlt" alt="文園 Literature Gardenの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">文園 Literature Garden</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.literature.location">一棟貸し・弁天町</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 04 貝塚・泉州 -->
-    <section id="kaizuka" class="guide-area guide-area--reverse" aria-labelledby="area-kaizuka-heading">
-      <div class="guide-area__inner container" data-reveal>
-        <div class="guide-area__media">
-          <!-- No Kaizuka streetscape photo in assets/osaka yet — uses a real
-               Furukawa House interior. Swap for an area photo when supplied. -->
-          <img src="assets/properties/stay-06_Furukawa House/room_picture_1.jpeg" data-i18n-attr="alt:guidePage.area.kaizuka.imageAlt" alt="貝塚市にある古川の家 Furukawa Houseの室内" class="guide-area__image guide-area__image--portrait" loading="lazy" decoding="async">
-          <p class="guide-area__caption" aria-hidden="true">Kaizuka<br>Senshu</p>
-        </div>
-
-        <div class="guide-area__content">
-          <p class="guide-area__eyebrow"><span class="guide-area__number" aria-hidden="true">04</span>KAIZUKA / SENSHU</p>
-          <h2 class="guide-area__name" id="area-kaizuka-heading" data-i18n="guidePage.area.kaizuka.name">貝塚・泉州</h2>
-          <p class="guide-area__heading" data-i18n="guidePage.area.kaizuka.heading">旅のはじまりと終わりに、泉州のゆるやかな時間。</p>
-          <p class="guide-area__body" data-i18n="guidePage.area.kaizuka.body">大阪市内のにぎわいを離れた貝塚には、水間寺をはじめとする古くからの寺社や、落ち着いた街並みが残ります。関西空港を利用する旅の前後に、ゆったり過ごす拠点としても。</p>
-          <ul class="guide-area__points">
-            <li data-i18n="guidePage.area.kaizuka.point1">水間寺のまわりの静かな道を歩く</li>
-            <li data-i18n="guidePage.area.kaizuka.point2">古民家の畳の間で、ゆっくりくつろぐ</li>
-            <li data-i18n="guidePage.area.kaizuka.point3">関西空港を利用する旅の拠点に</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="guide-nearby container" data-reveal>
-        <h3 class="guide-nearby__heading" data-i18n="guidePage.nearby.heading">このエリアに近い宿</h3>
-        <ul class="stay-card-grid guide-nearby__grid">
-          <li class="stay-card">
-            <a href="stays/furukawa-house.html" class="stay-card__link">
-              <div class="stay-card__image-wrap">
-                <img src="assets/properties/stay-06_Furukawa House/room_picture_8.jpeg" data-i18n-attr="alt:stayCard.furukawa.imageAlt" alt="古川の家 Furukawa Houseの客室" class="stay-card__image" loading="lazy" decoding="async">
-              </div>
-              <div class="stay-card__body">
-                <h4 class="stay-card__name">古川の家 Furukawa House</h4>
-                <div class="stay-card__bottom">
-                  <span class="stay-card__location" data-i18n="stayCard.furukawa.location">一棟貸し・貝塚市</span>
-                  <span class="stay-card__arrow" data-i18n="cta.viewDetails">詳細を見る &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
+    </div>
 
     <!-- ============================================
          FINAL CTA / BOOKING BANNER (same as homepage)
@@ -483,10 +299,13 @@
   </dialog>
 
   <script src="js/i18n.js"></script>
+  <script src="js/stay-data.js"></script>
+  <script src="js/guide-data.js"></script>
   <script src="js/language-switcher.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/social-config.js"></script>
   <script src="js/social-links.js"></script>
+  <script src="js/tour-guide.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
 </body>

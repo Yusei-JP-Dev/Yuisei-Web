@@ -1134,8 +1134,9 @@
      Osaka Guide teaser ("この宿から楽しめる大阪")
      Built once from data.guideArea -> StayData.guideAreas and
      inserted just before the canonical booking section; text is
-     re-localized on language change. Links to the matching area
-     anchor on tour-guide.html (one level up from stays/).
+     re-localized on language change. Links to tour-guide.html
+     (one level up from stays/) with ?stay=<this stay id>, so the
+     guide opens with this stay already chosen as the base.
      --------------------------------------------------------- */
   var guideTeaser = null;
 
@@ -1152,7 +1153,7 @@
     guideTeaser.text.textContent = i18n.t(area.textKey);
     guideTeaser.image.alt = i18n.t(area.imageAltKey);
     guideTeaser.link.textContent = i18n.t("cta.readMore");
-    guideTeaser.link.setAttribute("aria-label", i18n.t("stayTeaser.ctaAria", { area: areaNames[0] }));
+    guideTeaser.link.setAttribute("aria-label", i18n.t("stayTeaser.ctaAriaStay", { name: data.nameJa + " " + data.nameEn }));
   }
 
   function initGuideTeaser() {
@@ -1192,7 +1193,7 @@
     text.className = "stay-teaser__text";
     var link = document.createElement("a");
     link.className = "link-arrow stay-teaser__cta";
-    link.href = "../tour-guide.html#" + area.anchor;
+    link.href = "../tour-guide.html?stay=" + encodeURIComponent(stayId);
     content.append(eyebrow, heading, label, text, link);
 
     inner.append(media, content);
