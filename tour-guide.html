@@ -201,6 +201,16 @@
           <div class="guide-footnote">
             <p data-i18n="guide.note.times">時間はすべて目安です。交通状況や時間帯によって変わります。</p>
             <p data-i18n="guide.note.date">掲載情報は2026年9月24日時点のものです。運行ダイヤや営業日時は変わることがあるため、お出かけ前に最新情報をご確認ください。</p>
+
+            <!-- Photo credits for the selected stay's chapter images,
+                 filled by js/tour-guide.js from js/guide-images.js. -->
+            <details class="guide-disclosure guide-disclosure--block guide-credits" id="guide-credits">
+              <summary class="guide-disclosure__summary">
+                <span class="guide-disclosure__title" data-i18n="guide.credits.title">写真クレジット</span>
+                <span class="guide-disclosure__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="guide-disclosure__body guide-credits__body" id="guide-credits-body"></div>
+            </details>
           </div>
         </div>
       </div>
@@ -224,6 +234,13 @@
     </section>
 
   </main>
+
+  <!-- Back to top — shown by js/tour-guide.js after about one
+       viewport of scrolling; hidden + unfocusable near the top. -->
+  <button type="button" class="guide-top" id="guide-top" data-i18n-attr="aria-label:guide.top.label|title:guide.top.label" aria-label="ページの先頭へ戻る" title="ページの先頭へ戻る" aria-hidden="true" tabindex="-1">
+    <svg class="guide-top__arrow" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 7 6 2l5 5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="guide-top__label" data-i18n="guide.top.short" aria-hidden="true">上へ</span>
+  </button>
 
   <!-- ============================================
        FOOTER (same markup as index.html)
@@ -301,6 +318,7 @@
   <script src="js/i18n.js"></script>
   <script src="js/stay-data.js"></script>
   <script src="js/guide-data.js"></script>
+  <script src="js/guide-images.js"></script>
   <script src="js/language-switcher.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/social-config.js"></script>

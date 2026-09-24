@@ -15,17 +15,26 @@
      #bay / #kaizuka anchors map to a stay in that area; anything
      invalid falls back to the first stay.
    - Chapter rail: IntersectionObserver marks the chapter in view
-     with aria-current; a rAF-throttled scroll listener only
-     updates the progress line. No scroll hijacking.
-   - Entry motion: IntersectionObserver adds a one-shot staggered
-     entry to blocks that start off-screen. Content already on
-     screen is never hidden or faded out. Each render bumps a
-     token and rebuilds the observer, so rapid switching cannot
-     leave stale animations. prefers-reduced-motion skips it all.
+     with aria-current. No scroll hijacking.
+   - One passive scroll listener + rAF drives the rail progress
+     line, the chapter crossfade and the back-to-top button.
+   - Chapter crossfade: each chapter fades/rises in as it enters
+     the reading area and fades/lifts out once its bottom passes
+     the middle — computed from position alone, so it reverses on
+     the way back up and repeats every time. Neighbouring chapters
+     overlap, so a boundary is never blank. Chapters holding
+     keyboard focus stay opaque (CSS); nothing is removed from
+     layout or made unclickable. prefers-reduced-motion keeps
+     every chapter fully opaque and still.
+   - Back to top: fixed round button, hidden/unfocusable until
+     about one viewport down; scrolls to the top without a hash.
    - Re-renders in place on "yusei:langchange", keeping the stay
      and the reader's chapter/scroll position.
-   Data: js/stay-data.js (names, photos, addresses) and
-   js/guide-data.js (all guide facts).
+   - Chapter 02-05 images and day-trip thumbnails come from
+     js/guide-images.js: AI illustrations get a visible badge, real
+     photos a visible credit line plus the page-end credits list.
+   Data: js/stay-data.js (names, photos, addresses),
+   js/guide-data.js (all guide facts) and js/guide-images.js.
    ============================================================ */
 
 (function () {
@@ -34,6 +43,7 @@
   var i18n = window.YuseiI18n;
   var StayData = window.YuseiStayData;
   var Guide = window.YuseiGuideData;
+  var Images = window.YuseiGuideImages || null;
 
   var tabList = document.getElementById("guide-tablist");
   var panel = document.getElementById("guide-panel");
@@ -61,14 +71,14 @@
   var liveRegion = document.getElementById("guide-live");
   var guideBody = document.getElementById("guide-body");
   var railLinks = Array.prototype.slice.call(document.querySelectorAll(".guide-rail__link"));
+  var creditsBody = document.getElementById("guide-credits-body");
 
   var state = {
     stay: null,
     activeChapter: "from",
-    renderToken: 0
+    usedPhotos: []
   };
   var tabs = {};
-  var revealObserver = null;
 
   /* ---------------------------------------------------------
      Helpers
@@ -248,9 +258,10 @@
     return wrap;
   }
 
-  function renderStop(item) {
+  function renderStop(item, opts) {
     var mainMode = item.ways[0] && item.ways[0].mode;
     var mapLink = placeMapLink(item.place, mainMode);
+    var thumb = opts && opts.thumbs ? tripThumb(item.place) : null;
 
     var head = h("span", "guide-stop__head");
     head.appendChild(h("span", "guide-stop__name", placeName(item.place)));
@@ -267,11 +278,14 @@
     var liD = h("li", "guide-stop guide-stop--details");
     var details = h("details", "guide-disclosure");
     var summary = h("summary", "guide-disclosure__summary");
-    summary.appendChild(head);
+    summary.appendChild(thumb ? stopLead(thumb.img, head) : head);
     summary.appendChild(h("span", "guide-disclosure__icon")).setAttribute("aria-hidden", "true");
     details.appendChild(summary);
 
     var body = h("div", "guide-disclosure__body");
+    if (thumb) {
+      body.appendChild(tripPhotoNote(thumb.asset));
+    }
     item.ways.forEach(function (way) {
       if (!way.route) {
         return;
@@ -293,16 +307,23 @@
     return liD;
   }
 
-  function renderStopGroup(titleKey, noteKey, items, modifier) {
+  /* Thumbnail + name/time block inside a day-trip summary. */
+  function stopLead(img, head) {
+    var lead = h("span", "guide-stop__lead");
+    lead.appendChild(img);
+    lead.appendChild(head);
+    return lead;
+  }
+
+  function renderStopGroup(titleKey, noteKey, items, modifier, opts) {
     var group = h("div", "guide-group" + (modifier ? " guide-group--" + modifier : ""));
-    group.setAttribute("data-anim", "");
     group.appendChild(h("h4", "guide-group__title", t(titleKey)));
     if (noteKey) {
       group.appendChild(h("p", "guide-group__note", t(noteKey)));
     }
     var list = h("ul", "guide-stops");
     items.forEach(function (item) {
-      list.appendChild(renderStop(item));
+      list.appendChild(renderStop(item, opts));
     });
     group.appendChild(list);
     return group;
@@ -310,7 +331,6 @@
 
   function renderNoTimeGroup(placeIds) {
     var group = h("div", "guide-group guide-group--plain");
-    group.setAttribute("data-anim", "");
     group.appendChild(h("h4", "guide-group__title", t("guide.group.noTime")));
     group.appendChild(h("p", "guide-group__note", t("guide.group.noTimeNote")));
     var list = h("ul", "guide-stops");
@@ -334,28 +354,46 @@
   /* ---------------------------------------------------------
      Chapter scaffolding (photo + editorial copy, alternating)
      --------------------------------------------------------- */
+  /* Decorative romanised label over a photo (stay name / place). */
+  function overlayCaption(text) {
+    var cap = h("span", "guide-area__caption guide-chapter__caption");
+    cap.setAttribute("aria-hidden", "true");
+    text.split("<br>").forEach(function (line, index) {
+      if (index) {
+        cap.appendChild(document.createElement("br"));
+      }
+      cap.appendChild(document.createTextNode(line));
+    });
+    return cap;
+  }
+
   function renderMedia(opts) {
     var figure = h("figure", "guide-chapter__media");
-    figure.setAttribute("data-anim", "");
-    var frame = h("div", "guide-chapter__frame");
+    var frame = h("div", "guide-chapter__frame" + (opts.portrait ? " guide-chapter__frame--portrait" : ""));
     var img = h("img", "guide-chapter__image");
     img.src = opts.src;
     img.alt = opts.alt;
+    if (opts.width && opts.height) {
+      img.width = opts.width;
+      img.height = opts.height;
+    }
+    if (opts.position) {
+      img.style.objectPosition = opts.position;
+    }
     img.loading = opts.eager ? "eager" : "lazy";
     img.decoding = "async";
     frame.appendChild(img);
     if (opts.caption) {
-      var cap = h("figcaption", "guide-area__caption guide-chapter__caption");
-      cap.setAttribute("aria-hidden", "true");
-      opts.caption.split("<br>").forEach(function (line, index) {
-        if (index) {
-          cap.appendChild(document.createElement("br"));
-        }
-        cap.appendChild(document.createTextNode(line));
-      });
-      frame.appendChild(cap);
+      frame.appendChild(overlayCaption(opts.caption));
+    }
+    if (opts.badge) {
+      /* Visible notice; the alt text already starts with it. */
+      frame.appendChild(h("span", "guide-ai-badge", opts.badge)).setAttribute("aria-hidden", "true");
     }
     figure.appendChild(frame);
+    if (opts.figcaption) {
+      figure.appendChild(opts.figcaption);
+    }
     if (opts.inset) {
       var insetWrap = h("div", "guide-chapter__inset");
       var inset = h("img", "guide-chapter__inset-image");
@@ -380,9 +418,147 @@
     };
   }
 
+  /* ---------------------------------------------------------
+     Guide images (js/guide-images.js): AI badge, photo credits
+     --------------------------------------------------------- */
+  function imageAsset(id) {
+    return Images && id ? Images.assets[id] || null : null;
+  }
+
+  function imageAlt(asset) {
+    var desc = pick(asset.desc);
+    return asset.kind === "generated" ? t("guide.img.aiAlt", { desc: desc }) : desc;
+  }
+
+  function imageCaptionText(asset) {
+    var text = pick(asset.desc);
+    return asset.note ? text + " — " + pick(asset.note) : text;
+  }
+
+  function creditAnchor(href, label) {
+    var a = h("a", "guide-credit__link", label);
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.setAttribute("aria-label", label + t("guide.link.newTab"));
+    return a;
+  }
+
+  /* "Photo: Author / Licence" — author links to the Commons file
+     page, the licence name to the licence deed. */
+  function creditLine(asset, className) {
+    var c = asset.credit;
+    var line = h("span", className || "guide-credit");
+    line.appendChild(document.createTextNode(t("guide.img.photo") + ": "));
+    line.appendChild(creditAnchor(c.source, c.author));
+    line.appendChild(document.createTextNode(" / "));
+    line.appendChild(creditAnchor(c.licenseUrl, c.license));
+    line.appendChild(document.createTextNode(" · Wikimedia Commons"));
+    return line;
+  }
+
+  function markUsed(id) {
+    var asset = imageAsset(id);
+    if (asset && asset.kind === "photo" && state.usedPhotos.indexOf(id) === -1) {
+      state.usedPhotos.push(id);
+    }
+  }
+
+  function chapterImage(id, inset) {
+    var asset = imageAsset(id);
+    if (!asset) {
+      return null;
+    }
+    markUsed(id);
+    var generated = asset.kind === "generated";
+    var cap = h("figcaption", "guide-chapter__figcaption");
+    cap.appendChild(h("span", "guide-chapter__figcaption-text", imageCaptionText(asset)));
+    if (!generated) {
+      cap.appendChild(creditLine(asset));
+    }
+    return renderMedia({
+      src: asset.src,
+      alt: imageAlt(asset),
+      width: asset.width,
+      height: asset.height,
+      position: asset.position,
+      portrait: asset.portrait,
+      caption: generated ? null : asset.overlay,
+      badge: generated ? t("guide.img.ai") : null,
+      figcaption: cap,
+      inset: inset ? { src: inset.src, alt: t(inset.altKey) } : null
+    });
+  }
+
+  /* Chapter 02-05 image, falling back to the stay's own photo. */
+  function chapterMedia(chapter) {
+    var map = Images && Images.chapters[state.stay];
+    var media = map ? chapterImage(map[chapter], chapter === "further" ? map.furtherInset : null) : null;
+    return media || renderMedia(stayPhoto(guideData().photos.from));
+  }
+
+  function tripThumb(placeId) {
+    var id = Images && Images.trips[placeId];
+    var asset = imageAsset(id);
+    if (!asset) {
+      return null;
+    }
+    markUsed(id);
+    var img = h("img", "guide-stop__thumb");
+    img.src = asset.src;
+    img.alt = imageAlt(asset);
+    img.width = 72;
+    img.height = 54;
+    img.loading = "lazy";
+    img.decoding = "async";
+    if (asset.position) {
+      img.style.objectPosition = asset.position;
+    }
+    return { img: img, asset: asset };
+  }
+
+  function tripPhotoNote(asset) {
+    var p = h("p", "guide-stop__photo");
+    p.appendChild(h("span", "guide-stop__photo-text", imageCaptionText(asset)));
+    p.appendChild(creditLine(asset));
+    return p;
+  }
+
+  /* Page-end list of every real photo shown for this stay. */
+  function renderCredits() {
+    if (!creditsBody || !Images) {
+      return;
+    }
+    var used = Images.creditOrder.filter(function (id) {
+      return state.usedPhotos.indexOf(id) !== -1;
+    });
+    var nodes = [h("p", "guide-credits__note", t("guide.credits.note"))];
+    var list = h("ul", "guide-credits__list");
+    used.forEach(function (id) {
+      var asset = Images.assets[id];
+      var c = asset.credit;
+      var li = h("li", "guide-credits__item");
+      li.appendChild(h("span", "guide-credits__subject", pick(asset.desc)));
+      var file = h("span", "guide-credits__file");
+      file.appendChild(creditAnchor(c.source, c.title));
+      li.appendChild(file);
+      var meta = h("span", "guide-credits__meta");
+      meta.appendChild(document.createTextNode(t("guide.credits.author") + ": " + c.author + " · " + t("guide.credits.license") + ": "));
+      meta.appendChild(creditAnchor(c.licenseUrl, c.license));
+      li.appendChild(meta);
+      var src = h("span", "guide-credits__url");
+      src.appendChild(document.createTextNode(t("guide.credits.source") + ": "));
+      src.appendChild(creditAnchor(c.source, c.source));
+      li.appendChild(src);
+      list.appendChild(li);
+    });
+    nodes.push(list);
+    nodes.push(h("p", "guide-credits__note", t("guide.credits.ai")));
+    creditsBody.replaceChildren.apply(creditsBody, nodes);
+  }
+
   function chapterHead(chapter, headingText) {
     var head = h("div", "guide-chapter__head");
-    head.setAttribute("data-anim", "");
     var eyebrow = h("p", "guide-chapter__eyebrow");
     eyebrow.appendChild(h("span", "guide-chapter__number", "0" + (CHAPTERS.indexOf(chapter) + 1))).setAttribute("aria-hidden", "true");
     eyebrow.appendChild(document.createTextNode(CHAPTER_EYEBROWS[chapter]));
@@ -412,7 +588,6 @@
     content.appendChild(chapterHead("from", null));
 
     var identity = h("div", "guide-identity");
-    identity.setAttribute("data-anim", "");
     identity.appendChild(h("p", "guide-identity__label", t("guide.base.current")));
     var name = h("h3", "guide-identity__name");
     name.appendChild(h("span", "guide-identity__ja", s.nameJa));
@@ -435,7 +610,6 @@
     content.appendChild(identity);
 
     var intro = h("p", "guide-chapter__body", pick(g.intro));
-    intro.setAttribute("data-anim", "");
     content.appendChild(intro);
 
     content.appendChild(renderStopGroup("guide.group.access", "guide.group.accessNote", g.access, "access"));
@@ -443,7 +617,6 @@
     if (g.warning) {
       var warn = h("div", "guide-notice");
       warn.setAttribute("role", "note");
-      warn.setAttribute("data-anim", "");
       warn.appendChild(h("p", "guide-notice__label", t("guide.notice.label")));
       warn.appendChild(h("p", "guide-notice__text", pick(g.warning)));
       content.appendChild(warn);
@@ -451,7 +624,6 @@
 
     if (g.airport) {
       var details = h("details", "guide-disclosure guide-disclosure--block");
-      details.setAttribute("data-anim", "");
       var summary = h("summary", "guide-disclosure__summary");
       summary.appendChild(h("span", "guide-disclosure__title", t("guide.details.airport")));
       summary.appendChild(h("span", "guide-disclosure__icon")).setAttribute("aria-hidden", "true");
@@ -469,7 +641,6 @@
   function renderRestaurants(listId) {
     var list = Guide.restaurants[listId];
     var details = h("details", "guide-disclosure guide-disclosure--block");
-    details.setAttribute("data-anim", "");
     var summary = h("summary", "guide-disclosure__summary");
     summary.appendChild(h("span", "guide-disclosure__title", t("guide.details.restaurants", { count: list.length })));
     summary.appendChild(h("span", "guide-disclosure__icon")).setAttribute("aria-hidden", "true");
@@ -505,7 +676,6 @@
     var content = h("div", "guide-chapter__content");
     content.appendChild(chapterHead("near", t("guide.near.heading")));
     var lead = h("p", "guide-chapter__body", t("guide.near.lead"));
-    lead.setAttribute("data-anim", "");
     content.appendChild(lead);
 
     if (g.near.spots && g.near.spots.length) {
@@ -516,7 +686,6 @@
     }
     if (g.near.extra) {
       var extra = h("p", "guide-chapter__body guide-chapter__body--accent", pick(g.near.extra));
-      extra.setAttribute("data-anim", "");
       content.appendChild(extra);
     }
     /* Stays without a restaurant list simply skip this block;
@@ -524,7 +693,7 @@
     if (g.near.restaurants) {
       content.appendChild(renderRestaurants(g.near.restaurants));
     }
-    return chapterLayout(renderMedia(stayPhoto(g.photos.near)), content, true);
+    return chapterLayout(chapterMedia("near"), content, true);
   }
 
   /* ---- 03 少し足をのばす ---- */
@@ -533,7 +702,6 @@
     var content = h("div", "guide-chapter__content");
     content.appendChild(chapterHead("further", t("guide.further.heading")));
     var lead = h("p", "guide-chapter__body", t("guide.further.lead"));
-    lead.setAttribute("data-anim", "");
     content.appendChild(lead);
 
     if (g.further.transit && g.further.transit.length) {
@@ -546,18 +714,7 @@
       content.appendChild(renderStopGroup("guide.group.drive", "guide.group.driveNote", g.further.drive, "drive"));
     }
 
-    var media;
-    if (g.areaPhoto) {
-      media = renderMedia({
-        src: g.areaPhoto.src,
-        alt: t(g.areaPhoto.altKey),
-        caption: g.areaPhoto.caption,
-        inset: g.areaPhoto2 ? { src: g.areaPhoto2.src, alt: t(g.areaPhoto2.altKey) } : null
-      });
-    } else {
-      media = renderMedia(stayPhoto(g.furtherPhoto));
-    }
-    return chapterLayout(media, content, false);
+    return chapterLayout(chapterMedia("further"), content, false);
   }
 
   /* ---- 04 一日のおでかけ ---- */
@@ -566,23 +723,21 @@
     var content = h("div", "guide-chapter__content");
     content.appendChild(chapterHead("day", t("guide.day.heading", { name: fullName() })));
     var lead = h("p", "guide-chapter__body", t("guide.day.lead"));
-    lead.setAttribute("data-anim", "");
     content.appendChild(lead);
 
     var override = g.dayOverride;
     if (override) {
-      content.appendChild(renderStopGroup("guide.group.nearDay", "guide.group.posterNote", override.trips, "poster"));
+      content.appendChild(renderStopGroup("guide.group.nearDay", "guide.group.posterNote", override.trips, "poster", { thumbs: true }));
       var note = h("div", "guide-notice guide-notice--soft");
       note.setAttribute("role", "note");
-      note.setAttribute("data-anim", "");
       note.appendChild(h("p", "guide-notice__text", pick(override.note)));
       content.appendChild(note);
     }
 
     var group = h("div", "guide-group guide-group--day");
-    group.setAttribute("data-anim", "");
     group.appendChild(h("h4", "guide-group__title", t("guide.group.dayTrips")));
     group.appendChild(h("p", "guide-group__note", t(override ? "guide.day.rideOnlyNote" : "guide.day.totalNote")));
+    group.appendChild(h("p", "guide-group__note", t("guide.day.photoNote")));
     var list = h("ul", "guide-stops");
     Guide.dayTrips.forEach(function (trip) {
       var li = h("li", "guide-stop guide-stop--details");
@@ -590,6 +745,7 @@
       var summary = h("summary", "guide-disclosure__summary");
       var head = h("span", "guide-stop__head");
       head.appendChild(h("span", "guide-stop__name", placeName(trip.place)));
+      var thumb = tripThumb(trip.place);
       var ways = h("span", "guide-stop__ways");
       var w = h("span", "guide-way");
       if (!override) {
@@ -602,11 +758,14 @@
       }
       ways.appendChild(w);
       head.appendChild(ways);
-      summary.appendChild(head);
+      summary.appendChild(thumb ? stopLead(thumb.img, head) : head);
       summary.appendChild(h("span", "guide-disclosure__icon")).setAttribute("aria-hidden", "true");
       details.appendChild(summary);
 
       var body = h("div", "guide-disclosure__body");
+      if (thumb) {
+        body.appendChild(tripPhotoNote(thumb.asset));
+      }
       var route = h("p", "guide-stop__route");
       route.appendChild(h("span", "guide-stop__route-mode", t("guide.day.route")));
       route.appendChild(document.createTextNode(pick(trip.route)));
@@ -628,7 +787,7 @@
     });
     group.appendChild(list);
     content.appendChild(group);
-    return chapterLayout(renderMedia(stayPhoto(g.photos.day)), content, true);
+    return chapterLayout(chapterMedia("day"), content, true);
   }
 
   /* ---- 05 暮らしの便利帳 ---- */
@@ -637,12 +796,10 @@
     var content = h("div", "guide-chapter__content");
     content.appendChild(chapterHead("daily", t("guide.daily.heading")));
     var lead = h("p", "guide-chapter__body", t("guide.daily.lead"));
-    lead.setAttribute("data-anim", "");
     content.appendChild(lead);
 
     if (g.daily.items.length) {
       var group = h("div", "guide-group");
-      group.setAttribute("data-anim", "");
       group.appendChild(h("h4", "guide-group__title", t("guide.group.daily")));
       var dl = h("dl", "guide-facilities");
       g.daily.items.forEach(function (item) {
@@ -656,80 +813,168 @@
     }
     if (g.daily.text) {
       var text = h("p", "guide-chapter__body", pick(g.daily.text));
-      text.setAttribute("data-anim", "");
       content.appendChild(text);
     }
     if (g.daily.parking) {
       var parking = h("p", "guide-daily__parking", t("guide.daily.parking", { yen: g.daily.parking }));
-      parking.setAttribute("data-anim", "");
       content.appendChild(parking);
     }
-    return chapterLayout(renderMedia(stayPhoto(g.photos.daily)), content, false);
+    return chapterLayout(chapterMedia("daily"), content, false);
   }
 
   var RENDERERS = { from: renderFrom, near: renderNear, further: renderFurther, day: renderDay, daily: renderDaily };
 
   /* ---------------------------------------------------------
-     Entry motion (one-shot, only for blocks that start off-screen)
+     Chapter crossfade (continuous, scroll-position driven)
+     Each chapter's opacity/offset is a pure function of where its
+     .guide-chapter__inner sits in the reading area (the viewport
+     below the sticky header + base bar + phone rail), so scrolling
+     back up reverses it exactly and it repeats indefinitely.
+       enter: top from IN_START down to IN_END  -> 0 .. 1
+       exit:  bottom from OUT_START to OUT_END  -> 1 .. 0
+     Fractions are of the reading area, measured from its top.
+     Chapter padding keeps the outgoing chapter partly visible
+     while the next one arrives, so a boundary is never blank.
+     Only one rect read per chapter per frame; values are written
+     as custom properties and only when they change.
      --------------------------------------------------------- */
-  function setupMotion(animateVisible) {
-    if (revealObserver) {
-      revealObserver.disconnect();
-      revealObserver = null;
+  var FADE = {
+    wide: { inStart: 0.9, inEnd: 0.46, outStart: 0.42, outEnd: 0.04, shift: 28 },
+    narrow: { inStart: 0.94, inEnd: 0.54, outStart: 0.4, outEnd: 0.02, shift: 14 }
+  };
+  var narrowQuery = window.matchMedia ? window.matchMedia("(max-width: 768px)") : null;
+  var fadeInners = [];
+  var readingTop = 0;
+
+  function smooth(x) {
+    x = x < 0 ? 0 : x > 1 ? 1 : x;
+    return x * x * (3 - 2 * x);
+  }
+
+  function collectFadeTargets() {
+    fadeInners = CHAPTERS.map(function (chapter) {
+      var section = document.getElementById("guide-" + chapter);
+      return section ? section.querySelector(".guide-chapter__inner") : null;
+    }).filter(Boolean);
+  }
+
+  /* Top of the unobstructed reading area (chapter scroll-margin
+     is the sticky stack height + 8px). Read on render / resize. */
+  function measureReadingTop() {
+    var section = document.getElementById("guide-" + CHAPTERS[0]);
+    var margin = section ? parseFloat(window.getComputedStyle(section).scrollMarginTop) : 0;
+    readingTop = isFinite(margin) ? Math.max(0, margin - 8) : 0;
+  }
+
+  function setFade(inner, opacity, shift) {
+    var o = opacity >= 0.995 ? "1" : opacity.toFixed(3);
+    var y = Math.abs(shift) < 0.1 ? "0px" : shift.toFixed(1) + "px";
+    if (inner._fadeO !== o) {
+      inner._fadeO = o;
+      inner.style.setProperty("--guide-ch-o", o);
     }
-    if (reducedMotion() || typeof IntersectionObserver === "undefined") {
+    if (inner._fadeY !== y) {
+      inner._fadeY = y;
+      inner.style.setProperty("--guide-ch-y", y);
+    }
+  }
+
+  function updateChapterFade(viewportH) {
+    if (reducedMotion()) {
+      fadeInners.forEach(function (inner) {
+        setFade(inner, 1, 0);
+      });
       return;
     }
-    var token = state.renderToken;
-    var viewportH = window.innerHeight || document.documentElement.clientHeight;
+    var cfg = narrowQuery && narrowQuery.matches ? FADE.narrow : FADE.wide;
+    var area = Math.max(1, viewportH - readingTop);
+    var inStart = readingTop + area * cfg.inStart;
+    var inEnd = readingTop + area * cfg.inEnd;
+    var outStart = readingTop + area * cfg.outStart;
+    var outEnd = readingTop + area * cfg.outEnd;
+    fadeInners.forEach(function (inner) {
+      var rect = inner.getBoundingClientRect();
+      var enter = smooth((inStart - rect.top) / (inStart - inEnd));
+      var exit = smooth((rect.bottom - outEnd) / (outStart - outEnd));
+      setFade(inner, Math.min(enter, exit), (1 - enter) * cfg.shift - (1 - exit) * cfg.shift * 0.6);
+    });
+  }
 
-    function play(node) {
-      node.classList.remove("guide-anim-pending");
-      node.classList.add("guide-anim-in");
-      node.addEventListener("animationend", function done() {
-        node.removeEventListener("animationend", done);
-        node.classList.remove("guide-anim-in");
-      });
+  /* Re-render / resize / jump: apply the new values without the
+     short easing transition, so nothing flashes or trails. */
+  var instantFrame = 0;
+  function applyScrollStateNow() {
+    if (!guideBody) {
+      return;
     }
+    guideBody.classList.add("guide-fade-instant");
+    updateProgress();
+    window.cancelAnimationFrame(instantFrame);
+    instantFrame = window.requestAnimationFrame(function () {
+      instantFrame = window.requestAnimationFrame(function () {
+        guideBody.classList.remove("guide-fade-instant");
+      });
+    });
+  }
 
-    revealObserver = new IntersectionObserver(function (entries) {
-      if (token !== state.renderToken) {
-        return;
+  /* ---------------------------------------------------------
+     Back to top — appears after roughly the hero / one viewport,
+     hidden and out of the tab order near the top. Lifts above the
+     footer instead of covering it.
+     --------------------------------------------------------- */
+  var topButton = document.getElementById("guide-top");
+  var heroSection = document.getElementById("hero");
+  var siteFooter = document.querySelector(".site-footer");
+  var topVisible = false;
+
+  function setTopVisible(visible) {
+    if (!topButton || visible === topVisible) {
+      return;
+    }
+    topVisible = visible;
+    topButton.classList.toggle("is-visible", visible);
+    topButton.setAttribute("aria-hidden", visible ? "false" : "true");
+    topButton.tabIndex = visible ? 0 : -1;
+  }
+
+  function updateTopButton(viewportH) {
+    if (!topButton) {
+      return;
+    }
+    var heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : viewportH;
+    var showAt = Math.min(heroBottom, viewportH) * 0.9;
+    var y = window.pageYOffset;
+    /* Hysteresis so it does not flicker at the threshold. */
+    setTopVisible(topVisible ? y > showAt * 0.7 : y > showAt);
+    if (topVisible && siteFooter) {
+      var lift = Math.max(0, viewportH - siteFooter.getBoundingClientRect().top);
+      var liftText = Math.round(lift) + "px";
+      if (topButton._lift !== liftText) {
+        topButton._lift = liftText;
+        topButton.style.setProperty("--guide-top-lift", liftText);
       }
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          revealObserver.unobserve(entry.target);
-          play(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    }
+  }
 
-    CHAPTERS.forEach(function (chapter) {
-      var section = document.getElementById("guide-" + chapter);
-      var nodes = section ? section.querySelectorAll("[data-anim]") : [];
-      Array.prototype.forEach.call(nodes, function (node, index) {
-        node.style.setProperty("--anim-delay", Math.min(index, 6) * 70 + "ms");
-        var rect = node.getBoundingClientRect();
-        var onScreen = rect.top < viewportH && rect.bottom > 0;
-        if (onScreen) {
-          if (animateVisible) {
-            play(node);
-          }
-          return;
-        }
-        if (rect.top >= viewportH) {
-          node.classList.add("guide-anim-pending");
-          revealObserver.observe(node);
-        }
-      });
+  if (topButton) {
+    topButton.addEventListener("click", function () {
+      /* "instant" beats the global html { scroll-behavior: smooth }. */
+      window.scrollTo({ top: 0, left: 0, behavior: reducedMotion() ? "instant" : "smooth" });
+      /* The button hides at the top, so hand focus to the page
+         heading instead of leaving it on a hidden control. */
+      var heading = heroSection && heroSection.querySelector("h1");
+      if (heading) {
+        heading.tabIndex = -1;
+        heading.focus({ preventScroll: true });
+      }
     });
   }
 
   /* ---------------------------------------------------------
      Rendering
      --------------------------------------------------------- */
-  function renderChapters(animate) {
-    state.renderToken += 1;
+  function renderChapters() {
+    state.usedPhotos = [];
     CHAPTERS.forEach(function (chapter) {
       var section = document.getElementById("guide-" + chapter);
       if (!section) {
@@ -737,8 +982,10 @@
       }
       section.replaceChildren(RENDERERS[chapter]());
     });
+    renderCredits();
     panel.setAttribute("aria-labelledby", "guide-tab-" + state.stay);
-    setupMotion(animate);
+    collectFadeTargets();
+    measureReadingTop();
   }
 
   function renderTabs() {
@@ -898,11 +1145,9 @@
     syncTabs();
     renderBasebar();
     if (first) {
-      renderChapters(false);
+      renderChapters();
     } else {
-      withScrollAnchor(function () {
-        renderChapters(true);
-      });
+      withScrollAnchor(renderChapters);
       if (liveRegion) {
         liveRegion.textContent = t("guide.base.changed", { name: fullName() });
       }
@@ -910,6 +1155,7 @@
     if (opts.focusTab && tabs[id]) {
       tabs[id].focus();
     }
+    applyScrollStateNow();
     revealSelectedTab();
     writeHistory(opts.history);
   }
@@ -984,6 +1230,8 @@
     });
   }
 
+  /* One rAF per scroll frame: rail progress line, chapter
+     crossfade and the back-to-top button. All reads, then writes. */
   var progressQueued = false;
   function updateProgress() {
     progressQueued = false;
@@ -992,6 +1240,8 @@
     var total = panelRect.height - viewportH * 0.5;
     var done = viewportH * 0.5 - panelRect.top;
     var ratio = total > 0 ? Math.min(1, Math.max(0, done / total)) : 0;
+    updateChapterFade(viewportH);
+    updateTopButton(viewportH);
     guideBody.style.setProperty("--guide-progress", ratio.toFixed(4));
   }
   function queueProgress() {
@@ -1038,7 +1288,8 @@
     window.requestAnimationFrame(function () {
       resizeQueued = false;
       positionIndicator();
-      queueProgress();
+      measureReadingTop();
+      applyScrollStateNow();
     });
   });
 
@@ -1046,10 +1297,10 @@
     withScrollAnchor(function () {
       renderTabs();
       renderBasebar();
-      renderChapters(false);
+      renderChapters();
     });
     positionIndicator();
-    queueProgress();
+    applyScrollStateNow();
   });
 
   window.addEventListener("popstate", function () {
@@ -1060,29 +1311,11 @@
     }
   });
 
+  /* Reduced motion switched on/off: re-evaluate at once (all
+     chapters become fully opaque, or the crossfade resumes). */
   if (motionQuery && typeof motionQuery.addEventListener === "function") {
-    motionQuery.addEventListener("change", function (event) {
-      if (event.matches) {
-        document.querySelectorAll(".guide-anim-pending, .guide-anim-in").forEach(function (node) {
-          node.classList.remove("guide-anim-pending", "guide-anim-in");
-        });
-        if (revealObserver) {
-          revealObserver.disconnect();
-        }
-      }
-    });
+    motionQuery.addEventListener("change", applyScrollStateNow);
   }
-
-  /* Keyboard users tabbing into a still-pending block: show it. */
-  panel.addEventListener("focusin", function (event) {
-    var pending = event.target.closest && event.target.closest(".guide-anim-pending");
-    if (pending) {
-      pending.classList.remove("guide-anim-pending");
-      if (revealObserver) {
-        revealObserver.unobserve(pending);
-      }
-    }
-  });
 
   /* ---------------------------------------------------------
      Init
@@ -1127,9 +1360,8 @@
       setActiveChapter(startChapter.replace("#guide-", ""));
     }
     if (target) {
-      target.scrollIntoView({ behavior: "auto", block: "start" });
-      setupMotion(false);
+      target.scrollIntoView({ behavior: "instant", block: "start" });
     }
-    updateProgress();
+    applyScrollStateNow();
   });
 })();

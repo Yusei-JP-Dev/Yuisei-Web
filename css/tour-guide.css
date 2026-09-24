@@ -17,7 +17,6 @@
   --guide-rail-h: 0px;      /* horizontal rail height (phones only) */
   --guide-sticky-offset: calc(var(--guide-header-h) + var(--guide-bar-h) + var(--guide-rail-h));
   --guide-hover: 240ms;
-  --guide-enter: 540ms;
 }
 
 /* ============================================================
@@ -511,6 +510,64 @@
   object-fit: cover;
 }
 
+/* Tall subjects (e.g. the Mizuma-dera pagoda): a 4:5 frame instead
+   of the fixed 520px band so the finial is never cropped. */
+.guide-chapter__frame--portrait .guide-chapter__image {
+  height: auto;
+  aspect-ratio: 4 / 5;
+}
+
+/* Visible notice on AI-generated illustrations (see js/guide-images.js). */
+.guide-ai-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  background-color: rgba(20, 16, 10, 0.66);
+  color: var(--color-text-inverse);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+/* Caption + credit under guide images (in flow; with an inset the
+   text keeps clear of the inset photo on the right). */
+.guide-chapter__figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 12px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.guide-chapter__figcaption-text {
+  color: var(--color-text-secondary);
+}
+
+.guide-chapter__media--inset .guide-chapter__figcaption {
+  padding-right: calc(48% - 4px);
+}
+
+.guide-credit__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+
+.guide-credit__link:hover {
+  color: var(--color-primary);
+}
+
+.guide-credit__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
 .guide-chapter__content {
   min-width: 0;
 }
@@ -703,6 +760,39 @@
   flex-direction: column;
   gap: 6px;
   min-width: 0;
+}
+
+/* Day-trip summaries: destination thumbnail + name/time. */
+.guide-stop__lead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.guide-stop__thumb {
+  flex-shrink: 0;
+  display: block;
+  width: 72px;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 2px;
+  background-color: var(--color-secondary);
+}
+
+.guide-stop__photo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.guide-stop__photo-text {
+  color: var(--color-text-secondary);
 }
 
 .guide-stop__name {
@@ -1000,58 +1090,197 @@
   margin-top: 8px;
 }
 
+/* ---- Photo credits (page end, collapsed by default) ---- */
+.guide-credits {
+  margin-top: 24px;
+  border-color: var(--color-border);
+}
+
+.guide-credits .guide-disclosure__title {
+  font-size: 0.86rem;
+}
+
+.guide-credits .guide-disclosure__body > .guide-credits__note {
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.guide-credits__list {
+  display: grid;
+  gap: 12px;
+  margin-block: 14px;
+}
+
+.guide-credits__item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.guide-credits__subject {
+  color: var(--color-text-secondary);
+}
+
+.guide-credits__url {
+  overflow-wrap: anywhere;
+}
+
 /* ============================================================
-   ENTRY MOTION (classes only ever added by js/tour-guide.js,
-   and only to blocks that start below the viewport)
+   CHAPTER CROSSFADE
+   js/tour-guide.js writes --guide-ch-o / --guide-ch-y on each
+   .guide-chapter__inner from its scroll position every frame, so
+   the effect reverses when scrolling back up and repeats. The
+   short transition only smooths wheel steps; .guide-fade-instant
+   drops it for re-renders and jumps. Opacity never removes
+   anything from layout, focus order or pointer hit-testing.
    ============================================================ */
-.guide-anim-pending {
+.guide-chapter__inner {
+  opacity: var(--guide-ch-o, 1);
+  transform: translate3d(0, var(--guide-ch-y, 0px), 0);
+  transition:
+    opacity 160ms linear,
+    transform 220ms var(--ease-standard);
+}
+
+.guide-fade-instant .guide-chapter__inner {
+  transition: none;
+}
+
+/* A chapter holding keyboard focus is always fully readable. */
+.guide-chapter__inner:has(:focus-visible) {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   BACK TO TOP
+   Fixed round "Top" button, bottom-right and safe-area aware.
+   Hidden (visibility + aria-hidden + tabindex -1, set by JS) until
+   about one viewport down. --guide-top-lift keeps it above the
+   footer once the footer scrolls into view.
+   ============================================================ */
+.guide-top {
+  /* Scale with the viewport while staying prominent without becoming oversized. */
+  --guide-top-size: clamp(48px, 4.2vw, 60px);
+  --guide-top-lift: 0px;
+  position: fixed;
+  right: calc(clamp(16px, 2vw, 28px) + env(safe-area-inset-right, 0px));
+  bottom: calc(clamp(16px, 2vw, 28px) + env(safe-area-inset-bottom, 0px));
+  z-index: 50;                /* above chapters, below the site header (100) */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: var(--guide-top-size);
+  height: var(--guide-top-size);
+  padding: 0;
+  border: 1px solid var(--color-secondary);
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-heading);
+  cursor: pointer;
   opacity: 0;
-  transform: translateY(20px);
+  visibility: hidden;
+  transform: translateY(calc(12px - var(--guide-top-lift))) scale(0.88);
+  transition:
+    opacity 280ms var(--ease-standard),
+    transform 320ms var(--ease-standard),
+    visibility 0s linear 320ms,
+    background-color var(--guide-hover) ease,
+    border-color var(--guide-hover) ease,
+    color var(--guide-hover) ease,
+    box-shadow var(--guide-hover) ease;
 }
 
-.guide-anim-pending .guide-chapter__image {
-  transform: scale(1.06);
+.guide-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(calc(var(--guide-top-lift) * -1));
+  transition:
+    opacity 280ms var(--ease-standard),
+    transform 320ms var(--ease-standard),
+    visibility 0s,
+    background-color var(--guide-hover) ease,
+    border-color var(--guide-hover) ease,
+    color var(--guide-hover) ease,
+    box-shadow var(--guide-hover) ease;
 }
 
-.guide-anim-in {
-  animation: guide-enter var(--guide-enter) var(--ease-standard) var(--anim-delay, 0ms) both;
+.guide-top__arrow {
+  width: 12px;
+  height: 8px;
+  color: var(--color-secondary);
+  transition: transform var(--guide-hover) var(--ease-standard), color var(--guide-hover) ease;
 }
 
-.guide-anim-in .guide-chapter__image {
-  animation: guide-image-enter 600ms var(--ease-standard) var(--anim-delay, 0ms) both;
+.guide-top__label {
+  max-width: calc(var(--guide-top-size) - 12px);
+  overflow: hidden;
+  font-size: clamp(0.68rem, 0.22vw + 0.64rem, 0.8rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-@keyframes guide-enter {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@media (hover: hover) {
+  .guide-top.is-visible:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-strong), 0 0 0 4px rgba(106, 115, 80, 0.14);
+    transform: translateY(calc(-3px - var(--guide-top-lift)));
   }
-  to {
-    opacity: 1;
-    transform: none;
+
+  .guide-top.is-visible:hover .guide-top__arrow {
+    color: var(--color-primary);
+    transform: translateY(-2px);
   }
 }
 
-@keyframes guide-image-enter {
-  from {
-    transform: scale(1.06);
-  }
-  to {
-    transform: scale(1);
-  }
+.guide-top.is-visible:active {
+  background-color: var(--color-bg-soft);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(calc(var(--guide-top-lift) * -1)) scale(0.95);
+}
+
+.guide-top:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-soft), var(--focus-ring);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .guide-anim-pending,
-  .guide-anim-pending .guide-chapter__image {
+  .guide-chapter__inner {
     opacity: 1;
     transform: none;
+    transition: none;
   }
 
-  .guide-anim-in,
-  .guide-anim-in .guide-chapter__image,
   .guide-disclosure__body {
     animation: none;
+  }
+
+  .guide-top,
+  .guide-top__arrow {
+    transition: opacity 1ms, visibility 0s linear 1ms;
+  }
+
+  .guide-top,
+  .guide-top.is-visible,
+  .guide-top.is-visible:hover,
+  .guide-top.is-visible:active {
+    transform: translateY(calc(var(--guide-top-lift) * -1));
+  }
+
+  .guide-top.is-visible:hover .guide-top__arrow {
+    transform: none;
   }
 
   .guide-tab:hover,
@@ -1115,6 +1344,14 @@
   .guide-chapter__inset {
     right: 20px;
     width: 40%;
+  }
+
+  .guide-chapter__media--inset .guide-chapter__figcaption {
+    padding-right: calc(40% + 36px);
+  }
+
+  .guide-chapter__frame--portrait {
+    max-width: 560px;
   }
 
   .guide-chapter__title {
@@ -1293,6 +1530,24 @@
     height: 120px;
   }
 
+  .guide-chapter__media--inset .guide-chapter__figcaption {
+    padding-right: calc(46% + 28px);
+  }
+
+  .guide-ai-badge {
+    top: 10px;
+    left: 10px;
+    font-size: 0.7rem;
+  }
+
+  .guide-stop__lead {
+    gap: 12px;
+  }
+
+  .guide-stop__thumb {
+    width: 60px;
+  }
+
   .guide-area__caption {
     left: 16px;
     bottom: 14px;
@@ -1325,5 +1580,14 @@
 
   .guide-footnote {
     padding-block: 32px 64px;
+  }
+
+  .guide-top {
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .guide-top__label {
+    font-size: 0.74rem;
   }
 }
