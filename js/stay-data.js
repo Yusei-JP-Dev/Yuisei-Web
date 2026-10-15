@@ -64,11 +64,11 @@
         ko: "텐가차야에 자리한 전통 마치야 독채 숙소."
       },
       summary: {
-        ja: "大阪・天下茶屋にある、伝統的な町家造りの一棟貸し宿です。1階には畳の茶の間とソファのある居間、ダイニング、キッチンがあり、2階の畳2間には寝具やソファベッドが備わります。関西空港へ直通の駅からも近く、大阪の下町らしい落ち着いた通りに面しています。",
-        en: "Tea Garden is a traditional machiya-style whole-house rental in Tengachaya, Osaka. The ground floor holds a tatami tea room, a sofa living area, a dining space and a kitchen; upstairs, two tatami rooms are furnished with beds, futons and a sofa bed. It sits on a quiet downtown street close to a station with direct access to Kansai Airport.",
-        "zh-Hans": "茶园是位于大阪天下茶屋、传统町屋建筑的整栋出租住宿。1楼设有榻榻米茶室、带沙发的客厅、用餐区与厨房；2楼的两间榻榻米房内备有床铺与沙发床。距离直通关西机场的车站不远，坐落在充满大阪老城风情的宁静街道上。",
-        "zh-Hant": "茶園是位於大阪天下茶屋、傳統町屋建築的整棟出租住宿。1樓設有榻榻米茶室、附沙發的客廳、用餐區與廚房；2樓的兩間榻榻米房內備有床鋪與沙發床。距離直通關西機場的車站不遠，座落在充滿大阪老城風情的寧靜街道上。",
-        ko: "차엔(Tea Garden)은 오사카 텐가차야에 위치한 전통 마치야 양식의 독채 숙소입니다. 1층에는 다다미 다실과 소파가 있는 거실, 다이닝 공간, 주방이 있으며, 2층의 다다미 방 2개에는 침대와 소파베드가 마련되어 있습니다. 간사이 공항으로 직행하는 역에서 가까우며, 오사카 서민 동네다운 차분한 거리에 면해 있습니다."
+        ja: "大阪・天下茶屋にある、伝統的な町家造りの一棟貸し宿です。1階には畳の茶の間とソファベッドのある居間、ダイニング、キッチンがあり、2階の畳2間にはベッドと布団が備わります。関西空港へ直通の駅からも近く、大阪の下町らしい落ち着いた通りに面しています。",
+        en: "Tea Garden is a traditional machiya-style whole-house rental in Tengachaya, Osaka. The ground floor holds a tatami tea room, a living area with a sofa bed, a dining space and a kitchen; upstairs, two tatami rooms are furnished with beds and futons. It sits on a quiet downtown street close to a station with direct access to Kansai Airport.",
+        "zh-Hans": "茶园是位于大阪天下茶屋、传统町屋建筑的整栋出租住宿。1楼设有榻榻米茶室、带沙发床的客厅、用餐区与厨房；2楼的两间榻榻米房内备有床铺与被褥。距离直通关西机场的车站不远，坐落在充满大阪老城风情的宁静街道上。",
+        "zh-Hant": "茶園是位於大阪天下茶屋、傳統町屋建築的整棟出租住宿。1樓設有榻榻米茶室、附沙發床的客廳、用餐區與廚房；2樓的兩間榻榻米房內備有床鋪與被褥。距離直通關西機場的車站不遠，座落在充滿大阪老城風情的寧靜街道上。",
+        ko: "차엔(Tea Garden)은 오사카 텐가차야에 위치한 전통 마치야 양식의 독채 숙소입니다. 1층에는 다다미 다실과 소파베드가 있는 거실, 다이닝 공간, 주방이 있으며, 2층의 다다미 방 2개에는 침대와 이불이 마련되어 있습니다. 간사이 공항으로 직행하는 역에서 가까우며, 오사카 서민 동네다운 차분한 거리에 면해 있습니다."
       },
       stationText: {
         ja: "花園町駅 徒歩4分・天下茶屋駅 徒歩9分（関西空港へ直通）",
@@ -86,8 +86,8 @@
       },
       mapUrl: "https://share.google/9CjIHLYqQntQztZdH",
       rooms: [
-        { floor: { ja: "1F", en: "1F", "zh-Hans": "1F", "zh-Hant": "1F", ko: "1F" }, items: { ja: ["畳の茶の間", "ソファのある居間", "ダイニング", "キッチン", "トイレ", "浴室（バスタブ付き）"], en: ["Tatami tea room", "Sofa living area", "Dining space", "Kitchen", "Toilet", "Bathroom with tub"], "zh-Hans": ["榻榻米茶室", "带沙发的客厅", "用餐区", "厨房", "卫生间", "浴室（带浴缸）"], "zh-Hant": ["榻榻米茶室", "附沙發的客廳", "用餐區", "廚房", "廁所", "浴室（附浴缸）"], ko: ["다다미 다실", "소파가 있는 거실", "다이닝 공간", "주방", "화장실", "욕조가 있는 욕실"] } },
-        { floor: { ja: "2F", en: "2F", "zh-Hans": "2F", "zh-Hant": "2F", ko: "2F" }, items: { ja: ["畳の寝室×2（ベッド・布団・ソファベッド）"], en: ["Two tatami bedrooms (beds, futons and a sofa bed)"], "zh-Hans": ["两间榻榻米卧室（床・被褥・沙发床）"], "zh-Hant": ["兩間榻榻米臥室（床・被褥・沙發床）"], ko: ["다다미 침실 2개（침대・이불・소파베드）"] } }
+        { floor: { ja: "1F", en: "1F", "zh-Hans": "1F", "zh-Hant": "1F", ko: "1F" }, items: { ja: ["畳の茶の間", "ソファベッドのある居間", "ダイニング", "キッチン", "トイレ", "浴室（バスタブ付き）"], en: ["Tatami tea room", "Living area with sofa bed", "Dining space", "Kitchen", "Toilet", "Bathroom with tub"], "zh-Hans": ["榻榻米茶室", "带沙发床的客厅", "用餐区", "厨房", "卫生间", "浴室（带浴缸）"], "zh-Hant": ["榻榻米茶室", "附沙發床的客廳", "用餐區", "廚房", "廁所", "浴室（附浴缸）"], ko: ["다다미 다실", "소파베드가 있는 거실", "다이닝 공간", "주방", "화장실", "욕조가 있는 욕실"] } },
+        { floor: { ja: "2F", en: "2F", "zh-Hans": "2F", "zh-Hant": "2F", ko: "2F" }, items: { ja: ["畳の寝室×2（ベッド・布団）"], en: ["Two tatami bedrooms (beds and futons)"], "zh-Hans": ["两间榻榻米卧室（床・被褥）"], "zh-Hant": ["兩間榻榻米臥室（床・被褥）"], ko: ["다다미 침실 2개（침대・이불）"] } }
       ],
       amenities: {
         basic: { ja: ["寝具", "椅子", "ソファベッド", "座卓", "テレビ・チューナーボックス", "冷暖房エアコン", "扇風機・ヒーター", "浴衣", "照明・防火用品"], en: ["Bedding", "Chairs", "Sofa bed", "Low table", "TV & tuner box", "Air conditioning / heating", "Fan / heater", "Yukata robes", "Lighting & fire safety equipment"], "zh-Hans": ["床上用品", "椅子", "沙发床", "矮桌", "电视及调谐器", "冷暖空调", "电风扇・取暖器", "浴衣", "照明及消防用品"], "zh-Hant": ["床上用品", "椅子", "沙發床", "矮桌", "電視及調諧器", "冷暖空調", "電風扇・暖爐", "浴衣", "照明及消防用品"], ko: ["침구", "의자", "소파베드", "좌식 테이블", "TV 및 튜너 박스", "냉난방 에어컨", "선풍기・히터", "유카타", "조명 및 소방 안전용품"] },
@@ -285,6 +285,17 @@
         ko: "〒552-0016 大阪市港区三先1丁目8-29"
       },
       mapUrl: "https://g.co/kgs/KiwQqAm",
+      parking: {
+        badge: { ja: "車庫あり", en: "Garage available", "zh-Hans": "设有车库", "zh-Hant": "設有車庫", ko: "차고 있음" },
+        title: { ja: "駐車・ガレージ", en: "Parking & garage", "zh-Hans": "停车与车库", "zh-Hant": "停車與車庫", ko: "주차 및 차고" },
+        detail: {
+          ja: "敷地内のガレージに、4〜7人乗りの車を1台駐車できます。",
+          en: "One vehicle seating 4–7 people can be parked in the on-site garage.",
+          "zh-Hans": "民宿设有车库，可停泊1辆4至7座汽车。",
+          "zh-Hant": "民宿設有車庫，可停泊1輛4至7座汽車。",
+          ko: "숙소 내 차고에 4~7인승 차량 1대를 주차할 수 있습니다."
+        }
+      },
       rooms: [
         { floor: { ja: "1F", en: "Ground floor", "zh-Hans": "1楼", "zh-Hant": "1樓", ko: "1층" }, items: { ja: ["ガレージ（車1台分）", "トイレ", "喫煙スペース"], en: ["Garage (one car)", "Toilet", "Smoking area"], "zh-Hans": ["车库（可停1辆车）", "卫生间", "吸烟区"], "zh-Hant": ["車庫（可停1輛車）", "廁所", "吸菸區"], ko: ["차고（차량 1대분）", "화장실", "흡연 구역"] } },
         { floor: { ja: "2F", en: "2F", "zh-Hans": "2F", "zh-Hant": "2F", ko: "2F" }, items: { ja: ["キッチン", "居間", "トイレ", "浴室"], en: ["Kitchen", "Living room", "Toilet", "Bathroom"], "zh-Hans": ["厨房", "客厅", "卫生间", "浴室"], "zh-Hant": ["廚房", "客廳", "廁所", "浴室"], ko: ["주방", "거실", "화장실", "욕실"] } },
@@ -346,6 +357,17 @@
         ko: "〒552-0012 大阪市港区市岡1-16-15"
       },
       mapUrl: null,
+      parking: {
+        badge: { ja: "車庫あり", en: "Garage available", "zh-Hans": "设有车库", "zh-Hant": "設有車庫", ko: "차고 있음" },
+        title: { ja: "駐車・ガレージ", en: "Parking & garage", "zh-Hans": "停车与车库", "zh-Hant": "停車與車庫", ko: "주차 및 차고" },
+        detail: {
+          ja: "敷地内のガレージには4〜5人乗りの車を1台駐車できます。7人乗りの車は入庫できないため、近隣のコインパーキングをご利用ください。",
+          en: "The on-site garage fits one vehicle seating 4–5 people. A 7-seat vehicle will not fit and must use a nearby coin-operated car park.",
+          "zh-Hans": "民宿车库可停泊1辆4至5座汽车。7座汽车无法驶入车库，必须使用附近的投币式停车场。",
+          "zh-Hant": "民宿車庫可停泊1輛4至5座汽車。7座汽車無法駛入車庫，必須使用附近的投幣式停車場。",
+          ko: "숙소 내 차고에는 4~5인승 차량 1대를 주차할 수 있습니다. 7인승 차량은 차고에 들어갈 수 없으므로 인근 유료 코인 주차장을 이용해 주세요."
+        }
+      },
       rooms: [
         { floor: { ja: "1F", en: "Ground floor", "zh-Hans": "1楼", "zh-Hant": "1樓", ko: "1층" }, items: { ja: ["ガレージ", "洗濯機", "シャワールーム"], en: ["Garage", "Washing machine", "Shower room"], "zh-Hans": ["车库", "洗衣机", "淋浴间"], "zh-Hant": ["車庫", "洗衣機", "淋浴間"], ko: ["차고", "세탁기", "샤워실"] } },
         { floor: { ja: "2F", en: "2F", "zh-Hans": "2F", "zh-Hant": "2F", ko: "2F" }, items: { ja: ["キッチン", "居間", "トイレ", "バルコニー（物干し・指定喫煙スペース）"], en: ["Kitchen", "Living room", "Toilet", "Balcony with drying area & designated smoking spot"], "zh-Hans": ["厨房", "客厅", "卫生间", "阳台（晾衣区・指定吸烟区）"], "zh-Hant": ["廚房", "客廳", "廁所", "陽台（晾衣區・指定吸菸區）"], ko: ["주방", "거실", "화장실", "발코니（건조 구역・지정 흡연구역）"] } },
@@ -464,7 +486,42 @@
       rooms: [],
       amenities: null,
       rules: null,
-      guide: { checkin: null, checkout: null, cancellation: null },
+      guide: {
+        checkin: null,
+        checkout: null,
+        cancellation: null,
+        parking: {
+          image: "parking-guide.png",
+          title: {
+            ja: "駐車案内",
+            en: "Parking Information",
+            "zh-Hans": "停车指引",
+            "zh-Hant": "停車指引",
+            ko: "주차 안내"
+          },
+          alt: {
+            ja: "古川の家の前庭と建物裏側にある駐車場所への案内図",
+            en: "Illustrated directions to the front-yard and rear parking areas at Furukawa House",
+            "zh-Hans": "古川之家前院及屋后停车位置示意图",
+            "zh-Hant": "古川之家前院及屋後停車位置示意圖",
+            ko: "후루카와 하우스 앞마당과 건물 뒤편 주차 위치 안내도"
+          },
+          smallCar: {
+            ja: "小型車は宿の前庭に駐車できます。",
+            en: "Small cars can be parked in the front yard.",
+            "zh-Hans": "小型汽车可停泊在民宿前院。",
+            "zh-Hant": "小型汽車可以停泊在民宿前院。",
+            ko: "소형차는 숙소 앞마당에 주차할 수 있습니다."
+          },
+          largeVehicle: {
+            ja: "7〜8人乗りの大型車は、必ず宿の裏側に駐車してください。",
+            en: "Large vehicles with 7–8 seats must be parked behind the house.",
+            "zh-Hans": "7至8座的大型车辆必须停泊在民宿后方。",
+            "zh-Hant": "7至8座的大型車輛必須停泊在民宿後方。",
+            ko: "7~8인승 대형 차량은 반드시 숙소 뒤편에 주차해 주세요."
+          }
+        }
+      },
       capacityText: null
     }
 

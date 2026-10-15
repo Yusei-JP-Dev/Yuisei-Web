@@ -302,6 +302,13 @@
     if (mapLink) {
       body.appendChild(mapLink);
     }
+    if (item.officialUrl) {
+      body.appendChild(externalLink(
+        item.officialUrl,
+        pick(item.officialLabel),
+        pick(item.officialLabel) + t("guide.link.newTab")
+      ));
+    }
     details.appendChild(body);
     liD.appendChild(details);
     return liD;
@@ -660,7 +667,7 @@
       li.appendChild(text);
       var query = r.address ? r.name + " " + r.address + " 大阪市港区" : r.name + " " + r.areaQuery;
       li.appendChild(externalLink(
-        "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query),
+        r.mapUrl || ("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query)),
         t("guide.link.search"),
         t("guide.link.searchAria", { place: r.name })
       ));

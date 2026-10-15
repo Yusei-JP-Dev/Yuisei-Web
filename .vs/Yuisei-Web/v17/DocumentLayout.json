@@ -3,8 +3,44 @@
   "WorkspaceRootPath": "S:\\02 -- Github\\Yuisei-Web\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\stays\\harmony-garden.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:stays\\harmony-garden.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\js\\stay-data.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:js\\stay-data.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\js\\guide-data.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:js\\guide-data.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\js\\language-switcher.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:js\\language-switcher.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\assets\\backgrounds\\leaf-shadow.svg||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\backgrounds\\leaf-shadow.svg||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\assets\\stays\\leaf-shadow.svg||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\stays\\leaf-shadow.svg||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\css\\stays.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:css\\stays.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|S:\\02 -- Github\\Yuisei-Web\\css\\variables.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:css\\variables.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,12 +83,129 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "harmony-garden.html",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\stays\\harmony-garden.html",
+              "RelativeDocumentMoniker": "stays\\harmony-garden.html",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\stays\\harmony-garden.html",
+              "RelativeToolTip": "stays\\harmony-garden.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-09-30T00:49:08.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "stay-data.js",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\js\\stay-data.js",
+              "RelativeDocumentMoniker": "js\\stay-data.js",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\js\\stay-data.js",
+              "RelativeToolTip": "js\\stay-data.js",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwFEAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-30T00:48:17.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "about.html",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\about.html",
+              "RelativeDocumentMoniker": "about.html",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\about.html",
+              "RelativeToolTip": "about.html",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAlwOMAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-09-30T00:47:51.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "variables.css",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\css\\variables.css",
+              "RelativeDocumentMoniker": "css\\variables.css",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\css\\variables.css",
+              "RelativeToolTip": "css\\variables.css",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-30T00:45:20.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "stays.css",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\css\\stays.css",
+              "RelativeDocumentMoniker": "css\\stays.css",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\css\\stays.css",
+              "RelativeToolTip": "css\\stays.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAADfBAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-30T00:45:18.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "leaf-shadow.svg",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\assets\\stays\\leaf-shadow.svg",
+              "RelativeDocumentMoniker": "assets\\stays\\leaf-shadow.svg",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\assets\\stays\\leaf-shadow.svg",
+              "RelativeToolTip": "assets\\stays\\leaf-shadow.svg",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAACaBAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAURSURBVEhLfZVPiF1XHcc/v98599x5yYTcSe2MoUnzUkGU2j\u002BBBnTlIAVFg4ngouqi6cqA2kxXbiSZgFDiop2FCC6khYqKLmw31YXShiotirxpgnTqxjdJSoM2yUvm3Xf/vHvPcXHuZCaT4g9\u002BnMs5536/v/9H\u002BH/yxiBT9ac1yGIg9DXQFw8ERsbLKl5eDQWvld84Mtz5KwAhBNm5B8Abb/fFJi9JYHH7tgRBPKgHbQXTgpkK1svLPoRzo48h0ns23hqcVpsMgMUgcJcSYKdJAnhOukoH\u002B3/57tKO07sJ7IXBWfF\u002BBci2798lHYeEzqPQfUNmvLzY/8Wls9uv37En/dPgtDd\u002BxQsEDdvvALC4dw/H78vop47MWCTAr67c4Lf/voFphKQW7FRxlZBMee69739uhU2CmT8M\u002BiEJAy8hC7oVEiGQWcuZQ/t59oF51suan67/h8uTmq/fn/GdA/v4zfoNlt6\u002BSjKNJEktuFJH9rYcWV3\u002B7FABNIRlbck0CBq6JPoYgj8/\u002BmmefWCeVz68zuffWeNn6//l9Wu3\u002Bd7gMpduFTx1aB\u002BP7elhGsE0gm0E25AlhpcANPv9oK9enhYfK0RaQbygHl546ACPzfZYL2q\u002Be\u002BkyG4XH1ILpwnG7bgGYM7YDFmwt2KmQTGVxcWmQKXBC2whoGrlTfoeTlB8cnAfg1LtXsJVi66hJrdhKeCTr8cFGzd\u002Bv5Ngakjpi2LpTdi2pacxx0wpm2oE3gpkqPzq8H4BLtwreuZaTVEpSKa4yJJXy7YP7EC\u002Bc\u002BuPVeHZXkgVXCWlpvij3//rizWDIvMbq8RLLbnjsYfYmhp\u002B/f50z/7iGtoK2scG0BesFbcA2YFshaUJMcCW4UkhLJS1kqHaqmZlq7MhKcaXhSLqbvYkB4G9XS1xhSAqDKwyujKst4t2kUlwpnXcdQaWkkaSvMa6CKxQ3Mbhc\u002BYRPuuqHye2Ayw1pHoGTieIKQ1oYklJxZRe6UiNGoaSF4KIHqK106AoTwSeGdGKx5VaDJ0UHPjG43OAmdpsn0YtoXCRJS2WmkKgTGakrzNCNDS63pLkl3TBUo62Bc6jnurMInnZWJpMIenDGcfTALtJCSSebakhzxVW6qmmuF9Lcko5N1Dzhow9go4jj4uH70jvgm166IlqdFoavPTHLnBpmJspM3q0TpVcIrpLXVG/qSppb0jwhHSekY0v9keGt1RKAY0d3caiXduHbJIj5\u002BuoTu/nK0VkGf61JJ0ovV2bGcU0nSlKYV3V15fDIje2b6djixluevPK7knEemO0pz5/KeHB3EuNcGObEcvLYHk59K\u002BPcmev0cqE3NszkSm8cw5NU\u002BvL51f1DAVg8\u002BWFfpsnAtJLRjQkJwqceNJz54W4WFmLSL/5zyuwuZWFemYwDL/x4xNV/NaTTQFoJMyUkU7BBRk3THjm/1hEAfPnEzSXTyIvi5c7LhcD8gvDoI4YvPekQYDL2rF1s\u002BMvrJfUtj/MBV0FagW1BfQDxzz3/3ie3xvWmnHhyY1laPYuP3Uw3soWAxqmL8QETIJkG0tbjpmDreKbiCfhz59cWljcxdz6AfPML5ZJpOYuEbOu1ChgPhoBtAtaHOBq8R0NAJKDKKPjm3E/en1/ZjncPAcBTjxd943XZBHlaAW0DJkS1PqDeY9Sj\u002BOih8KYKz5xfm7vn0f9Ygk05\u002BZmin7TuuPH\u002BhITwuNJmRj2qYSjBD5H2QqhZWRnOjXb\u002Buyn/AzTmUdO5huPzAAAAAElFTkSuQmCC",
+              "WhenOpened": "2026-09-30T00:45:16.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "leaf-shadow.svg",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\assets\\backgrounds\\leaf-shadow.svg",
+              "RelativeDocumentMoniker": "assets\\backgrounds\\leaf-shadow.svg",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\assets\\backgrounds\\leaf-shadow.svg",
+              "RelativeToolTip": "assets\\backgrounds\\leaf-shadow.svg",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAACaBAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAURSURBVEhLfZVPiF1XHcc/v98599x5yYTcSe2MoUnzUkGU2j\u002BBBnTlIAVFg4ngouqi6cqA2kxXbiSZgFDiop2FCC6khYqKLmw31YXShiotirxpgnTqxjdJSoM2yUvm3Xf/vHvPcXHuZCaT4g9\u002BnMs5536/v/9H\u002BH/yxiBT9ac1yGIg9DXQFw8ERsbLKl5eDQWvld84Mtz5KwAhBNm5B8Abb/fFJi9JYHH7tgRBPKgHbQXTgpkK1svLPoRzo48h0ns23hqcVpsMgMUgcJcSYKdJAnhOukoH\u002B3/57tKO07sJ7IXBWfF\u002BBci2798lHYeEzqPQfUNmvLzY/8Wls9uv37En/dPgtDd\u002BxQsEDdvvALC4dw/H78vop47MWCTAr67c4Lf/voFphKQW7FRxlZBMee69739uhU2CmT8M\u002BiEJAy8hC7oVEiGQWcuZQ/t59oF51suan67/h8uTmq/fn/GdA/v4zfoNlt6\u002BSjKNJEktuFJH9rYcWV3\u002B7FABNIRlbck0CBq6JPoYgj8/\u002BmmefWCeVz68zuffWeNn6//l9Wu3\u002Bd7gMpduFTx1aB\u002BP7elhGsE0gm0E25AlhpcANPv9oK9enhYfK0RaQbygHl546ACPzfZYL2q\u002Be\u002BkyG4XH1ILpwnG7bgGYM7YDFmwt2KmQTGVxcWmQKXBC2whoGrlTfoeTlB8cnAfg1LtXsJVi66hJrdhKeCTr8cFGzd\u002Bv5Ngakjpi2LpTdi2pacxx0wpm2oE3gpkqPzq8H4BLtwreuZaTVEpSKa4yJJXy7YP7EC\u002Bc\u002BuPVeHZXkgVXCWlpvij3//rizWDIvMbq8RLLbnjsYfYmhp\u002B/f50z/7iGtoK2scG0BesFbcA2YFshaUJMcCW4UkhLJS1kqHaqmZlq7MhKcaXhSLqbvYkB4G9XS1xhSAqDKwyujKst4t2kUlwpnXcdQaWkkaSvMa6CKxQ3Mbhc\u002BYRPuuqHye2Ayw1pHoGTieIKQ1oYklJxZRe6UiNGoaSF4KIHqK106AoTwSeGdGKx5VaDJ0UHPjG43OAmdpsn0YtoXCRJS2WmkKgTGakrzNCNDS63pLkl3TBUo62Bc6jnurMInnZWJpMIenDGcfTALtJCSSebakhzxVW6qmmuF9Lcko5N1Dzhow9go4jj4uH70jvgm166IlqdFoavPTHLnBpmJspM3q0TpVcIrpLXVG/qSppb0jwhHSekY0v9keGt1RKAY0d3caiXduHbJIj5\u002BuoTu/nK0VkGf61JJ0ovV2bGcU0nSlKYV3V15fDIje2b6djixluevPK7knEemO0pz5/KeHB3EuNcGObEcvLYHk59K\u002BPcmev0cqE3NszkSm8cw5NU\u002BvL51f1DAVg8\u002BWFfpsnAtJLRjQkJwqceNJz54W4WFmLSL/5zyuwuZWFemYwDL/x4xNV/NaTTQFoJMyUkU7BBRk3THjm/1hEAfPnEzSXTyIvi5c7LhcD8gvDoI4YvPekQYDL2rF1s\u002BMvrJfUtj/MBV0FagW1BfQDxzz3/3ie3xvWmnHhyY1laPYuP3Uw3soWAxqmL8QETIJkG0tbjpmDreKbiCfhz59cWljcxdz6AfPML5ZJpOYuEbOu1ChgPhoBtAtaHOBq8R0NAJKDKKPjm3E/en1/ZjncPAcBTjxd943XZBHlaAW0DJkS1PqDeY9Sj\u002BOih8KYKz5xfm7vn0f9Ygk05\u002BZmin7TuuPH\u002BhITwuNJmRj2qYSjBD5H2QqhZWRnOjXb\u002Buyn/AzTmUdO5huPzAAAAAElFTkSuQmCC",
+              "WhenOpened": "2026-09-30T00:45:13.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "language-switcher.js",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\js\\language-switcher.js",
+              "RelativeDocumentMoniker": "js\\language-switcher.js",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\js\\language-switcher.js",
+              "RelativeToolTip": "js\\language-switcher.js",
+              "ViewState": "AgIAADgAAAAAAAAAAAAYwFYAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-30T00:45:12.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "guide-data.js",
+              "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\js\\guide-data.js",
+              "RelativeDocumentMoniker": "js\\guide-data.js",
+              "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\js\\guide-data.js",
+              "RelativeToolTip": "js\\guide-data.js",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAYwHkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-30T00:45:05.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "index.html",
               "DocumentMoniker": "S:\\02 -- Github\\Yuisei-Web\\index.html",
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "S:\\02 -- Github\\Yuisei-Web\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwBAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAABEBAAAAAAAAAAAlwDABAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-09-21T02:14:52.11Z",
               "EditorCaption": ""

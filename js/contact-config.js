@@ -5,7 +5,7 @@
    ============================================================ */
 
 window.YuseiContactConfig = {
-  whatsapp: "+81 80-1326-0364",
-  email: "",
-  phone: ""
+  whatsapp: "+81 90-7217-1288",
+  email: "Integrity.Investment2023@gmail.com",
+  phone: "+81 80-1326-0364"
 };

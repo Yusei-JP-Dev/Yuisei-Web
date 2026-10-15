@@ -1,0 +1,277 @@
+/* ============================================================
+   Yusei Stay — Homepage project preview (OSAKA BUSINESS HOTEL)
+   Compact inline banner between the header and the Hero, plus the
+   native <dialog> that shows the full poster. Loaded by index.html
+   only (behaviour in js/project-preview.js).
+
+   The poster is always shown whole (object-fit: contain) — never
+   cropped or zoomed. Entrance motion for the dialog comes from the
+   shared dialog[open] animation in motion.css; reduced motion is
+   handled site-wide by reset.css.
+   ============================================================ */
+
+.project-preview {
+  /* Deep night tone sampled from the poster sky — used only behind
+     the poster so any letterboxing blends into the artwork. */
+  --project-preview-night: var(--color-night-blue);
+
+  padding-block: 20px;
+  background-color: var(--color-bg);
+}
+
+.project-preview__card {
+  display: grid;
+  grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  box-shadow: var(--shadow-soft);
+  transition:
+    border-color var(--duration-hover) var(--ease-standard),
+    box-shadow var(--duration-hover) var(--ease-standard);
+}
+
+.project-preview__card:hover,
+.project-preview__card:focus-within {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ---- Poster (link to the full image; opens the dialog with JS) ---- */
+.project-preview__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--project-preview-night);
+  border-radius: 3px 0 0 3px;
+}
+
+.project-preview__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1672 / 941;
+  object-fit: contain;
+  transition: filter var(--duration-hover) var(--ease-standard);
+}
+
+.project-preview__media:hover .project-preview__image,
+.project-preview__media:focus-visible .project-preview__image {
+  filter: brightness(1.08);
+}
+
+/* Inset ring — an outer box-shadow would be hidden against the card edge */
+.project-preview__media:focus-visible {
+  box-shadow: none;
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+/* ---- Copy ---- */
+.project-preview__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 22px 28px;
+  min-width: 0;
+}
+
+.project-preview__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.project-preview__status {
+  padding: 1px 8px;
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 2px;
+  color: var(--color-secondary);
+  letter-spacing: 0.18em;
+}
+
+.project-preview__title {
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.project-preview__location {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--color-secondary);
+}
+
+.project-preview__description {
+  max-width: 40em;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.project-preview__action {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  transition: color var(--duration-hover) var(--ease-standard);
+}
+
+.project-preview__action-label {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.project-preview__arrow {
+  transition: transform var(--duration-hover) var(--ease-standard);
+}
+
+.project-preview__action:hover {
+  color: var(--color-primary-hover);
+}
+
+.project-preview__action:hover .project-preview__arrow,
+.project-preview__action:focus-visible .project-preview__arrow {
+  transform: translateX(4px);
+}
+
+/* ---- Tablet: tighter copy so the banner stays compact ---- */
+@media (max-width: 900px) {
+  .project-preview__body {
+    padding: 16px 20px;
+    gap: 4px;
+  }
+
+  .project-preview__title {
+    font-size: 1.15rem;
+  }
+
+  .project-preview__description {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+}
+
+/* ---- Mobile: poster full width on top, copy underneath ---- */
+@media (max-width: 640px) {
+  .project-preview {
+    padding-block: 16px;
+  }
+
+  .project-preview__card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-preview__media {
+    border-radius: 3px 3px 0 0;
+  }
+
+  .project-preview__body {
+    padding: 14px 16px 8px;
+  }
+
+  .project-preview__title {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================================================
+   PROJECT PREVIEW DIALOG
+   ============================================================ */
+.project-preview-dialog {
+  --project-preview-night: var(--color-night-blue);
+
+  width: calc(100% - 32px);
+  max-width: 1000px;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.project-preview-dialog::backdrop {
+  background-color: rgba(20, 16, 12, 0.72);
+}
+
+/* Sticky so the close control stays reachable when a short landscape
+   screen makes the dialog scroll; sits above the poster, never on it. */
+.project-preview-dialog__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 6px 6px 20px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-preview-dialog__title {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+}
+
+.project-preview-dialog__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.6rem;
+  line-height: 1;
+  border-radius: 2px;
+  transition: background-color var(--duration-hover) var(--ease-standard);
+}
+
+.project-preview-dialog__close:hover {
+  background-color: var(--color-bg-soft);
+}
+
+.project-preview-dialog__figure {
+  padding: 16px 20px 20px;
+}
+
+.project-preview-dialog__image {
+  width: 100%;
+  height: auto;
+  max-height: max(220px, calc(100vh - 180px));
+  max-height: max(220px, calc(100dvh - 180px));
+  object-fit: contain;
+  background-color: var(--project-preview-night);
+}
+
+.project-preview-dialog__note {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .project-preview-dialog {
+    width: calc(100% - 24px);
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+
+  .project-preview-dialog__figure {
+    padding: 12px 12px 16px;
+  }
+}

@@ -30,6 +30,7 @@
   /* ---- Colour: accents ---- */
   --color-secondary: #8B6A47;       /* Aged Wood — decorative accent */
   --color-accent-gold: #B98B4A;     /* Lantern Gold — small warm highlights */
+  --color-night-blue: #0E1A33;      /* Night Blue — hotel preview poster backdrop */
 
   /* ---- Colour: border / structure ---- */
   --color-border: #CFC4B3;          /* Muted Stone — default borders / dividers */

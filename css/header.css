@@ -24,21 +24,25 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  width: 120px;
+  height: 70px;
+  overflow: hidden;
   flex-shrink: 0;
 }
 
-.brand__mark {
+.brand .brand__mark {
   display: block;
-  width: 34px;
-  height: 34px;
+  width: 210px;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  mix-blend-mode: darken;
   flex-shrink: 0;
 }
 
 .brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.3;
+  display: none;
 }
 
 .brand__name {
@@ -368,7 +372,23 @@
 .site-footer__brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  width: 104px;
+  height: 58px;
+  overflow: hidden;
+}
+
+.site-footer__brand .brand__mark {
+  display: block;
+  width: 180px;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  mix-blend-mode: darken;
+}
+
+.site-footer__brand > div {
+  display: none;
 }
 
 .site-footer__brand-name {

@@ -437,6 +437,21 @@
   function renderFields() {
     var l = lang();
 
+    document.querySelectorAll(".stay-hero__parking-separator, .stay-hero__parking-badge").forEach(function (el) {
+      el.remove();
+    });
+    if (data.parking) {
+      document.querySelectorAll(".stay-hero__meta").forEach(function (meta) {
+        var separator = document.createElement("span");
+        separator.className = "stay-hero__parking-separator";
+        separator.textContent = "・";
+        var badge = document.createElement("span");
+        badge.className = "stay-hero__tag stay-hero__tag--parking stay-hero__parking-badge";
+        badge.textContent = "P  " + pick(data.parking.badge, l);
+        meta.append(separator, badge);
+      });
+    }
+
     document.querySelectorAll('[data-stay-field="tagline"]').forEach(function (el) {
       el.textContent = pick(data.tagline, l);
     });
@@ -478,6 +493,48 @@
   }
 
   /* ---------------------------------------------------------
+     POLA bath amenities (compact variant of the homepage block,
+     styled by css/pola-amenities.css). Rebuilt on every
+     renderAmenities() pass, which empties the container first,
+     so language changes never duplicate it.
+     --------------------------------------------------------- */
+  function buildPolaAmenities() {
+    var wrap = document.createElement("div");
+    wrap.className = "pola-amenities--compact";
+
+    var frame = document.createElement("div");
+    frame.className = "pola-amenities__frame";
+    var image = document.createElement("img");
+    image.className = "pola-amenities__image";
+    image.src = "../assets/amenities/pola-shower-break-products.png";
+    image.width = 1080;
+    image.height = 1123;
+    image.alt = i18n.t("pola.imageAlt");
+    image.loading = "lazy";
+    image.decoding = "async";
+    frame.appendChild(image);
+
+    var body = document.createElement("div");
+    body.className = "pola-amenities__body";
+    var eyebrow = document.createElement("p");
+    eyebrow.className = "pola-amenities__eyebrow";
+    eyebrow.textContent = i18n.t("pola.eyebrow");
+    var heading = document.createElement("h3");
+    heading.className = "pola-amenities__brand";
+    heading.textContent = "POLA";
+    var message = document.createElement("p");
+    message.className = "pola-amenities__message";
+    message.textContent = i18n.t("pola.message");
+    var availability = document.createElement("p");
+    availability.className = "pola-amenities__availability";
+    availability.textContent = i18n.t("pola.availability");
+    body.append(eyebrow, heading, message, availability);
+
+    wrap.append(frame, body);
+    return wrap;
+  }
+
+  /* ---------------------------------------------------------
      Amenities panel
      --------------------------------------------------------- */
   function renderAmenities() {
@@ -489,7 +546,7 @@
     var l = lang();
 
     if (!data.amenities && !data.rules) {
-      container.appendChild(verificationNote("stayDetail.verification.amenities"));
+      container.append(buildPolaAmenities(), verificationNote("stayDetail.verification.amenities"));
       return;
     }
 
@@ -519,6 +576,8 @@
         container.appendChild(highlightsWrap);
       }
 
+      container.appendChild(buildPolaAmenities());
+
       var grid = document.createElement("div");
       grid.className = "stay-amenities";
       ["basic", "kitchen", "bathroom", "other"].forEach(function (key) {
@@ -542,7 +601,7 @@
       });
       container.appendChild(grid);
     } else {
-      container.appendChild(verificationNote("stayDetail.verification.amenities"));
+      container.append(buildPolaAmenities(), verificationNote("stayDetail.verification.amenities"));
     }
 
     if (data.rules) {
@@ -673,17 +732,56 @@
     container.replaceChildren();
     var l = lang();
 
-    function row(labelKey, text) {
+    function row(labelKey, text, labelText) {
       var r = document.createElement("div");
       r.className = "stay-guide__row";
       var label = document.createElement("div");
       label.className = "stay-guide__label";
-      label.textContent = i18n.t(labelKey);
+      label.textContent = labelText || i18n.t(labelKey);
       var value = document.createElement("div");
       value.className = "stay-guide__value";
       value.textContent = text;
       r.append(label, value);
       container.appendChild(r);
+    }
+
+    if (data.parking) {
+      row(null, pick(data.parking.detail, l), pick(data.parking.title, l));
+    }
+
+    if (data.guide.parking) {
+      var parking = data.guide.parking;
+      var parkingSection = document.createElement("section");
+      parkingSection.className = "stay-parking-guide";
+      parkingSection.setAttribute("aria-labelledby", "stay-parking-guide-title");
+
+      var parkingHeading = document.createElement("h3");
+      parkingHeading.id = "stay-parking-guide-title";
+      parkingHeading.className = "stay-parking-guide__title";
+      parkingHeading.textContent = pick(parking.title, l);
+
+      var parkingFigure = document.createElement("figure");
+      parkingFigure.className = "stay-parking-guide__figure";
+      var parkingImage = document.createElement("img");
+      parkingImage.className = "stay-parking-guide__image";
+      parkingImage.src = "../assets/properties/" + data.folder + "/" + parking.image;
+      parkingImage.alt = pick(parking.alt, l);
+      parkingImage.loading = "lazy";
+      parkingImage.decoding = "async";
+      parkingFigure.appendChild(parkingImage);
+
+      var parkingNotes = document.createElement("div");
+      parkingNotes.className = "stay-parking-guide__notes";
+      [parking.smallCar, parking.largeVehicle].forEach(function (note, index) {
+        var item = document.createElement("p");
+        item.className = "stay-parking-guide__note";
+        item.setAttribute("data-vehicle-size", index === 0 ? "small" : "large");
+        item.textContent = pick(note, l);
+        parkingNotes.appendChild(item);
+      });
+
+      parkingSection.append(parkingHeading, parkingFigure, parkingNotes);
+      container.appendChild(parkingSection);
     }
 
     row("stayDetail.guide.checkin", data.guide.checkin ? pick(data.guide.checkin, l) : i18n.t("stayDetail.verification.guide"));
