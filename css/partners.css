@@ -1,11 +1,11 @@
 /* ============================================================
    Yusei Stay — About page partners (#partners in about.html)
-   Main row: four category groups, heading above each card.
+   Main row: three category groups, heading above each card.
    Travel row: two smaller cards (text wordmark / supplied logo).
    Only real <a class="partner-link"> elements are interactive;
    plain-text entries get no pointer, hover or lift.
-   Breakpoints: 4 columns >=1100px, 2 columns 601–1099px,
-   1 column <=600px.
+   Breakpoints: 3 columns >=1100px, 2 columns 601–1099px (odd last
+   group centered at one-column width), 1 column <=600px.
    ============================================================ */
 .partners {
   background-color: var(--color-bg);
@@ -19,7 +19,7 @@
 /* ---- Main row ---- */
 .partners__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px 24px;
 }
 
@@ -233,6 +233,14 @@
   .partners__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  /* Odd last group: span the row and center at one column's width
+     (minus half the 24px column gap) instead of leaving an empty slot */
+  .partner-group:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 12px);
+  }
 }
 
 /* ============================================================
@@ -265,6 +273,12 @@
 
   .partners__grid {
     gap: 32px;
+  }
+
+  .partner-group:last-child:nth-child(odd) {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
   }
 
   .partner-card {

@@ -7,7 +7,7 @@
       "label": "Residential street atmosphere",
       "instruction": "P1-02",
       "original": "P1-02_bentencho-ichioka-street_landscape_generated_02.jpg",
-      "usage": "Generic atmosphere only. Visible AI illustration label required; not a photograph of the named location or shop.",
+      "usage": "Generic atmosphere only. Generated image (internal provenance; no visible AI badge or alt prefix per 2026-10-16 instruction). Describe generically; not a photograph of the named location or shop.",
       "width": 1168,
       "height": 784
     },
@@ -18,7 +18,7 @@
       "label": "Old town walk atmosphere",
       "instruction": "P1-08",
       "original": "P1-08_kaizuka-jinaicho-street_landscape_generated_02.jpg",
-      "usage": "Generic atmosphere only. Visible AI illustration label required; not a photograph of the named location or shop.",
+      "usage": "Generic atmosphere only. Generated image (internal provenance; no visible AI badge or alt prefix per 2026-10-16 instruction). Describe generically; not a photograph of the named location or shop.",
       "width": 1728,
       "height": 1152
     },
@@ -29,7 +29,7 @@
       "label": "Neighborhood grocery atmosphere",
       "instruction": "P1-10B",
       "original": "P1-10B_bentencho-supermarket_landscape_generated_02.jpg",
-      "usage": "Generic atmosphere only. Visible AI illustration label required; not a photograph of the named location or shop.",
+      "usage": "Generic atmosphere only. Generated image (internal provenance; no visible AI badge or alt prefix per 2026-10-16 instruction). Describe generically; not a photograph of the named location or shop.",
       "width": 1728,
       "height": 1152
     },
@@ -40,7 +40,7 @@
       "label": "Corner produce shop atmosphere",
       "instruction": "P1-10C",
       "original": "P1-10C_asashiobashi-corner-shop_landscape_generated_01.jpg",
-      "usage": "Generic atmosphere only. Visible AI illustration label required; not a photograph of the named location or shop.",
+      "usage": "Generic atmosphere only. Generated image (internal provenance; no visible AI badge or alt prefix per 2026-10-16 instruction). Describe generically; not a photograph of the named location or shop.",
       "width": 1168,
       "height": 784
     },
@@ -51,7 +51,7 @@
       "label": "Greengrocer atmosphere",
       "instruction": "P1-10D",
       "original": "P1-10D_kaizuka-greengrocer_landscape_generated_01.jpg",
-      "usage": "Generic atmosphere only. Visible AI illustration label required; not a photograph of the named location or shop.",
+      "usage": "Generic atmosphere only. Generated image (internal provenance; no visible AI badge or alt prefix per 2026-10-16 instruction). Describe generically; not a photograph of the named location or shop.",
       "width": 1168,
       "height": 784
     },
@@ -208,6 +208,24 @@
       "width": 1600,
       "height": 1067,
       "changes": "Resized to 1600 px for web delivery; original composition retained. CSS display cropping may apply."
+    },
+    {
+      "id": "life-asashiobashi-ekimae",
+      "kind": "photo",
+      "src": "assets/guide/destinations/life-asashiobashi-ekimae-exterior.jpg",
+      "description": "ライフ朝潮橋駅前店 外観（大阪府大阪市港区夕凪2-18-49、朝潮橋駅7番出口すぐ）",
+      "sourceType": "Official company press release photo (not Wikimedia Commons; no CC/free licence asserted)",
+      "photographerOrPublisher": "LIFE CORPORATION (株式会社ライフコーポレーション)",
+      "source": "https://newscast.jp/news/7159338",
+      "originalFile": "https://newscast.jp/attachments/eK8srw8o1vlo5VUGXwVV.jpg",
+      "storePage": "https://store.lifecorp.jp/detail/west429/",
+      "sourceDate": "2021-02-03",
+      "retrieved": "2026-10-16",
+      "usage": "Art Home chapter 05 (daily life) only. Caption shows shop name only; no visible source credit per user instruction.",
+      "width": 4032,
+      "height": 3024,
+      "naturalAspect": true,
+      "changes": "Original file copied unchanged; displayed at its full 4:3 aspect ratio (naturalAspect), no CSS cropping."
     }
   ]
 }

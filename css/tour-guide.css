@@ -517,18 +517,12 @@
   aspect-ratio: 4 / 5;
 }
 
-/* Visible notice on AI-generated illustrations (see js/guide-images.js). */
-.guide-ai-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  padding: 4px 10px;
-  border-radius: 2px;
-  background-color: rgba(20, 16, 10, 0.66);
-  color: var(--color-text-inverse);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  line-height: 1.5;
+/* naturalAspect assets (e.g. the LIFE storefront): the whole photo at
+   its own ratio, no crop. Doubled frame class outranks the fixed
+   heights at every breakpoint. */
+.guide-chapter__frame.guide-chapter__frame--natural .guide-chapter__image {
+  width: 100%;
+  height: auto;
 }
 
 /* Caption + credit under guide images (in flow; with an inset the
@@ -1532,12 +1526,6 @@
 
   .guide-chapter__media--inset .guide-chapter__figcaption {
     padding-right: calc(46% + 28px);
-  }
-
-  .guide-ai-badge {
-    top: 10px;
-    left: 10px;
-    font-size: 0.7rem;
   }
 
   .guide-stop__lead {

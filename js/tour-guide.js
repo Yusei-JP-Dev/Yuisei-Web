@@ -31,8 +31,9 @@
    - Re-renders in place on "yusei:langchange", keeping the stay
      and the reader's chapter/scroll position.
    - Chapter 02-05 images and day-trip thumbnails come from
-     js/guide-images.js: AI illustrations get a visible badge, real
-     photos a visible credit line plus the page-end credits list.
+     js/guide-images.js: every image gets a descriptive caption; only
+     assets with a `credit` object get a visible credit line plus the
+     page-end credits list. No AI badge or alt prefix is rendered.
    Data: js/stay-data.js (names, photos, addresses),
    js/guide-data.js (all guide facts) and js/guide-images.js.
    ============================================================ */
@@ -376,7 +377,9 @@
 
   function renderMedia(opts) {
     var figure = h("figure", "guide-chapter__media");
-    var frame = h("div", "guide-chapter__frame" + (opts.portrait ? " guide-chapter__frame--portrait" : ""));
+    var frame = h("div", "guide-chapter__frame" +
+      (opts.portrait ? " guide-chapter__frame--portrait" : "") +
+      (opts.naturalAspect ? " guide-chapter__frame--natural" : ""));
     var img = h("img", "guide-chapter__image");
     img.src = opts.src;
     img.alt = opts.alt;
@@ -392,10 +395,6 @@
     frame.appendChild(img);
     if (opts.caption) {
       frame.appendChild(overlayCaption(opts.caption));
-    }
-    if (opts.badge) {
-      /* Visible notice; the alt text already starts with it. */
-      frame.appendChild(h("span", "guide-ai-badge", opts.badge)).setAttribute("aria-hidden", "true");
     }
     figure.appendChild(frame);
     if (opts.figcaption) {
@@ -426,15 +425,14 @@
   }
 
   /* ---------------------------------------------------------
-     Guide images (js/guide-images.js): AI badge, photo credits
+     Guide images (js/guide-images.js): captions, photo credits
      --------------------------------------------------------- */
   function imageAsset(id) {
     return Images && id ? Images.assets[id] || null : null;
   }
 
   function imageAlt(asset) {
-    var desc = pick(asset.desc);
-    return asset.kind === "generated" ? t("guide.img.aiAlt", { desc: desc }) : desc;
+    return pick(asset.desc);
   }
 
   function imageCaptionText(asset) {
@@ -464,9 +462,10 @@
     return line;
   }
 
+  /* Only licensed photos with a credit object are listed at page end. */
   function markUsed(id) {
     var asset = imageAsset(id);
-    if (asset && asset.kind === "photo" && state.usedPhotos.indexOf(id) === -1) {
+    if (asset && asset.credit && state.usedPhotos.indexOf(id) === -1) {
       state.usedPhotos.push(id);
     }
   }
@@ -480,7 +479,7 @@
     var generated = asset.kind === "generated";
     var cap = h("figcaption", "guide-chapter__figcaption");
     cap.appendChild(h("span", "guide-chapter__figcaption-text", imageCaptionText(asset)));
-    if (!generated) {
+    if (asset.credit) {
       cap.appendChild(creditLine(asset));
     }
     return renderMedia({
@@ -490,8 +489,8 @@
       height: asset.height,
       position: asset.position,
       portrait: asset.portrait,
+      naturalAspect: asset.naturalAspect,
       caption: generated ? null : asset.overlay,
-      badge: generated ? t("guide.img.ai") : null,
       figcaption: cap,
       inset: inset ? { src: inset.src, alt: t(inset.altKey) } : null
     });
@@ -527,7 +526,9 @@
   function tripPhotoNote(asset) {
     var p = h("p", "guide-stop__photo");
     p.appendChild(h("span", "guide-stop__photo-text", imageCaptionText(asset)));
-    p.appendChild(creditLine(asset));
+    if (asset.credit) {
+      p.appendChild(creditLine(asset));
+    }
     return p;
   }
 
@@ -560,7 +561,6 @@
       list.appendChild(li);
     });
     nodes.push(list);
-    nodes.push(h("p", "guide-credits__note", t("guide.credits.ai")));
     creditsBody.replaceChildren.apply(creditsBody, nodes);
   }
 

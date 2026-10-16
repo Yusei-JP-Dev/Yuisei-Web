@@ -7,13 +7,17 @@
    (title / author / source / license / licenseUrl) identical to
    the manifest and docs/guide-image-credits.md.
 
-   kind "photo"      real photo from Wikimedia Commons. Shown with a
-                     visible credit line and listed in the page-end
-                     photo credits. It illustrates the destination,
-                     not a station or stop, and may be years old.
-   kind "generated"  AI-generated mood illustration. Always shown with
-                     a visible "AI-generated illustration" badge; never
-                     captioned as a real street, shop or neighbourhood.
+   kind "photo"      real photo. With a `credit` object (Wikimedia
+                     Commons) it gets a visible credit line and is
+                     listed in the page-end photo credits. Without
+                     `credit` only the caption is shown; provenance
+                     stays in the manifest / credits doc. It illustrates
+                     the destination, not a station or stop, and may
+                     be years old.
+   kind "generated"  generated mood image (provenance kept in the
+                     manifest). No visible badge or alt prefix; always
+                     described generically, never as a real street,
+                     shop or neighbourhood.
 
    desc      what the picture shows (used as alt text and caption)
    note      optional caption clarification (e.g. "not the station")
@@ -33,7 +37,7 @@
 
   var assets = {
 
-    /* ---- AI-generated mood illustrations ---- */
+    /* ---- Generated mood images ---- */
     "residential-lane-generated": {
       kind: "generated",
       src: "assets/guide/mood/residential-lane-generated.jpg",
@@ -252,6 +256,17 @@
         license: "CC BY 2.5",
         licenseUrl: "https://creativecommons.org/licenses/by/2.5"
       }
+    },
+
+    /* ---- Real photos without a displayed credit ---- */
+    "life-asashiobashi-ekimae": {
+      kind: "photo",
+      src: "assets/guide/destinations/life-asashiobashi-ekimae-exterior.jpg",
+      width: 4032,
+      height: 3024,
+      position: "50% 65%",
+      naturalAspect: true,
+      desc: L("ライフ朝潮橋駅前店", "LIFE Asashiobashi Ekimae supermarket", "LIFE 朝潮桥站前店", "LIFE 朝潮橋站前店", "라이프 아사시오바시 에키마에점")
     }
   };
 
@@ -267,7 +282,7 @@
     pine:       { near: "residential-lane-generated", further: "kaiyukan", furtherInset: usjInset, day: "kyoto", daily: "neighborhood-grocery-generated" },
     literature: { near: "residential-lane-generated", further: "kaiyukan", furtherInset: usjInset, day: "kyoto", daily: "neighborhood-grocery-generated" },
     harmony:    { near: "residential-lane-generated", further: "kaiyukan", furtherInset: usjInset, day: "kyoto", daily: "neighborhood-grocery-generated" },
-    art:        { near: "misaki-tenmangu", further: "kaiyukan", furtherInset: usjInset, day: "kyoto", daily: "corner-produce-shop-generated" },
+    art:        { near: "misaki-tenmangu", further: "kaiyukan", furtherInset: usjInset, day: "kyoto", daily: "life-asashiobashi-ekimae" },
     furukawa:   { near: "mizumadera", further: "rinku", day: "wakayama", daily: "old-town-walk-generated" }
   };
 
