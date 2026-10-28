@@ -120,10 +120,10 @@
 
       "dialog.close": "閉じる",
 
-      "projectPreview.eyebrow": "新プロジェクト予告",
+      "projectPreview.eyebrow": "新プロジェクト、近日公開",
       "projectPreview.location": "大阪・天王寺",
-      "projectPreview.description": "天王寺で、新たな滞在のかたちを。ホテルプロジェクトを準備中です。",
-      "projectPreview.action": "予告を見る",
+      "projectPreview.description": "新たなホテルプロジェクトが進行中です",
+      "projectPreview.action": "プロジェクトの詳細を見る",
       "projectPreview.imageAlt": "大阪・天王寺のホテルプロジェクト予告。夜景の建物と月、OSAKA BUSINESS HOTEL、COMING SOON、友誠株式会社の文字。",
       "projectPreview.note": "計画イメージです。詳細は今後お知らせします。",
       "pola.eyebrow": "バスアメニティ",
