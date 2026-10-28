@@ -506,7 +506,7 @@
     frame.className = "pola-amenities__frame";
     var image = document.createElement("img");
     image.className = "pola-amenities__image";
-    image.src = "../assets/amenities/pola-shower-break-products.png";
+    image.src = "../assets/amenities/pola-shower-break-products.webp";
     image.width = 1080;
     image.height = 1123;
     image.alt = i18n.t("pola.imageAlt");

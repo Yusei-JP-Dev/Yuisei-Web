@@ -24,11 +24,11 @@ the 一日のおでかけ heading.
   covered in 暮らしの便利帳.
 - If a stay's address is unconfirmed (Harmony Garden), the address row is left out. The area
   label and the owner's map link stay.
-- Photo labels: `assets/osaka/shisaibashi.jpeg` shows a night shopping street with a large crab
+- Photo labels: `assets/osaka/shisaibashi.webp` shows a night shopping street with a large crab
   sign, but the street is not confirmed. On this page it uses the generic alt
   `guide.photo.streetAlt` ("夜の大阪の繁華街のイメージ写真") and has no caption. The shared key
   `experience.image2Alt` is still used on the homepage and was not changed there.
-  `streetscape_1.jpg` clearly shows the 通天閣 sign and keeps its Shinsekai label.
+  `streetscape_1.webp` clearly shows the 通天閣 sign and keeps its Shinsekai label.
 
 ## Files
 | File | Role |

@@ -40,7 +40,7 @@
     /* ---- Generated mood images ---- */
     "residential-lane-generated": {
       kind: "generated",
-      src: "assets/guide/mood/residential-lane-generated.jpg",
+      src: "assets/guide/mood/residential-lane-generated.webp",
       width: 1168,
       height: 784,
       desc: L("静かな住宅街の路地の雰囲気", "The feel of a quiet residential lane", "安静住宅区小巷的氛围", "安靜住宅區小巷的氛圍", "조용한 주택가 골목의 분위기"),
@@ -48,7 +48,7 @@
     },
     "old-town-walk-generated": {
       kind: "generated",
-      src: "assets/guide/mood/old-town-walk-generated.jpg",
+      src: "assets/guide/mood/old-town-walk-generated.webp",
       width: 1728,
       height: 1152,
       desc: L("古い町並みを歩く雰囲気", "The feel of a walk through an old town", "漫步老街的氛围", "漫步老街的氛圍", "옛 마을을 걷는 분위기"),
@@ -56,7 +56,7 @@
     },
     "neighborhood-grocery-generated": {
       kind: "generated",
-      src: "assets/guide/mood/neighborhood-grocery-generated.jpg",
+      src: "assets/guide/mood/neighborhood-grocery-generated.webp",
       width: 1728,
       height: 1152,
       desc: L("まちのスーパーの雰囲気", "The feel of a neighbourhood supermarket", "街坊超市的氛围", "街坊超市的氛圍", "동네 슈퍼마켓의 분위기"),
@@ -64,7 +64,7 @@
     },
     "corner-produce-shop-generated": {
       kind: "generated",
-      src: "assets/guide/mood/corner-produce-shop-generated.jpg",
+      src: "assets/guide/mood/corner-produce-shop-generated.webp",
       width: 1168,
       height: 784,
       desc: L("街角の八百屋の雰囲気", "The feel of a corner produce shop", "街角蔬果店的氛围", "街角蔬果店的氛圍", "길모퉁이 채소 가게의 분위기"),
@@ -72,7 +72,7 @@
     },
     "greengrocer-cyclist-generated": {
       kind: "generated",
-      src: "assets/guide/mood/greengrocer-cyclist-generated.jpg",
+      src: "assets/guide/mood/greengrocer-cyclist-generated.webp",
       width: 1168,
       height: 784,
       desc: L("自転車が行き交う八百屋の店先の雰囲気", "The feel of a greengrocer's shopfront with passing bicycles", "单车往来的蔬果店门前氛围", "單車往來的蔬果店門前氛圍", "자전거가 오가는 채소 가게 앞의 분위기"),
@@ -82,7 +82,7 @@
     /* ---- Real photos (Wikimedia Commons) ---- */
     mizumadera: {
       kind: "photo",
-      src: "assets/guide/destinations/mizumadera-photo.jpg",
+      src: "assets/guide/destinations/mizumadera-photo.webp",
       width: 1536,
       height: 2048,
       portrait: true,
@@ -99,7 +99,7 @@
     },
     "misaki-tenmangu": {
       kind: "photo",
-      src: "assets/guide/destinations/misaki-tenmangu-photo.jpg",
+      src: "assets/guide/destinations/misaki-tenmangu-photo.webp",
       width: 1600,
       height: 1200,
       position: "50% 55%",
@@ -115,7 +115,7 @@
     },
     kaiyukan: {
       kind: "photo",
-      src: "assets/guide/destinations/kaiyukan-photo.jpg",
+      src: "assets/guide/destinations/kaiyukan-photo.webp",
       width: 1280,
       height: 960,
       position: "50% 40%",
@@ -131,7 +131,7 @@
     },
     dotonbori: {
       kind: "photo",
-      src: "assets/guide/destinations/dotonbori-photo.jpg",
+      src: "assets/guide/destinations/dotonbori-photo.webp",
       width: 1280,
       height: 720,
       position: "50% 50%",
@@ -147,7 +147,7 @@
     },
     rinku: {
       kind: "photo",
-      src: "assets/guide/destinations/rinku-photo.jpg",
+      src: "assets/guide/destinations/rinku-photo.webp",
       width: 1600,
       height: 1067,
       position: "50% 50%",
@@ -163,7 +163,7 @@
     },
     nara: {
       kind: "photo",
-      src: "assets/guide/destinations/nara-photo.jpg",
+      src: "assets/guide/destinations/nara-photo.webp",
       width: 960,
       height: 720,
       position: "50% 50%",
@@ -179,7 +179,7 @@
     },
     kyoto: {
       kind: "photo",
-      src: "assets/guide/destinations/kyoto-photo.jpg",
+      src: "assets/guide/destinations/kyoto-photo.webp",
       width: 1280,
       height: 960,
       position: "50% 72%",
@@ -196,7 +196,7 @@
     },
     kobe: {
       kind: "photo",
-      src: "assets/guide/destinations/kobe-photo.jpg",
+      src: "assets/guide/destinations/kobe-photo.webp",
       width: 960,
       height: 837,
       position: "50% 50%",
@@ -212,7 +212,7 @@
     },
     arima: {
       kind: "photo",
-      src: "assets/guide/destinations/arima-photo.jpg",
+      src: "assets/guide/destinations/arima-photo.webp",
       width: 960,
       height: 720,
       position: "50% 50%",
@@ -227,7 +227,7 @@
     },
     awaji: {
       kind: "photo",
-      src: "assets/guide/destinations/awaji-photo.jpg",
+      src: "assets/guide/destinations/awaji-photo.webp",
       width: 960,
       height: 720,
       position: "50% 50%",
@@ -242,7 +242,7 @@
     },
     wakayama: {
       kind: "photo",
-      src: "assets/guide/destinations/wakayama-photo.jpg",
+      src: "assets/guide/destinations/wakayama-photo.webp",
       width: 960,
       height: 639,
       position: "50% 45%",
@@ -261,7 +261,7 @@
     /* ---- Real photos without a displayed credit ---- */
     "life-asashiobashi-ekimae": {
       kind: "photo",
-      src: "assets/guide/destinations/life-asashiobashi-ekimae-exterior.jpg",
+      src: "assets/guide/destinations/life-asashiobashi-ekimae-exterior.webp",
       width: 4032,
       height: 3024,
       position: "50% 65%",
@@ -274,7 +274,7 @@
      stay's own photo from js/guide-data.js. furtherInset is an
      existing site image (no manifest entry), kept only for the bay
      stays where USJ is one of the listed destinations. */
-  var usjInset = { src: "assets/osaka/USJ.jpeg", altKey: "guidePage.area.bay.imageAlt" };
+  var usjInset = { src: "assets/osaka/USJ.webp", altKey: "guidePage.area.bay.imageAlt" };
 
   var chapters = {
     tea:        { near: "residential-lane-generated", further: "dotonbori", day: "kyoto", daily: "greengrocer-cyclist-generated" },

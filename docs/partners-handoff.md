@@ -24,7 +24,7 @@ Main row four groups (each group heading has a small decorative outline category
 Under main row, a smaller matching two-card row headed 旅のパートナー / Travel Partners / 旅遊夥伴 / 旅游伙伴 / 여행 파트너:
 
 - **Pit Chan Rentalcars Osaka**: text logo fallback; service label レンタカー / Car rental / 租車 / 租车 / 렌터카. Link `https://www.pitchanrentalcarsosaka.com/` with localized Official website link. No pricing or guarantees.
-- **番茄出行 TOMATO GO**: provided logo `assets/partners/tomato-go-logo.png` (1600×620). Render `object-fit:contain`, never crop/redraw. Link `https://www.facebook.com/tomatogohk/` with localized Facebook CTA. Service scope not confirmed; do not assign SIM/insurance/logistics claims. Company name also visible as real text; image may have empty alt when adjacent text duplicates.
+- **番茄出行 TOMATO GO**: provided logo `assets/partners/tomato-go-logo.webp` (1600×620). Render `object-fit:contain`, never crop/redraw. Link `https://www.facebook.com/tomatogohk/` with localized Facebook CTA. Service scope not confirmed; do not assign SIM/insurance/logistics claims. Company name also visible as real text; image may have empty alt when adjacent text duplicates.
 
 Unknown links: show polished, readable text, not a disabled button or website-facing 'pending' warning. No fake href="#", no Facebook search results, no cursor pointer or lift effect suggesting click. Add concise HTML maintainer comments at the relevant entries to indicate URLs can be added when owner supplies them. Confirmed links use real `<a target="_blank" rel="noopener noreferrer">`, clear label and external-arrow cue. No fake logo initials or decorative stock company marks.
 

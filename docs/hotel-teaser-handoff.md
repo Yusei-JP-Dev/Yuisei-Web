@@ -4,7 +4,7 @@
 Add a compact promotional banner at the start of the homepage main content, between the existing header and Hero. The user supplied the complete poster and wants a small preview of a future project. Preserve the existing Hero, navbar, logo, pages, animations and all prior uncommitted edits. No commit, push, deployment, packages, external requests, new booking functionality or invented opening date.
 
 ## Asset and content
-Use `assets/promotions/osaka-business-hotel-tennoji-coming-soon.png` (1672 × 941). Keep this exact poster, including the building, moon and embedded lettering, fully visible. Use an image element with width/height attributes, object-fit: contain and eager loading; never reference the Temp or reference folder. Do not generate or edit the artwork.
+Use `assets/promotions/osaka-business-hotel-tennoji-coming-soon.webp` (1672 × 941). Keep this exact poster, including the building, moon and embedded lettering, fully visible. Use an image element with width/height attributes, object-fit: contain and eager loading; never reference the Temp or reference folder. Do not generate or edit the artwork.
 
 Shared project name: OSAKA BUSINESS HOTEL. Shared small status: COMING SOON. Company: 友誠株式会社 (already on poster). Add the following translatable strings to each existing dictionary in js/i18n.js with projectPreview.* keys:
 

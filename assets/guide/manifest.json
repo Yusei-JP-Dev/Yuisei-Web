@@ -3,7 +3,7 @@
     {
       "id": "residential-lane-generated",
       "kind": "generated",
-      "src": "assets/guide/mood/residential-lane-generated.jpg",
+      "src": "assets/guide/mood/residential-lane-generated.webp",
       "label": "Residential street atmosphere",
       "instruction": "P1-02",
       "original": "P1-02_bentencho-ichioka-street_landscape_generated_02.jpg",
@@ -14,7 +14,7 @@
     {
       "id": "old-town-walk-generated",
       "kind": "generated",
-      "src": "assets/guide/mood/old-town-walk-generated.jpg",
+      "src": "assets/guide/mood/old-town-walk-generated.webp",
       "label": "Old town walk atmosphere",
       "instruction": "P1-08",
       "original": "P1-08_kaizuka-jinaicho-street_landscape_generated_02.jpg",
@@ -25,7 +25,7 @@
     {
       "id": "neighborhood-grocery-generated",
       "kind": "generated",
-      "src": "assets/guide/mood/neighborhood-grocery-generated.jpg",
+      "src": "assets/guide/mood/neighborhood-grocery-generated.webp",
       "label": "Neighborhood grocery atmosphere",
       "instruction": "P1-10B",
       "original": "P1-10B_bentencho-supermarket_landscape_generated_02.jpg",
@@ -36,7 +36,7 @@
     {
       "id": "corner-produce-shop-generated",
       "kind": "generated",
-      "src": "assets/guide/mood/corner-produce-shop-generated.jpg",
+      "src": "assets/guide/mood/corner-produce-shop-generated.webp",
       "label": "Corner produce shop atmosphere",
       "instruction": "P1-10C",
       "original": "P1-10C_asashiobashi-corner-shop_landscape_generated_01.jpg",
@@ -47,7 +47,7 @@
     {
       "id": "greengrocer-cyclist-generated",
       "kind": "generated",
-      "src": "assets/guide/mood/greengrocer-cyclist-generated.jpg",
+      "src": "assets/guide/mood/greengrocer-cyclist-generated.webp",
       "label": "Greengrocer atmosphere",
       "instruction": "P1-10D",
       "original": "P1-10D_kaizuka-greengrocer_landscape_generated_01.jpg",
@@ -58,7 +58,7 @@
     {
       "id": "mizumadera",
       "kind": "photo",
-      "src": "assets/guide/destinations/mizumadera-photo.jpg",
+      "src": "assets/guide/destinations/mizumadera-photo.webp",
       "title": "File:Mizumadera Sanzyunotou.jpg",
       "description": "水間寺の三重塔",
       "source": "https://commons.wikimedia.org/wiki/File:Mizumadera_Sanzyunotou.jpg",
@@ -72,7 +72,7 @@
     {
       "id": "misaki-tenmangu",
       "kind": "photo",
-      "src": "assets/guide/destinations/misaki-tenmangu-photo.jpg",
+      "src": "assets/guide/destinations/misaki-tenmangu-photo.webp",
       "title": "File:Misaki-tenman-gu.jpg",
       "description": "三先天満宮",
       "source": "https://commons.wikimedia.org/wiki/File:Misaki-tenman-gu.jpg",
@@ -86,7 +86,7 @@
     {
       "id": "kaiyukan",
       "kind": "photo",
-      "src": "assets/guide/destinations/kaiyukan-photo.jpg",
+      "src": "assets/guide/destinations/kaiyukan-photo.webp",
       "title": "File:Acuario de Osaka - Edificio.jpg",
       "description": "Exterior del acuario de Osaka",
       "source": "https://commons.wikimedia.org/wiki/File:Acuario_de_Osaka_-_Edificio.jpg",
@@ -100,7 +100,7 @@
     {
       "id": "dotonbori",
       "kind": "photo",
-      "src": "assets/guide/destinations/dotonbori-photo.jpg",
+      "src": "assets/guide/destinations/dotonbori-photo.webp",
       "title": "File:Dotonbori Canal 1.jpg",
       "description": "PUBLISHED:\nasienspiegel.ch/2017/07/der-fremdenfuehrer-mangel/\nbn.advisor.travel/photo_ex/Dotonbori-Canal-2015441\n\n\nDōtonbori or Dōtombori, pronounced [doːtomboɾʲi]) is one of the principal tourist destinations in Osaka, Japan, running along the Dōtonbori canal from Dōtonboribashi Bridge to Nipponbashi Bridge in the Namba district of the city's Chuo ward. Historically a theater district, it is now a popular nightlife and entertainment area characterized by its eccentric atmosphere and large illuminated signboards.\n\nen.wikipedia.org/wiki/Dōtonbori",
       "source": "https://commons.wikimedia.org/wiki/File:Dotonbori_Canal_1.jpg",
@@ -114,7 +114,7 @@
     {
       "id": "nara",
       "kind": "photo",
-      "src": "assets/guide/destinations/nara-photo.jpg",
+      "src": "assets/guide/destinations/nara-photo.webp",
       "title": "File:Deer in Nara Park.jpg",
       "description": "Deer in Nara Park.",
       "source": "https://commons.wikimedia.org/wiki/File:Deer_in_Nara_Park.jpg",
@@ -128,7 +128,7 @@
     {
       "id": "kyoto",
       "kind": "photo",
-      "src": "assets/guide/destinations/kyoto-photo.jpg",
+      "src": "assets/guide/destinations/kyoto-photo.webp",
       "title": "File:Kamogawa River from Sanjo-Ohashi Bridge (North).JPG",
       "description": "三条大橋より望む鴨川(上流側)",
       "source": "https://commons.wikimedia.org/wiki/File:Kamogawa_River_from_Sanjo-Ohashi_Bridge_(North).JPG",
@@ -142,7 +142,7 @@
     {
       "id": "kobe",
       "kind": "photo",
-      "src": "assets/guide/destinations/kobe-photo.jpg",
+      "src": "assets/guide/destinations/kobe-photo.webp",
       "title": "File:Kobe Port Tower and Maritime Museum, November 2016.jpg",
       "description": "Kobe harbor: Kobe Port Tower  and  Kobe Maritime Museum.",
       "source": "https://commons.wikimedia.org/wiki/File:Kobe_Port_Tower_and_Maritime_Museum,_November_2016.jpg",
@@ -156,7 +156,7 @@
     {
       "id": "arima",
       "kind": "photo",
-      "src": "assets/guide/destinations/arima-photo.jpg",
+      "src": "assets/guide/destinations/arima-photo.webp",
       "title": "File:Kin-no-yu Arima Onsen 2013.jpg",
       "description": "Kin-no-yu Arima Onsen",
       "source": "https://commons.wikimedia.org/wiki/File:Kin-no-yu_Arima_Onsen_2013.jpg",
@@ -170,7 +170,7 @@
     {
       "id": "awaji",
       "kind": "photo",
-      "src": "assets/guide/destinations/awaji-photo.jpg",
+      "src": "assets/guide/destinations/awaji-photo.webp",
       "title": "File:Keino matsubara 01.jpg",
       "description": "Keinomatsubara Pinus thunbergii forest, Awaji-island.",
       "source": "https://commons.wikimedia.org/wiki/File:Keino_matsubara_01.jpg",
@@ -184,7 +184,7 @@
     {
       "id": "wakayama",
       "kind": "photo",
-      "src": "assets/guide/destinations/wakayama-photo.jpg",
+      "src": "assets/guide/destinations/wakayama-photo.webp",
       "title": "File:Wakayama Castle Nishinomaru Garden04bs3200.jpg",
       "description": "Wakayama Castle Nishinomaru Garden, Wakayama, Wakayama prefecture, Japan",
       "source": "https://commons.wikimedia.org/wiki/File:Wakayama_Castle_Nishinomaru_Garden04bs3200.jpg",
@@ -198,7 +198,7 @@
     {
       "id": "rinku",
       "kind": "photo",
-      "src": "assets/guide/destinations/rinku-photo.jpg",
+      "src": "assets/guide/destinations/rinku-photo.webp",
       "title": "File:Rinku premium outlets02s3200.jpg",
       "description": "Rinku Premium Outlets in Izumisano, Osaka prefecture, Japan",
       "source": "https://commons.wikimedia.org/wiki/File:Rinku_premium_outlets02s3200.jpg",
@@ -212,7 +212,7 @@
     {
       "id": "life-asashiobashi-ekimae",
       "kind": "photo",
-      "src": "assets/guide/destinations/life-asashiobashi-ekimae-exterior.jpg",
+      "src": "assets/guide/destinations/life-asashiobashi-ekimae-exterior.webp",
       "description": "ライフ朝潮橋駅前店 外観（大阪府大阪市港区夕凪2-18-49、朝潮橋駅7番出口すぐ）",
       "sourceType": "Official company press release photo (not Wikimedia Commons; no CC/free licence asserted)",
       "photographerOrPublisher": "LIFE CORPORATION (株式会社ライフコーポレーション)",

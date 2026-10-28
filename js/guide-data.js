@@ -307,7 +307,7 @@
     tea: {
       group: "south",
       originConfirmed: true,
-      photos: { tab: "room_picture_1.jpeg", from: "room_picture_1.jpeg" },
+      photos: { tab: "room_picture_1.webp", from: "room_picture_1.webp" },
       intro: L(
         "花園町駅まで徒歩約6分。地下鉄四つ橋線で難波へは宿から約15分、関西空港へ直通の南海・天下茶屋駅へも徒歩約10分です。通天閣や心斎橋など、大阪の南側の名所に出かけやすい拠点です。",
         "About 6 min on foot to Hanazonocho Station. Namba is about 15 min from the door on the Yotsubashi subway line, and Tengachaya Station — direct trains to Kansai Airport — is about 10 min on foot. A handy base for southern Osaka sights such as Tsutenkaku and Shinsaibashi.",
@@ -345,7 +345,7 @@
     zen: {
       group: "south",
       originConfirmed: true,
-      photos: { tab: "room_picture_1.jpeg", from: "room_picture_1.jpeg" },
+      photos: { tab: "room_picture_1.webp", from: "room_picture_1.webp" },
       intro: L(
         "花園町駅まで徒歩約3〜5分。難波へは地下鉄四つ橋線で宿から約15分、関西空港へ直通の南海・天下茶屋駅へも徒歩約10分です。大阪の南側を楽しむのに便利な立地です。",
         "About 3–5 min on foot to Hanazonocho Station. Namba is about 15 min from the door on the Yotsubashi subway line, and Tengachaya Station — direct trains to Kansai Airport — is about 10 min on foot. A convenient spot for exploring southern Osaka.",
@@ -382,7 +382,7 @@
     pine: {
       group: "bay",
       originConfirmed: true,
-      photos: { tab: "room_picture_1.jpeg", from: "room_picture_1.jpeg" },
+      photos: { tab: "room_picture_1.webp", from: "room_picture_1.webp" },
       intro: L(
         "弁天町駅まで徒歩約14分。近くの市岡バス停からは難波・梅田へ直通のバスがあり、市内の主な名所へは車で約15〜25分です。近所の飲食店も13軒ご紹介しています。",
         "About 14 min on foot to Bentencho Station. Direct buses to Namba and Umeda leave from the nearby Ichioka stop, and most major city sights are about 15–25 min by car. We also introduce 13 places to eat nearby.",
@@ -429,7 +429,7 @@
     literature: {
       group: "bay",
       originConfirmed: true,
-      photos: { tab: "room_picture_1.jpeg", from: "room_picture_1.jpeg" },
+      photos: { tab: "room_picture_1.webp", from: "room_picture_1.webp" },
       intro: L(
         "弁天町駅まで徒歩約15〜20分。市岡のまちにあり、市岡バス停から難波・梅田へ直通バスが出ています。イオンモールや京セラドームへは車で約5〜10分です。",
         "About 15–20 min on foot to Bentencho Station. In the Ichioka neighbourhood, with direct buses to Namba and Umeda from the Ichioka stop. AEON Mall and Kyocera Dome are about 5–10 min by car.",
@@ -476,7 +476,7 @@
       /* Street number unconfirmed by the owner — never used as a
          directions origin and never printed. */
       originConfirmed: false,
-      photos: { tab: "room_picture_6.jpeg", from: "room_picture_6.jpeg" },
+      photos: { tab: "room_picture_6.webp", from: "room_picture_6.webp" },
       intro: L(
         "難波・心斎橋・梅田へ直通するバス停まで徒歩約2分、弁天町駅までは徒歩約12〜15分です。USJや大阪城などの主要観光地へは、JR・地下鉄・バスでアクセスできます。",
         "About 2 min on foot to a bus stop with direct routes to Namba, Shinsaibashi and Umeda, and about 12–15 min on foot to Bentencho Station. Major sights such as USJ and Osaka Castle can be reached by JR, subway or bus.",
@@ -511,7 +511,7 @@
     art: {
       group: "bay",
       originConfirmed: true,
-      photos: { tab: "room_picture_10.jpeg", from: "room_picture_10.jpeg" },
+      photos: { tab: "room_picture_10.webp", from: "room_picture_10.webp" },
       intro: L(
         "朝潮橋駅まで徒歩約9分。夕凪バス停までは徒歩約2分で、難波・梅田へ直通し、所要時間は約30分です。",
         "About 9 min on foot to Asashiobashi Station. Yunagi bus stop is about 2 min away on foot, with direct buses taking about 30 min to Namba or Umeda.",
@@ -559,7 +559,7 @@
     furukawa: {
       group: "kaizuka",
       originConfirmed: true,
-      photos: { tab: "room_picture_2.jpeg", from: "room_picture_2.jpeg" },
+      photos: { tab: "room_picture_2.webp", from: "room_picture_2.webp" },
       intro: L(
         "水間鉄道・三ツ松駅まで徒歩約3〜5分。関西空港へは鉄道で約30分、車で約20〜35分です。大阪市内のにぎわいから離れ、水間寺や泉州のまちでゆったり過ごすための拠点です。",
         "About 3–5 min on foot to Mitsumatsu Station on the Mizuma Railway. Kansai Airport is about 30 min by rail or 20–35 min by car. A base for slow days around Mizuma-dera and the towns of Senshu, away from the bustle of central Osaka.",

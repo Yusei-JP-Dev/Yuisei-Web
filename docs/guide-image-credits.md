@@ -11,17 +11,17 @@
 - P3 補充圖及空庭溫泉等未選用項目仍需合適實景／来源證明，不能視為已補齊。
 
 ## 實景來源
-- mizumadera: [File:Mizumadera Sanzyunotou.jpg](https://commons.wikimedia.org/wiki/File:Mizumadera_Sanzyunotou.jpg) — Nozomikobe，[CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en)。檔案：`assets/guide/destinations/mizumadera-photo.jpg`
-- misaki-tenmangu: [File:Misaki-tenman-gu.jpg](https://commons.wikimedia.org/wiki/File:Misaki-tenman-gu.jpg) — KENPEI，[CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)。檔案：`assets/guide/destinations/misaki-tenmangu-photo.jpg`
-- kaiyukan: [File:Acuario de Osaka - Edificio.jpg](https://commons.wikimedia.org/wiki/File:Acuario_de_Osaka_-_Edificio.jpg) — SpiceMan，[CC BY 2.5](https://creativecommons.org/licenses/by/2.5)。檔案：`assets/guide/destinations/kaiyukan-photo.jpg`
-- dotonbori: [File:Dotonbori Canal 1.jpg](https://commons.wikimedia.org/wiki/File:Dotonbori_Canal_1.jpg) — Ray in Manila，[CC BY 2.0](https://creativecommons.org/licenses/by/2.0)。檔案：`assets/guide/destinations/dotonbori-photo.jpg`
-- nara: [File:Deer in Nara Park.jpg](https://commons.wikimedia.org/wiki/File:Deer_in_Nara_Park.jpg) — Christophe95，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)。檔案：`assets/guide/destinations/nara-photo.jpg`
-- kyoto: [File:Kamogawa River from Sanjo-Ohashi Bridge (North).JPG](https://commons.wikimedia.org/wiki/File:Kamogawa_River_from_Sanjo-Ohashi_Bridge_(North).JPG) — そらみみ，[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)。檔案：`assets/guide/destinations/kyoto-photo.jpg`
-- kobe: [File:Kobe Port Tower and Maritime Museum, November 2016.jpg](https://commons.wikimedia.org/wiki/File:Kobe_Port_Tower_and_Maritime_Museum,_November_2016.jpg) — Martin Falbisoner，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)。檔案：`assets/guide/destinations/kobe-photo.jpg`
-- arima: [File:Kin-no-yu Arima Onsen 2013.jpg](https://commons.wikimedia.org/wiki/File:Kin-no-yu_Arima_Onsen_2013.jpg) — Wpcpey，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)。檔案：`assets/guide/destinations/arima-photo.jpg`
-- awaji: [File:Keino matsubara 01.jpg](https://commons.wikimedia.org/wiki/File:Keino_matsubara_01.jpg) — Pinqui，[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)。檔案：`assets/guide/destinations/awaji-photo.jpg`
-- wakayama: [File:Wakayama Castle Nishinomaru Garden04bs3200.jpg](https://commons.wikimedia.org/wiki/File:Wakayama_Castle_Nishinomaru_Garden04bs3200.jpg) — 663highland，[CC BY 2.5](https://creativecommons.org/licenses/by/2.5)。檔案：`assets/guide/destinations/wakayama-photo.jpg`
-- rinku: [File:Rinku premium outlets02s3200.jpg](https://commons.wikimedia.org/wiki/File:Rinku_premium_outlets02s3200.jpg) — 663highland，[CC BY 2.5](https://creativecommons.org/licenses/by/2.5)。檔案：`assets/guide/destinations/rinku-photo.jpg`
+- mizumadera: [File:Mizumadera Sanzyunotou.jpg](https://commons.wikimedia.org/wiki/File:Mizumadera_Sanzyunotou.jpg) — Nozomikobe，[CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en)。檔案：`assets/guide/destinations/mizumadera-photo.webp`
+- misaki-tenmangu: [File:Misaki-tenman-gu.jpg](https://commons.wikimedia.org/wiki/File:Misaki-tenman-gu.jpg) — KENPEI，[CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)。檔案：`assets/guide/destinations/misaki-tenmangu-photo.webp`
+- kaiyukan: [File:Acuario de Osaka - Edificio.jpg](https://commons.wikimedia.org/wiki/File:Acuario_de_Osaka_-_Edificio.jpg) — SpiceMan，[CC BY 2.5](https://creativecommons.org/licenses/by/2.5)。檔案：`assets/guide/destinations/kaiyukan-photo.webp`
+- dotonbori: [File:Dotonbori Canal 1.jpg](https://commons.wikimedia.org/wiki/File:Dotonbori_Canal_1.jpg) — Ray in Manila，[CC BY 2.0](https://creativecommons.org/licenses/by/2.0)。檔案：`assets/guide/destinations/dotonbori-photo.webp`
+- nara: [File:Deer in Nara Park.jpg](https://commons.wikimedia.org/wiki/File:Deer_in_Nara_Park.jpg) — Christophe95，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)。檔案：`assets/guide/destinations/nara-photo.webp`
+- kyoto: [File:Kamogawa River from Sanjo-Ohashi Bridge (North).JPG](https://commons.wikimedia.org/wiki/File:Kamogawa_River_from_Sanjo-Ohashi_Bridge_(North).JPG) — そらみみ，[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)。檔案：`assets/guide/destinations/kyoto-photo.webp`
+- kobe: [File:Kobe Port Tower and Maritime Museum, November 2016.jpg](https://commons.wikimedia.org/wiki/File:Kobe_Port_Tower_and_Maritime_Museum,_November_2016.jpg) — Martin Falbisoner，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)。檔案：`assets/guide/destinations/kobe-photo.webp`
+- arima: [File:Kin-no-yu Arima Onsen 2013.jpg](https://commons.wikimedia.org/wiki/File:Kin-no-yu_Arima_Onsen_2013.jpg) — Wpcpey，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)。檔案：`assets/guide/destinations/arima-photo.webp`
+- awaji: [File:Keino matsubara 01.jpg](https://commons.wikimedia.org/wiki/File:Keino_matsubara_01.jpg) — Pinqui，[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)。檔案：`assets/guide/destinations/awaji-photo.webp`
+- wakayama: [File:Wakayama Castle Nishinomaru Garden04bs3200.jpg](https://commons.wikimedia.org/wiki/File:Wakayama_Castle_Nishinomaru_Garden04bs3200.jpg) — 663highland，[CC BY 2.5](https://creativecommons.org/licenses/by/2.5)。檔案：`assets/guide/destinations/wakayama-photo.webp`
+- rinku: [File:Rinku premium outlets02s3200.jpg](https://commons.wikimedia.org/wiki/File:Rinku_premium_outlets02s3200.jpg) — 663highland，[CC BY 2.5](https://creativecommons.org/licenses/by/2.5)。檔案：`assets/guide/destinations/rinku-photo.webp`
 
 ## 官方新聞稿實景（內部記錄，不在網頁顯示來源）
 - life-asashiobashi-ekimae: ライフ朝潮橋駅前店外觀（大阪府大阪市港区夕凪2-18-49，朝潮橋駅7番出口旁）。用於 Art Home 第 05 章（暮らし）。
@@ -29,4 +29,4 @@
   - 原檔：<https://newscast.jp/attachments/eK8srw8o1vlo5VUGXwVV.jpg>（未經修改直接複製，4032 × 3024）
   - 店舖頁：<https://store.lifecorp.jp/detail/west429/>
   - 取得日：2026-10-16。未主張任何 CC／自由授權。
-  - 檔案：`assets/guide/destinations/life-asashiobashi-ekimae-exterior.jpg`
+  - 檔案：`assets/guide/destinations/life-asashiobashi-ekimae-exterior.webp`

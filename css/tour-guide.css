@@ -21,11 +21,11 @@
 
 /* ============================================================
    HERO (modifier of the homepage .hero)
-   osaka.jpg is 3:2, so the default .hero__image sizing from
+   osaka.webp is 3:2, so the default .hero__image sizing from
    home.css works unchanged — only the blurred backdrop differs.
    ============================================================ */
 .hero--guide .hero__media::before {
-  background-image: url('../assets/osaka/osaka.jpg');
+  background-image: url('../assets/osaka/osaka.webp');
 }
 
 /* Same as about.css — Japanese lead set as the H1 instead of the

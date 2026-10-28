@@ -38,7 +38,7 @@ function render(items){
   $('cards').replaceChildren();
   for(const stay of items){
     const card=document.createElement('article');card.className='card';
-    const img=document.createElement('img');img.src=`assets/properties/${stay.folder}/room_picture_${stay.photo}.jpeg`;img.alt=i18n.t('card.imageAlt',{name:stay.name});img.loading='lazy';
+    const img=document.createElement('img');img.src=`assets/properties/${stay.folder}/room_picture_${stay.photo}.webp`;img.alt=i18n.t('card.imageAlt',{name:stay.name});img.loading='lazy';
     const body=document.createElement('div');body.className='card-body';
     const title=document.createElement('h3');title.textContent=stay.name;const en=document.createElement('small');en.textContent=stay.en;title.append(en);
     const bottom=document.createElement('div');bottom.className='card-bottom';

@@ -53,8 +53,8 @@
       nameJa: "茶園",
       nameEn: "Tea Garden",
       guideArea: "south",
-      heroImage: "room_picture_1.jpeg",
-      images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg"],
+      heroImage: "room_picture_1.webp",
+      images: ["room_picture_1.webp", "room_picture_2.webp", "room_picture_3.webp", "room_picture_4.webp", "room_picture_5.webp", "room_picture_6.webp", "room_picture_7.webp", "room_picture_8.webp", "room_picture_9.webp", "room_picture_10.webp"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
       tagline: {
         ja: "天下茶屋に佇む、伝統町家の一棟貸し。",
@@ -118,8 +118,8 @@
       nameJa: "禪園",
       nameEn: "Zen Garden",
       guideArea: "south",
-      heroImage: "room_picture_1.jpeg",
-      images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg", "room_picture_11.jpeg", "room_picture_12.jpeg", "room_picture_13.jpeg", "room_picture_14.jpeg", "room_picture_15.jpeg", "room_picture_16.jpeg", "room_picture_17.jpeg"],
+      heroImage: "room_picture_1.webp",
+      images: ["room_picture_1.webp", "room_picture_2.webp", "room_picture_3.webp", "room_picture_4.webp", "room_picture_5.webp", "room_picture_6.webp", "room_picture_7.webp", "room_picture_8.webp", "room_picture_9.webp", "room_picture_10.webp", "room_picture_11.webp", "room_picture_12.webp", "room_picture_13.webp", "room_picture_14.webp", "room_picture_15.webp", "room_picture_16.webp", "room_picture_17.webp"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
       tagline: {
         ja: "昭和の町家を改修した、庭のある一棟貸し。",
@@ -187,8 +187,8 @@
       nameJa: "文園",
       nameEn: "Literature Garden",
       guideArea: "bay",
-      heroImage: "room_picture_1.jpeg",
-      images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg"],
+      heroImage: "room_picture_1.webp",
+      images: ["room_picture_1.webp", "room_picture_2.webp", "room_picture_3.webp", "room_picture_4.webp", "room_picture_5.webp", "room_picture_6.webp", "room_picture_7.webp", "room_picture_8.webp", "room_picture_9.webp"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
       tagline: {
         ja: "市岡の路地に建つ、三階建ての一棟貸し古民家。",
@@ -253,8 +253,8 @@
       nameJa: "芸",
       nameEn: "Art Home",
       guideArea: "bay",
-      heroImage: "room_picture_1.jpeg",
-      images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg", "room_picture_11.jpeg", "room_picture_12.jpeg", "room_picture_13.jpeg", "room_picture_14.jpeg"],
+      heroImage: "room_picture_1.webp",
+      images: ["room_picture_1.webp", "room_picture_2.webp", "room_picture_3.webp", "room_picture_4.webp", "room_picture_5.webp", "room_picture_6.webp", "room_picture_7.webp", "room_picture_8.webp", "room_picture_9.webp", "room_picture_10.webp", "room_picture_11.webp", "room_picture_12.webp", "room_picture_13.webp", "room_picture_14.webp"],
       verified: { address: true, amenities: true, rules: true, map: true, capacity: false },
       tagline: {
         ja: "三先に建つ、四階建てのアートな一棟貸し。",
@@ -325,8 +325,8 @@
       nameJa: "松園",
       nameEn: "Pine Garden",
       guideArea: "bay",
-      heroImage: "room_picture_1.jpeg",
-      images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg"],
+      heroImage: "room_picture_1.webp",
+      images: ["room_picture_1.webp", "room_picture_2.webp", "room_picture_3.webp", "room_picture_4.webp", "room_picture_5.webp", "room_picture_6.webp", "room_picture_7.webp", "room_picture_8.webp", "room_picture_9.webp", "room_picture_10.webp"],
       verified: { address: true, amenities: true, rules: true, map: false, capacity: false },
       tagline: {
         ja: "市岡に建つ、三階建ての一棟貸し住宅。",
@@ -412,8 +412,8 @@
       nameJa: "和の園",
       nameEn: "Harmony Garden",
       guideArea: "bay",
-      heroImage: "room_picture_1.jpeg",
-      images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg"],
+      heroImage: "room_picture_1.webp",
+      images: ["room_picture_1.webp", "room_picture_2.webp", "room_picture_3.webp", "room_picture_4.webp", "room_picture_5.webp", "room_picture_6.webp", "room_picture_7.webp", "room_picture_8.webp", "room_picture_9.webp"],
       verified: { address: false, amenities: false, rules: false, map: true, capacity: false },
       tagline: {
         ja: "弁天町エリアに佇む一棟貸しの宿。",
@@ -451,8 +451,8 @@
       nameJa: "古川の家",
       nameEn: "Furukawa House",
       guideArea: "kaizuka",
-      heroImage: "room_picture_1.jpeg",
-      images: ["room_picture_1.jpeg", "room_picture_2.jpeg", "room_picture_3.jpeg", "room_picture_4.jpeg", "room_picture_5.jpeg", "room_picture_6.jpeg", "room_picture_7.jpeg", "room_picture_8.jpeg", "room_picture_9.jpeg", "room_picture_10.jpeg", "room_picture_11.jpeg", "room_picture_12.jpeg", "room_picture_13.jpeg", "room_picture_14.jpeg"],
+      heroImage: "room_picture_1.webp",
+      images: ["room_picture_1.webp", "room_picture_2.webp", "room_picture_3.webp", "room_picture_4.webp", "room_picture_5.webp", "room_picture_6.webp", "room_picture_7.webp", "room_picture_8.webp", "room_picture_9.webp", "room_picture_10.webp", "room_picture_11.webp", "room_picture_12.webp", "room_picture_13.webp", "room_picture_14.webp"],
       verified: { address: true, amenities: false, rules: false, map: true, capacity: false },
       tagline: {
         ja: "貝塚・三ツ松に佇む一棟貸しの古民家。",
@@ -491,7 +491,7 @@
         checkout: null,
         cancellation: null,
         parking: {
-          image: "parking-guide.png",
+          image: "parking-guide.webp",
           title: {
             ja: "駐車案内",
             en: "Parking Information",
@@ -540,21 +540,21 @@
       anchor: "shinsekai",
       areaKeys: ["guidePage.area.shinsekai.name", "guidePage.area.namba.name"],
       textKey: "stayTeaser.south.text",
-      image: "assets/osaka/streetscape_1.jpg",
+      image: "assets/osaka/streetscape_1.webp",
       imageAltKey: "experience.image1Alt"
     },
     bay: {
       anchor: "bay",
       areaKeys: ["guidePage.area.bay.name"],
       textKey: "stayTeaser.bay.text",
-      image: "assets/osaka/USJ.jpeg",
+      image: "assets/osaka/USJ.webp",
       imageAltKey: "guidePage.area.bay.imageAlt"
     },
     kaizuka: {
       anchor: "kaizuka",
       areaKeys: ["guidePage.area.kaizuka.name"],
       textKey: "stayTeaser.kaizuka.text",
-      image: "assets/properties/stay-06_Furukawa House/room_picture_1.jpeg",
+      image: "assets/properties/stay-06_Furukawa House/room_picture_1.webp",
       imageAltKey: "guidePage.area.kaizuka.imageAlt"
     }
   };

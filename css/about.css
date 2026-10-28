@@ -10,12 +10,12 @@
 
 /* ============================================================
    HERO (modifier of the homepage .hero)
-   about-interior.jpg is 16:9 rather than the homepage's 4:3, so the
+   about-interior.webp is 16:9 rather than the homepage's 4:3, so the
    sharp insert is sized by width instead of height to keep it clear
    of the copy block.
    ============================================================ */
 .hero--about .hero__media::before {
-  background-image: url('../assets/backgrounds/about-interior.jpg');
+  background-image: url('../assets/backgrounds/about-interior.webp');
 }
 
 .hero--about .hero__image {

@@ -143,7 +143,7 @@
      blurred backdrop is hidden, and .hero__image resets back to a single
      full-bleed cover crop (its pre-layered behaviour), focused via
      object-position so the 禪 wall-hanging (source ~x:1140-1390, y:140-565
-     of the 1600x1200 cover_1.jpg) stays composed once cropped. On this
+     of the 1600x1200 cover_1.webp) stays composed once cropped. On this
      narrow/tall viewport the crop flips from vertical to horizontal (the
      image fills the available height and overflows sideways), hence the
      strong rightward bias vs. the desktop/tablet formulas above. */

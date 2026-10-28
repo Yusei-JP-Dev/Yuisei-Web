@@ -5,7 +5,7 @@ Date: 2026-10-16. Latest user instructions supersede prior generated-image badge
 ## Required changes
 
 1. Remove every visitor-facing explicit AI-generation label across the site, including five-language image badges, AI prefixes in image alt text, and the generated-image paragraph at the bottom of the guide credits. Remove unused guide.img.ai, guide.img.aiAlt, guide.credits.ai keys rather than replacing with empty UI. Keep useful descriptive alt/caption text, and keep atmosphere images generically described, not asserted to be photos of named real stores. Do not replace AI labels with different badges. Internal source/provenance metadata can remain truthful and is not rendered.
-2. For Art Home only, replace chapter 05 / daily life image mapping with the real supermarket exterior prepared at `assets/guide/destinations/life-asashiobashi-ekimae-exterior.jpg`. Other stays retain existing chapter images.
+2. For Art Home only, replace chapter 05 / daily life image mapping with the real supermarket exterior prepared at `assets/guide/destinations/life-asashiobashi-ekimae-exterior.webp`. Other stays retain existing chapter images.
 3. New asset id `life-asashiobashi-ekimae`, kind `photo`, original dimensions **4032 × 3024**, local src above. Caption/alt in five languages:
    - ja: ライフ朝潮橋駅前店
    - en: LIFE Asashiobashi Ekimae supermarket

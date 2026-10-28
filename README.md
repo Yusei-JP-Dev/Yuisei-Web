@@ -141,7 +141,7 @@ Garden property reference doc.
 ## Hero focal point
 
 The hero uses two different treatments depending on viewport, both built on
-the same `assets/hero/cover_1.jpg`:
+the same `assets/hero/cover_1.webp`:
 
 **Desktop/tablet (>768px):** a layered look. `.hero__media::before`
 (`css/home.css`) is a pure-CSS, decorative duplicate of the photo —
@@ -159,7 +159,7 @@ ultrawide; `max-width: min(760px, 34vw)` caps its size so it doesn't crowd
 on narrower desktop/tablet widths. Desktop hero height (`css/home.css`) is
 `clamp(560px, 25vw, 720px)`, not a fixed 560px — it holds 560px through
 1366/1440/1920, grows to 640px at 2560, and caps at 720px from ~2880px up.
-If `cover_1.jpg` is ever replaced, update **both** the `<img src>`
+If `cover_1.webp` is ever replaced, update **both** the `<img src>`
 (index.html) and the `--hero-backdrop-image` value (`css/home.css`) so the
 two layers keep matching.
 
@@ -169,10 +169,10 @@ the original single full-bleed `object-fit: cover` crop, focused via
 `object-position: 85% 20%` (`--hero-focal-x`/`--hero-focal-y` equivalents,
 now hard-coded directly in the mobile rule since nothing else consumes
 them). This keeps the wooden wall-hanging with the 禪 character (in
-`cover_1.jpg`, roughly source pixels x:1140–1390, y:140–565 of the
+`cover_1.webp`, roughly source pixels x:1140–1390, y:140–565 of the
 1600x1200 photo) visibly composed even though, on this comparatively tall,
 narrow viewport, the crop flips from vertical to horizontal and overflows
-sideways rather than top/bottom. If `cover_1.jpg` is ever replaced,
+sideways rather than top/bottom. If `cover_1.webp` is ever replaced,
 re-locate the subject's pixel coordinates in the new image and recompute
 this position (`x / imageWidth`, `y / imageHeight`) rather than reusing the
 old values as-is.

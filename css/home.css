@@ -28,7 +28,7 @@
    of the hero photo sits behind the sharp, uncropped foreground photo
    (.hero__image below). Pure CSS layer — no extra markup — so it's always
    decorative (aria-hidden isn't needed; it isn't in the accessibility tree).
-   If cover_1.jpg is ever replaced, update BOTH the <img> src in index.html
+   If cover_1.webp is ever replaced, update BOTH the <img> src in index.html
    AND this --hero-backdrop-image value so the two layers keep matching.
    scale(1.08) hides the blur's soft edge; .hero's own overflow:hidden clips
    the extra so nothing bleeds past the hero band. Reset to `none` on mobile
@@ -37,7 +37,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: var(--hero-backdrop-image, url('../assets/hero/cover_1.jpg'));
+  background-image: var(--hero-backdrop-image, url('../assets/hero/cover_1.webp'));
   background-size: cover;
   background-position: center;
   filter: blur(18px);
